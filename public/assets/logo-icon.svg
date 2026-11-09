@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022c22"/>
+      <stop offset="50%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#062e26"/>
+    </linearGradient>
+
+    <!-- Gold Foil Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="25%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fef08a"/>
+      <stop offset="75%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Emerald Wing Gradient -->
+    <linearGradient id="emeraldWing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <!-- Cyan Wing Gradient -->
+    <linearGradient id="cyanWing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Squircle Base -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Outer Gold Luxury Border -->
+  <rect x="22" y="22" width="468" height="468" rx="106" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-opacity="0.4"/>
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="6 6" stroke-opacity="0.6"/>
+
+  <!-- Geometric Star Ornament at Top -->
+  <g transform="translate(256, 75)" filter="url(#goldGlow)">
+    <polygon points="0,-16 4,-4 16,0 4,4 0,16 -4,4 -16,0 -4,-4" fill="url(#goldGrad)"/>
+    <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- THE FALCON & OPEN BOOK (Laçyn & Kitap) -->
+  <g id="falconBookIcon" transform="translate(0, 15)">
+    <!-- Book Pages (Lower Foundation) -->
+    <!-- Left page block -->
+    <path d="M 256,365 C 220,345 155,340 96,362 C 92,363 88,360 88,355 L 88,290 C 150,270 215,275 256,298 Z" 
+          fill="url(#goldGrad)" opacity="0.95"/>
+    <path d="M 256,380 C 215,360 150,355 92,377 C 88,378 84,375 84,370 L 84,360 C 145,338 210,343 256,365 Z" 
+          fill="#d97706" opacity="0.7"/>
+
+    <!-- Right page block -->
+    <path d="M 256,365 C 292,345 357,340 416,362 C 420,363 424,360 424,355 L 424,290 C 362,270 297,275 256,298 Z" 
+          fill="url(#goldGrad)" opacity="0.95"/>
+    <path d="M 256,380 C 297,360 362,355 420,377 C 424,378 428,375 428,370 L 428,360 C 367,338 302,343 256,365 Z" 
+          fill="#d97706" opacity="0.7"/>
+
+    <!-- Book Spine & Ribbon -->
+    <polygon points="253,298 259,298 261,415 256,405 251,415" fill="url(#goldGrad)"/>
+
+    <!-- Left Wing Feathers (Ascending Pages) -->
+    <!-- Tier 1: Outer Wing -->
+    <path d="M 248,270 C 210,210 160,150 78,130 C 70,128 66,138 72,143 C 120,185 155,245 180,305 C 205,290 230,280 248,270 Z" 
+          fill="url(#cyanWing)"/>
+
+    <!-- Tier 2: Middle Wing Page -->
+    <path d="M 250,260 C 215,190 178,135 118,105 C 110,101 106,112 112,117 C 158,155 195,215 215,280 C 230,270 242,264 250,260 Z" 
+          fill="url(#emeraldWing)"/>
+
+    <!-- Tier 3: High Crest Wing Page -->
+    <path d="M 252,240 C 228,165 195,115 155,80 C 148,74 142,84 148,90 C 185,130 218,185 235,250 Z" 
+          fill="url(#goldGrad)"/>
+
+    <!-- Right Wing Feathers (Ascending Pages) -->
+    <!-- Tier 1: Outer Wing -->
+    <path d="M 264,270 C 302,210 352,150 434,130 C 442,128 446,138 440,143 C 392,185 357,245 332,305 C 307,290 282,280 264,270 Z" 
+          fill="url(#cyanWing)"/>
+
+    <!-- Tier 2: Middle Wing Page -->
+    <path d="M 262,260 C 297,190 334,135 394,105 C 402,101 406,112 400,117 C 354,155 317,215 297,280 C 282,270 270,264 262,260 Z" 
+          fill="url(#emeraldWing)"/>
+
+    <!-- Tier 3: High Crest Wing Page -->
+    <path d="M 260,240 C 284,165 317,115 357,80 C 364,74 370,84 364,90 C 327,130 294,185 277,250 Z" 
+          fill="url(#goldGrad)"/>
+
+    <!-- Falcon Center Body & Proud Head -->
+    <!-- Body Shield Shape -->
+    <path d="M 256,160 C 242,180 236,215 238,260 C 244,285 256,310 256,310 C 256,310 268,285 274,260 C 276,215 270,180 256,160 Z" 
+          fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="3"/>
+
+    <!-- Golden Falcon Head (Facing right, noble profile) -->
+    <path d="M 256,125 C 246,125 240,135 240,145 C 240,165 250,185 256,195 C 262,185 272,165 272,145 C 272,135 266,125 256,125 Z" 
+          fill="url(#goldGrad)"/>
+    
+    <!-- Falcon Sharp Beak -->
+    <path d="M 265,140 Q 282,144 280,154 Q 268,154 263,148 Z" fill="#fef08a"/>
+
+    <!-- Falcon Keen Eye -->
+    <circle cx="260" cy="140" r="3.5" fill="#022c22"/>
+    <circle cx="261" cy="139" r="1.2" fill="#ffffff"/>
+
+    <!-- Emblem Monogram 'L' on Chest Shield -->
+    <text x="256" y="262" 
+          font-family="'Times New Roman', serif" 
+          font-size="44" 
+          font-weight="bold" 
+          fill="url(#goldGrad)" 
+          text-anchor="middle"
+          filter="url(#goldGlow)">L</text>
+  </g>
+
+  <!-- Bottom Ribbon with Brand Signature -->
+  <g transform="translate(256, 435)">
+    <rect x="-110" y="-16" width="220" height="32" rx="16" fill="#022c22" stroke="url(#goldGrad)" stroke-width="2"/>
+    <text x="0" y="6" 
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="16" 
+          font-weight="800" 
+          letter-spacing="3" 
+          fill="url(#goldGrad)" 
+          text-anchor="middle">L.BOOKSHOP</text>
+  </g>
+</svg>

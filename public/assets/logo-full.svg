@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient for Icon -->
+    <linearGradient id="fullBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022c22"/>
+      <stop offset="50%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#062e26"/>
+    </linearGradient>
+
+    <!-- Gold Foil Gradient -->
+    <linearGradient id="fullGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="25%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fef08a"/>
+      <stop offset="75%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Emerald Wing Gradient -->
+    <linearGradient id="fullEmeraldWing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <!-- Cyan Wing Gradient -->
+    <linearGradient id="fullCyanWing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ICON BADGE (Square with rounded corners) -->
+  <g transform="translate(6, 6)">
+    <rect x="0" y="0" width="68" height="68" rx="18" fill="url(#fullBgGrad)" stroke="url(#fullGoldGrad)" stroke-width="1.8"/>
+
+    <!-- Mini Falcon + Book inside the 68x68 badge -->
+    <g transform="translate(34, 34) scale(0.12) translate(-256, -240)">
+      <!-- Book Pages -->
+      <path d="M 256,365 C 220,345 155,340 96,362 C 92,363 88,360 88,355 L 88,290 C 150,270 215,275 256,298 Z" fill="url(#fullGoldGrad)"/>
+      <path d="M 256,365 C 292,345 357,340 416,362 C 420,363 424,360 424,355 L 424,290 C 362,270 297,275 256,298 Z" fill="url(#fullGoldGrad)"/>
+      <polygon points="253,298 259,298 261,415 256,405 251,415" fill="url(#fullGoldGrad)"/>
+
+      <!-- Wings -->
+      <path d="M 248,270 C 210,210 160,150 78,130 C 70,128 66,138 72,143 C 120,185 155,245 180,305 C 205,290 230,280 248,270 Z" fill="url(#fullCyanWing)"/>
+      <path d="M 250,260 C 215,190 178,135 118,105 C 110,101 106,112 112,117 C 158,155 195,215 215,280 Z" fill="url(#fullEmeraldWing)"/>
+      <path d="M 264,270 C 302,210 352,150 434,130 C 442,128 446,138 440,143 C 392,185 357,245 332,305 C 307,290 282,280 264,270 Z" fill="url(#fullCyanWing)"/>
+      <path d="M 262,260 C 297,190 334,135 394,105 C 402,101 406,112 400,117 C 354,155 317,215 297,280 Z" fill="url(#fullEmeraldWing)"/>
+
+      <!-- Falcon Head & Center -->
+      <path d="M 256,125 C 246,125 240,135 240,145 C 240,165 250,185 256,195 C 262,185 272,165 272,145 C 272,135 266,125 256,125 Z" fill="url(#fullGoldGrad)"/>
+      <path d="M 265,140 Q 282,144 280,154 Q 268,154 263,148 Z" fill="#fef08a"/>
+      <circle cx="260" cy="140" r="4" fill="#022c22"/>
+
+      <!-- Monogram L -->
+      <text x="256" y="270" font-family="'Times New Roman', serif" font-size="52" font-weight="bold" fill="url(#fullGoldGrad)" text-anchor="middle">L</text>
+    </g>
+  </g>
+
+  <!-- TYPOGRAPHY -->
+  <g transform="translate(88, 0)">
+    <!-- Primary Brand Title -->
+    <text x="0" y="44" 
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" 
+          font-size="32" 
+          font-weight="900" 
+          letter-spacing="-0.5" 
+          fill="#0f172a">
+      L<tspan fill="#059669">.</tspan>BookShop
+    </text>
+
+    <!-- Subtitle / Domain -->
+    <text x="2" y="64" 
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="11.5" 
+          font-weight="700" 
+          letter-spacing="2" 
+          fill="#64748b">
+      LAÇYN BOOKSHOP <tspan fill="#d97706">•</tspan> lachynbookshop.online
+    </text>
+  </g>
+</svg>
