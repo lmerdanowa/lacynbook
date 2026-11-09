@@ -15,7 +15,7 @@
     "kitap-dukany",
     "ecommerce"
   ],
-  "author": "Batyr",
+  "author": "Laçyn BookShop Team",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",

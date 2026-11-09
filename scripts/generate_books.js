@@ -267,7 +267,7 @@ const reviewComments = [
 
 const reviewerNames = [
   "Mekan Allanazarow", "Aýgül Berdiýewa", "Serdar Kakajykow", "Jemal Orazowa",
-  "Döwlet Myradow", "Batyr Taganow", "Şöhrat Merdanow", "Jeren Begmyradowa",
+  "Döwlet Myradow", "Mekan Taganow", "Şöhrat Merdanow", "Jeren Begmyradowa",
   "Myrat Ýolamanow", "Selbi Hydyrowa", "Guwanç Saryýew", "Ogulbäbek Nuryýewa",
   "Begmyrat Annagurbanow", "Maral Taşliýewa", "Rahym Gurbanow", "Altyn Jumageldiýewa"
 ];

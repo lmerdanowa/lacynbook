@@ -1,8 +1,8 @@
 [
   {
     "id": "usr-101",
-    "username": "batyr",
-    "fullName": "Batyr Jumamyradow",
+    "username": "merdan",
+    "fullName": "Merdan Allanazarow",
     "password": "123456",
     "city": "Aşgabat",
     "address": "Magtymguly şaýoly, 45",
@@ -22,14 +22,14 @@
     "createdAt": "2026-10-15T12:30:00.000Z"
   },
   {
-    "id": "usr-1794231754831",
-    "username": "jbatyrcomp",
-    "fullName": "batyr jumamyradov",
-    "password": "1234567",
+    "id": "usr-103",
+    "username": "myrat",
+    "fullName": "Myrat Orazow",
+    "password": "123456",
     "city": "Daşoguz",
-    "address": "",
-    "avatar": "📚",
-    "bonusPoints": 10,
-    "createdAt": "2026-11-09T13:42:34.831Z"
+    "address": "Görogly köçesi, 12",
+    "avatar": "📖",
+    "bonusPoints": 20,
+    "createdAt": "2026-10-20T08:15:00.000Z"
   }
 ]

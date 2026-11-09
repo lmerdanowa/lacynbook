@@ -85,7 +85,7 @@ Turkmen-Kitap-Dukany/
 
 ### 👤 Müşderi Hasaby (Storefront):
 - **Web-saýt:** [lachynbookshop.online](https://lachynbookshop.online) (`http://localhost:3000`)
-- **Login:** `batyr`
+- **Login:** `merdan`
 - **Açarsöz (Parol):** `123456`
 
 ### 🛡️ Administrator Hasaby (Admin Portal):
