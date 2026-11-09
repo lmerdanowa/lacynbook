@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L.BookShop Admin — admin.lachynbookshop.online</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg">
+  <style>
+    :root {
+      --admin-sidebar: #0f172a;
+      --admin-sidebar-hover: #1e293b;
+      --admin-sidebar-text: #94a3b8;
+      --admin-sidebar-active: #059669;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Admin Login Screen */
+    .admin-login-wrapper {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #062e26 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1.5rem;
+    }
+
+    .admin-login-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+
+    /* Admin Dashboard Layout */
+    .admin-layout {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .admin-layout.active {
+      display: flex;
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      width: 260px;
+      background: var(--admin-sidebar);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    }
+
+    .admin-brand {
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .admin-nav {
+      list-style: none;
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+    }
+
+    .admin-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      color: var(--admin-sidebar-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .admin-nav-item:hover {
+      background: var(--admin-sidebar-hover);
+      color: white;
+    }
+
+    .admin-nav-item.active {
+      background: var(--admin-sidebar-active);
+      color: white;
+    }
+
+    /* Main Area */
+    .admin-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow-y: auto;
+    }
+
+    .admin-topbar {
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .admin-content {
+      padding: 2rem;
+      flex: 1;
+    }
+
+    .admin-tab {
+      display: none;
+    }
+
+    .admin-tab.active {
+      display: block;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-layout.active {
+        flex-direction: column;
+      }
+      .admin-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ADMIN AUTH SCREEN -->
+  <div class="admin-login-wrapper" id="adminAuthScreen">
+    <div class="admin-login-card">
+      <img src="assets/logo-icon.svg" alt="L.BookShop Logo" style="width: 72px; height: 72px; border-radius: 18px; margin-bottom: 1rem; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4);">
+      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem;">L.BookShop Admin</h2>
+      <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.75rem;">admin.lachynbookshop.online</p>
+
+      <form id="adminLoginForm">
+        <div class="form-group" style="text-align: left;">
+          <label style="font-weight: 600; font-size: 0.85rem; color: #475569;">Admin Logini</label>
+          <input type="text" id="adminUsername" class="form-control" required placeholder="admin" style="padding: 0.75rem; border-radius: 10px;">
+        </div>
+        <div class="form-group" style="text-align: left;">
+          <label style="font-weight: 600; font-size: 0.85rem; color: #475569;">Açarsöz (Parol)</label>
+          <input type="password" id="adminPassword" class="form-control" required placeholder="admin123" style="padding: 0.75rem; border-radius: 10px;">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem; border-radius: 10px; margin-top: 0.5rem;">
+          🔐 Paneli Açmak
+        </button>
+      </form>
+
+      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+        <button type="button" id="adminQuickDemoBtn" style="background: none; border: 1px dashed #059669; color: #059669; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;">
+          ⚡ Tiz admin synagy: admin / admin123
+        </button>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <a href="/" style="color: #64748b; font-size: 0.82rem; text-decoration: none;">← Esasy dükana dolanmak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD LAYOUT -->
+  <div class="admin-layout" id="adminDashboardLayout">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="assets/logo-icon.svg" alt="L.BookShop" style="width: 40px; height: 40px; border-radius: 10px;">
+        <div>
+          <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0;">L.BookShop</h3>
+          <small style="color: #10b981; font-weight: 700; font-size: 0.7rem;">admin.lachynbookshop.online</small>
+        </div>
+      </div>
+
+      <ul class="admin-nav">
+        <li class="admin-nav-item active" data-tab="tab-overview">
+          📊 Synp (Overview)
+        </li>
+        <li class="admin-nav-item" data-tab="tab-orders">
+          📦 Sargytlar dolandyryşy
+        </li>
+        <li class="admin-nav-item" data-tab="tab-books">
+          📚 Kitaplar gory (215+)
+        </li>
+        <li class="admin-nav-item" data-tab="tab-users">
+          👥 Ulanyjylar
+        </li>
+      </ul>
+
+      <div style="padding: 1.25rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <button id="adminLogoutBtn" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); padding: 0.65rem 1rem; border-radius: 10px; width: 100%; font-weight: 700; cursor: pointer;">
+          🚪 Hasapdan çykmak
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <!-- Top Bar -->
+      <header class="admin-topbar">
+        <div>
+          <h2 id="adminTabTitle" style="font-size: 1.3rem; font-weight: 800; margin: 0;">Umumy Syn (Dashboard)</h2>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <a href="/" target="_blank" class="btn-primary" style="padding: 0.45rem 0.85rem; font-size: 0.85rem; background: #0f172a;">
+            🌐 Dükany açmak
+          </a>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 700; background: #e2e8f0; padding: 0.4rem 0.8rem; border-radius: 9999px;">
+            <span>🛡️</span> <span>Baş Administrator</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="admin-content">
+
+        <!-- TAB 1: OVERVIEW -->
+        <section class="admin-tab active" id="tab-overview">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h4>Jemi girdeji</h4>
+              <p id="statTotalRevenue">0.00 TMT</p>
+            </div>
+            <div class="stat-card">
+              <h4>Jemi sargytlar</h4>
+              <p id="statTotalOrders">0</p>
+            </div>
+            <div class="stat-card">
+              <h4>Kitaplar sany</h4>
+              <p id="statTotalBooks">0</p>
+            </div>
+            <div class="stat-card">
+              <h4>Garaşylýan sargytlar</h4>
+              <p id="statPendingOrders" style="color: #f59e0b;">0</p>
+            </div>
+          </div>
+
+          <!-- Quick Orders Card -->
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0;">Soňky sargytlar</h3>
+              <button class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="switchAdminTab('tab-orders')">
+                Ählisini görkez →
+              </button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Müşderi</th>
+                    <th>Şäher</th>
+                    <th>Harytlar</th>
+                    <th>Ýagdaýy</th>
+                    <th>Sene</th>
+                  </tr>
+                </thead>
+                <tbody id="overviewOrdersTable">
+                  <tr><td colspan="6" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: ORDERS -->
+        <section class="admin-tab" id="tab-orders">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">Sargytlar dolandyryşy</h3>
+                <small style="color: var(--text-muted);">Ähli gelen sargytlaryň sanawy we ýagdaýlary</small>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <select id="orderStatusFilter" class="form-control" style="width: auto; padding: 0.45rem 0.85rem;" onchange="filterAdminOrders()">
+                  <option value="all">Ähli sargytlar</option>
+                  <option value="taze">Täze</option>
+                  <option value="tayyarlanyar">Taýýarlanýar</option>
+                  <option value="ugradyldy">Ýolda / Ugradyldy</option>
+                  <option value="gowshuryldy">Gowşuryldy</option>
+                </select>
+                <button class="btn-primary" style="padding: 0.45rem 0.85rem;" onclick="loadAdminOrdersData()">🔄 Täzele</button>
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Müşderi</th>
+                    <th>Şäher / Salgy</th>
+                    <th>Sargyt edilen kitaplar</th>
+                    <th>Ýagdaýy</th>
+                    <th>Sene</th>
+                  </tr>
+                </thead>
+                <tbody id="fullOrdersTable">
+                  <tr><td colspan="6" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: BOOKS -->
+        <section class="admin-tab" id="tab-books">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">Kitaplar gory</h3>
+                <small style="color: var(--text-muted);" id="adminBooksCount">0 kitap bar</small>
+              </div>
+              <div style="display: flex; gap: 0.75rem;">
+                <input type="text" id="adminBookSearch" class="form-control" placeholder="Kitap gözleg..." style="width: 240px; padding: 0.45rem 0.85rem;" oninput="filterAdminBooks()">
+                <button class="btn-primary" style="padding: 0.45rem 1rem;" onclick="document.getElementById('adminAddBookModal').classList.add('active')">
+                  + Täze kitap goşmak
+                </button>
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Ady</th>
+                    <th>Awtory</th>
+                    <th>Bölümi</th>
+                    <th>Bahasy</th>
+                    <th>Sahypa</th>
+                    <th>Hereket</th>
+                  </tr>
+                </thead>
+                <tbody id="adminBooksTable">
+                  <tr><td colspan="7" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: USERS -->
+        <section class="admin-tab" id="tab-users">
+          <div class="card">
+            <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem;">Hasaba alnan ulanyjylar</h3>
+            <small style="color: var(--text-muted); display: block; margin-bottom: 1.25rem;">Dükanyň agzalary we olaryň bonus ballary</small>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Login</th>
+                    <th>Doly ady</th>
+                    <th>Welaýaty</th>
+                    <th>Bonus Baly</th>
+                    <th>Hasap açylan sene</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTable">
+                  <tr><td colspan="5" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Book Modal -->
+  <div class="modal-overlay" id="adminAddBookModal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="document.getElementById('adminAddBookModal').classList.remove('active')">✕</button>
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">+ Täze kitap goşmak</h3>
+      <form id="adminCreateBookForm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Kitabyň ady</label>
+            <input type="text" name="title" class="form-control" required placeholder="Eseriň ady">
+          </div>
+          <div class="form-group">
+            <label>Awtory</label>
+            <input type="text" name="author" class="form-control" required placeholder="Awtor">
+          </div>
+          <div class="form-group">
+            <label>Bölümi</label>
+            <select name="category" class="form-control">
+              <option value="klassyka">Klassyky edebiýat</option>
+              <option value="roman">Taryhy romanlar</option>
+              <option value="sygyryet">Şygyrýet</option>
+              <option value="powest">Powest & Hekaýalar</option>
+              <option value="cagalar">Çagalar edebiýaty</option>
+              <option value="ylmy">Ylmy & Okuw</option>
+              <option value="dunya">Dünýä edebiýaty</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Bahasy (TMT)</label>
+            <input type="number" step="0.5" name="price" class="form-control" required placeholder="50.00">
+          </div>
+          <div class="form-group">
+            <label>Sahypa sany</label>
+            <input type="number" name="pages" class="form-control" placeholder="280">
+          </div>
+          <div class="form-group">
+            <label>Çap edilen ýyly</label>
+            <input type="number" name="year" class="form-control" placeholder="2026">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Düşündiriş</label>
+          <textarea name="description" class="form-control" rows="3" placeholder="Kitap barada giňişleýin maglumat"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; margin-top: 0.5rem;">
+          💾 Kitaby bazada sakla
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let adminToken = sessionStorage.getItem('tkd_admin_auth') || null;
+    let allOrders = [];
+    let allBooks = [];
+
+    const authScreen = document.getElementById('adminAuthScreen');
+    const dashboardLayout = document.getElementById('adminDashboardLayout');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+    const adminQuickDemoBtn = document.getElementById('adminQuickDemoBtn');
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      if (adminToken === 'active_admin') {
+        showDashboard();
+      } else {
+        showAuth();
+      }
+
+      setupTabs();
+      setupForms();
+    });
+
+    function showAuth() {
+      authScreen.style.display = 'flex';
+      dashboardLayout.classList.remove('active');
+    }
+
+    function showDashboard() {
+      authScreen.style.display = 'none';
+      dashboardLayout.classList.add('active');
+      loadOverviewStats();
+      loadAdminOrdersData();
+      loadAdminBooksData();
+      loadAdminUsersData();
+    }
+
+    function setupForms() {
+      adminLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const u = document.getElementById('adminUsername').value.trim();
+        const p = document.getElementById('adminPassword').value.trim();
+
+        if (u === 'admin' && p === 'admin123') {
+          sessionStorage.setItem('tkd_admin_auth', 'active_admin');
+          adminToken = 'active_admin';
+          showDashboard();
+        } else {
+          alert('Login ýa-da açarsöz nädogry! (Synag: admin / admin123)');
+        }
+      });
+
+      adminQuickDemoBtn.addEventListener('click', () => {
+        document.getElementById('adminUsername').value = 'admin';
+        document.getElementById('adminPassword').value = 'admin123';
+        adminLoginForm.requestSubmit();
+      });
+
+      adminLogoutBtn.addEventListener('click', () => {
+        sessionStorage.removeItem('tkd_admin_auth');
+        adminToken = null;
+        showAuth();
+      });
+
+      document.getElementById('adminCreateBookForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const bookData = {
+          title: formData.get('title'),
+          author: formData.get('author'),
+          category: formData.get('category'),
+          price: parseFloat(formData.get('price')),
+          pages: parseInt(formData.get('pages')) || 200,
+          year: parseInt(formData.get('year')) || 2026,
+          description: formData.get('description'),
+          stock: 20
+        };
+
+        try {
+          const res = await fetch('/api/books', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookData)
+          });
+          const json = await res.json();
+          if (json.success) {
+            alert('Täze kitap üstünlikli goşuldy!');
+            form.reset();
+            document.getElementById('adminAddBookModal').classList.remove('active');
+            loadAdminBooksData();
+            loadOverviewStats();
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    }
+
+    function setupTabs() {
+      document.querySelectorAll('.admin-nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const tabId = item.getAttribute('data-tab');
+          switchAdminTab(tabId);
+        });
+      });
+    }
+
+    function switchAdminTab(tabId) {
+      document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+
+      const activeNavItem = document.querySelector(`.admin-nav-item[data-tab="${tabId}"]`);
+      if (activeNavItem) activeNavItem.classList.add('active');
+
+      const targetTab = document.getElementById(tabId);
+      if (targetTab) targetTab.classList.add('active');
+
+      const titles = {
+        'tab-overview': 'Umumy Syn (Dashboard)',
+        'tab-orders': 'Sargytlar Dolandyryşy',
+        'tab-books': 'Kitaplar Gory',
+        'tab-users': 'Hasaba Alnan Ulanyjylar'
+      };
+      document.getElementById('adminTabTitle').textContent = titles[tabId] || 'Admin Panel';
+    }
+
+    async function loadOverviewStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const json = await res.json();
+        if (json.success) {
+          document.getElementById('statTotalRevenue').textContent = `${json.data.totalRevenue} TMT`;
+          document.getElementById('statTotalOrders').textContent = json.data.totalOrders;
+          document.getElementById('statTotalBooks').textContent = json.data.totalBooks;
+          document.getElementById('statPendingOrders').textContent = json.data.pendingOrders;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadAdminOrdersData() {
+      try {
+        const res = await fetch('/api/orders');
+        const json = await res.json();
+        if (json.success) {
+          allOrders = json.data;
+          renderOrdersTables(allOrders);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderOrdersTables(orders) {
+      const renderRow = (o) => `
+        <tr>
+          <td><strong>${o.id}</strong></td>
+          <td>${escapeHtml(o.customer.fullName)}<br><small style="color: #64748b;">${o.customer.phone}</small></td>
+          <td>${o.customer.city}<br><small style="color: #64748b;">${escapeHtml(o.customer.address || '')}</small></td>
+          <td>
+            <div style="font-weight: 700; color: #059669; margin-bottom: 3px;">
+              ${o.items.length} kitap (${o.total.toFixed(2)} TMT)
+            </div>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px; font-size: 0.8rem;">
+              ${o.items.map(i => `<div>• <strong>${escapeHtml(i.title)}</strong> × ${i.quantity || 1}</div>`).join('')}
+            </div>
+          </td>
+          <td>
+            <select class="status-badge status-${o.status}" onchange="changeOrderStatus('${o.id}', this.value)">
+              <option value="taze" ${o.status === 'taze' ? 'selected' : ''}>Täze</option>
+              <option value="tayyarlanyar" ${o.status === 'tayyarlanyar' ? 'selected' : ''}>Taýýarlanýar</option>
+              <option value="ugradyldy" ${o.status === 'ugradyldy' ? 'selected' : ''}>Ugradyldy</option>
+              <option value="gowshuryldy" ${o.status === 'gowshuryldy' ? 'selected' : ''}>Gowşuryldy</option>
+            </select>
+          </td>
+          <td><small>${new Date(o.createdAt).toLocaleDateString()}</small></td>
+        </tr>
+      `;
+
+      // Overview 5 latest
+      const overviewTbody = document.getElementById('overviewOrdersTable');
+      if (overviewTbody) {
+        overviewTbody.innerHTML = orders.slice(0, 5).map(renderRow).join('') || '<tr><td colspan="6">Sargyt ýok</td></tr>';
+      }
+
+      // Full orders
+      const fullTbody = document.getElementById('fullOrdersTable');
+      if (fullTbody) {
+        fullTbody.innerHTML = orders.map(renderRow).join('') || '<tr><td colspan="6">Sargyt ýok</td></tr>';
+      }
+    }
+
+    function filterAdminOrders() {
+      const status = document.getElementById('orderStatusFilter').value;
+      if (status === 'all') {
+        renderOrdersTables(allOrders);
+      } else {
+        const filtered = allOrders.filter(o => o.status === status);
+        renderOrdersTables(filtered);
+      }
+    }
+
+    async function changeOrderStatus(orderId, status) {
+      try {
+        await fetch(`/api/orders/${orderId}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        loadOverviewStats();
+        loadAdminOrdersData();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadAdminBooksData() {
+      try {
+        const res = await fetch('/api/books');
+        const json = await res.json();
+        if (json.success) {
+          allBooks = json.data;
+          document.getElementById('adminBooksCount').textContent = `${allBooks.length} kitap hasapda dur`;
+          renderBooksTable(allBooks);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderBooksTable(books) {
+      const tbody = document.getElementById('adminBooksTable');
+      if (!tbody) return;
+
+      tbody.innerHTML = books.slice(0, 100).map(b => `
+        <tr>
+          <td><small style="color: #64748b;">${b.id}</small></td>
+          <td><strong>${escapeHtml(b.title)}</strong></td>
+          <td>${escapeHtml(b.author)}</td>
+          <td><span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">${b.category}</span></td>
+          <td><strong>${b.price.toFixed(2)} TMT</strong></td>
+          <td>${b.pages}</td>
+          <td>
+            <button onclick="deleteBookItem('${b.id}')" style="background: none; border: 1px solid #ef4444; color: #ef4444; border-radius: 6px; padding: 2px 8px; cursor: pointer; font-size: 0.75rem;">
+              🗑️ Poz
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterAdminBooks() {
+      const q = document.getElementById('adminBookSearch').value.toLowerCase().trim();
+      if (!q) {
+        renderBooksTable(allBooks);
+      } else {
+        const filtered = allBooks.filter(b => b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q));
+        renderBooksTable(filtered);
+      }
+    }
+
+    async function deleteBookItem(bookId) {
+      if (!confirm('Çyndanam bu kitaby pozmak isleýärsiňizmi?')) return;
+      try {
+        const res = await fetch(`/api/books/${bookId}`, { method: 'DELETE' });
+        const json = await res.json();
+        if (json.success) {
+          loadAdminBooksData();
+          loadOverviewStats();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadAdminUsersData() {
+      try {
+        const tbody = document.getElementById('adminUsersTable');
+        const res = await fetch('/api/admin/users');
+        const json = await res.json();
+        if (json.success && json.data && json.data.length > 0) {
+          tbody.innerHTML = json.data.map(u => `
+            <tr>
+              <td><strong>@${escapeHtml(u.username)}</strong></td>
+              <td>${escapeHtml(u.fullName || '-')}</td>
+              <td>${escapeHtml(u.city || '-')}</td>
+              <td><strong style="color: #059669;">${(u.bonusPoints || 0).toFixed(2)} TMT</strong></td>
+              <td><small>${u.createdAt ? u.createdAt.split('T')[0] : '-'}</small></td>
+            </tr>
+          `).join('');
+        } else {
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8; padding:2rem;">Ulanyjy ýok</td></tr>';
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    window.switchAdminTab = switchAdminTab;
+    window.changeOrderStatus = changeOrderStatus;
+    window.deleteBookItem = deleteBookItem;
+    window.filterAdminBooks = filterAdminBooks;
+    window.filterAdminOrders = filterAdminOrders;
+    window.loadAdminOrdersData = loadAdminOrdersData;
+  </script>
+</body>
+</html>

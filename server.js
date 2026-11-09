@@ -8,6 +8,27 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+// Admin subdomain & /admin routing (admin.lachynbookshop.online or /admin)
+app.use((req, res, next) => {
+  const host = (req.headers.host || '').toLowerCase();
+  const isAdminHost = host.startsWith('admin.') || host.startsWith('admin:');
+
+  // If accessed via admin subdomain (e.g. admin.lachynbookshop.online)
+  if (isAdminHost) {
+    if (req.path === '/' || req.path === '/index.html' || req.path === '/admin' || req.path === '/admin.html') {
+      return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+    }
+  }
+
+  // If accessed via /admin or /admin/ on any domain
+  if (req.path === '/admin' || req.path === '/admin/' || req.path === '/admin.html') {
+    return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  }
+
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const DATA_DIR = path.join(__dirname, 'data');
@@ -377,8 +398,20 @@ app.put('/api/auth/profile/:id', (req, res) => {
   res.json({ success: true, message: 'Profil täzelendi', data: userSafe });
 });
 
-// Fallback to index.html
+// 12. GET /api/admin/users (Admin users overview)
+app.get('/api/admin/users', (req, res) => {
+  const users = readData(USERS_FILE);
+  const safeUsers = users.map(({ password, ...u }) => u);
+  res.json({ success: true, count: safeUsers.length, data: safeUsers });
+});
+
+// Fallback routing (Subdomain & SPA)
 app.use((req, res) => {
+  const host = (req.headers.host || '').toLowerCase();
+  const isAdminHost = host.startsWith('admin.') || host.startsWith('admin:');
+  if (isAdminHost || req.path.startsWith('/admin')) {
+    return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  }
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

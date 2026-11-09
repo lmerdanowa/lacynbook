@@ -151,12 +151,16 @@ function setupEventListeners() {
     }
   });
 
-  adminBtn.addEventListener('click', () => {
-    loadAdminStats();
-    loadAdminOrders();
-    adminModal.classList.add('active');
-  });
-  closeAdminModal.addEventListener('click', () => adminModal.classList.remove('active'));
+  if (adminBtn) {
+    adminBtn.addEventListener('click', () => {
+      loadAdminStats();
+      loadAdminOrders();
+      if (adminModal) adminModal.classList.add('active');
+    });
+  }
+  if (closeAdminModal) {
+    closeAdminModal.addEventListener('click', () => adminModal.classList.remove('active'));
+  }
 
   // Profile & Auth
   profileNavBtn.addEventListener('click', () => {

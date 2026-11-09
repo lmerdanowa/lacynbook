@@ -15,10 +15,12 @@ Döwrebap, tiz we doly funksional onlaýn kitap söwda platformasy. Türkmen mil
 - 🔍 **Akylly Gözleg we Kategoriýalar:** Bölümler boýunça sanawlar (Klassika, Taryhy romanlar, Şygyrýet, Ylym we IT, Çagalar, Dünýä edebiýaty).
 - 🛒 **Sebet (Cart) & Halanlarym (Wishlist):** LocalStorage arkaly ýatda saklanýan harytlar, mukdary sazlamak, eltip bermek bahasyny hasaplamak.
 - 📦 **Meniň Sargytlarym & Tracking:** Ähli sargyt edilen harytlary anyk atlary, bahalary we sargyt kody (mysal: `TKD-2960`) boýunça yzarlamak.
-- ⚙️ **Admin Dolandyryş Paneli (Dashboard):**
-  - Jemi kitaplar, sargytlar sany, girdeji statistikasy.
-  - Täze kitap goşmak formasy.
-  - Sargytlaryň sanawy we olaryň ýagdaýyny («Täze», «Taýýarlanýar», «Ugradyldy», «Gowşuryldy») üýtgetmek.
+- ⚙️ **Aýratyn Admin Dolandyryş Paneli (Standalone Dashboard):**
+  - Domen: **`admin.lachynbookshop.online`** (ýa-da ýerli: `/admin`).
+  - Müşderi dükanyndan doly aýrylan, goragly administrator kabineti.
+  - Jemi kitaplar, sargytlar sany, girdeji statistikasy we ulanyjylar hasaby.
+  - Täze kitap goşmak we aýyrmak.
+  - Sargytlaryň sanawy we olaryň ýagdaýyny («Täze», «Taýýarlanýar», «Ugradyldy», «Gowşuryldy») bir basyşda üýtgetmek.
 
 ---
 
@@ -66,10 +68,12 @@ Turkmen-Kitap-Dukany/
 │   ├── orders.json        # Sargytlar sanawy
 │   └── users.json         # Ulanyjylar bazasy (Login + Parol)
 ├── public/                # Frontend faýllary
-│   ├── index.html         # Esasy HTML interfeýs
+│   ├── index.html         # Müşderi dükany (lachynbookshop.online)
+│   ├── admin.html         # Administrator paneli (admin.lachynbookshop.online)
 │   ├── styles.css         # CSS dizaýn, dark mode we animasiýalar
 │   ├── i18n.js            # 4 dildäki terjimeler (TM, UZ, RU, EN)
-│   └── app.js             # Client-side JavaScript logika
+│   ├── app.js             # Client-side JavaScript logika
+│   └── assets/            # Brend logotipleri (SVG, 3D emblem)
 ├── scripts/
 │   └── generate_books.js  # 215+ kitap dörediji skript
 └── README.md              # Taslama gollanmasy
@@ -77,9 +81,42 @@ Turkmen-Kitap-Dukany/
 
 ---
 
-## 👤 Tiz Synag Hasaby:
+## 🔐 Synag Hasaplary:
+
+### 👤 Müşderi Hasaby (Storefront):
+- **Web-saýt:** [lachynbookshop.online](https://lachynbookshop.online) (`http://localhost:3000`)
 - **Login:** `batyr`
 - **Açarsöz (Parol):** `123456`
+
+### 🛡️ Administrator Hasaby (Admin Portal):
+- **Web-saýt:** [admin.lachynbookshop.online](https://admin.lachynbookshop.online) (`http://localhost:3000/admin`)
+- **Login:** `admin`
+- **Açarsöz (Parol):** `admin123`
+
+---
+
+## 🌐 Nginx Subdomen Sazlamasy (Production):
+```nginx
+# 1. Esasy dükan (lachynbookshop.online)
+server {
+    server_name lachynbookshop.online www.lachynbookshop.online;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+# 2. Aýratyn Admin portal (admin.lachynbookshop.online)
+server {
+    server_name admin.lachynbookshop.online;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
 
 ---
 
