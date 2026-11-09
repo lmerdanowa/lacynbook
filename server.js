@@ -36,34 +36,44 @@ const BOOKS_FILE = path.join(DATA_DIR, 'books.json');
 const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 
+// Static seed fallbacks for serverless environments (Vercel)
+let seedBooks = [];
+let seedOrders = [];
+let seedUsers = [];
+try { seedBooks = require('./data/books.json'); } catch (e) {}
+try { seedOrders = require('./data/orders.json'); } catch (e) {}
+try { seedUsers = require('./data/users.json'); } catch (e) {}
+
 // Memory cache for serverless environments (Vercel)
-const memoryCache = {};
+const memoryCache = {
+  [BOOKS_FILE]: seedBooks,
+  [ORDERS_FILE]: seedOrders,
+  [USERS_FILE]: seedUsers
+};
 const isServerless = process.env.VERCEL === '1' || process.env.AWS_LAMBDA_FUNCTION_NAME;
 
 // Helper to read JSON
 function readData(filePath) {
-  if (isServerless && memoryCache[filePath]) {
-    return memoryCache[filePath];
-  }
   try {
-    if (!fs.existsSync(filePath)) {
-      return [];
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const parsed = JSON.parse(content || '[]');
+      if (parsed && (!Array.isArray(parsed) || parsed.length > 0 || !memoryCache[filePath])) {
+        memoryCache[filePath] = parsed;
+        return parsed;
+      }
     }
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const parsed = JSON.parse(content || '[]');
-    if (isServerless) memoryCache[filePath] = parsed;
-    return parsed;
   } catch (err) {
-    console.error(`Error reading ${filePath}:`, err);
-    return memoryCache[filePath] || [];
+    if (!isServerless) {
+      console.error(`Error reading ${filePath}:`, err);
+    }
   }
+  return memoryCache[filePath] || [];
 }
 
 // Helper to write JSON
 function writeData(filePath, data) {
-  if (isServerless) {
-    memoryCache[filePath] = data;
-  }
+  memoryCache[filePath] = data;
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });

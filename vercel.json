@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "data/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -22,11 +27,6 @@
     {
       "source": "/admin/(.*)",
       "destination": "/admin.html"
-    },
-    {
-      "source": "/((?!assets/).*)",
-      "destination": "/api/index.js"
     }
   ]
 }
-
