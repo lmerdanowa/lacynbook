@@ -268,10 +268,11 @@ app.get('/api/stats', (req, res) => {
 });
 
 // Fallback to index.html
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
   console.log(`Türkmen Kitap Dükany serweri işläp dur: http://localhost:${PORT}`);
 });
+

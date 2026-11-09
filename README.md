@@ -86,3 +86,4 @@ Turkmen-Kitap-Dukany/
 
 ## 📜 Awtor we Hukuklar
 © 2026 **Türkmen Kitap Dükany**. MIT ygtyýarnamasy esasynda paýlanýar.
+

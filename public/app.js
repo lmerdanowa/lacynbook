@@ -649,3 +649,4 @@ window.openBookModal = openBookModal;
 window.submitReview = submitReview;
 window.updateOrderStatus = updateOrderStatus;
 window.renderFavorites = renderFavorites;
+

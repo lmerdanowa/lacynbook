@@ -276,3 +276,4 @@ const translations = {
     badgeClassic: "Classic"
   }
 };
+
