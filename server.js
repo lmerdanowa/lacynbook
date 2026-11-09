@@ -56,7 +56,14 @@ const CATEGORIES = [
 
 // 1. GET /api/categories
 app.get('/api/categories', (req, res) => {
-  res.json({ success: true, data: CATEGORIES });
+  const books = readData(BOOKS_FILE);
+  const enriched = CATEGORIES.map(cat => {
+    const count = cat.id === 'all'
+      ? books.length
+      : books.filter(b => b.category.toLowerCase() === cat.id.toLowerCase()).length;
+    return { ...cat, count };
+  });
+  res.json({ success: true, data: enriched });
 });
 
 // 2. GET /api/books

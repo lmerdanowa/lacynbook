@@ -9,7 +9,8 @@ const state = {
   sort: 'newest',
   cart: JSON.parse(localStorage.getItem('tkd_cart') || '[]'),
   favorites: JSON.parse(localStorage.getItem('tkd_favorites') || '[]'),
-  currentBook: null
+  currentBook: null,
+  visibleLimit: 24
 };
 
 // DOM Elements
@@ -83,12 +84,14 @@ function setupEventListeners() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       state.search = e.target.value.trim();
+      state.visibleLimit = 24;
       fetchBooks();
     }, 250);
   });
 
   sortSelect.addEventListener('change', (e) => {
     state.sort = e.target.value;
+    state.visibleLimit = 24;
     fetchBooks();
   });
 
@@ -176,9 +179,11 @@ function renderCategories() {
     else if (state.lang === 'ru') name = cat.nameRu;
     else if (state.lang === 'en') name = cat.nameEn;
 
-    btn.textContent = name;
+    const countBadge = cat.count !== undefined ? ` <span style="opacity: 0.75; font-size: 0.8em; margin-left: 4px;">(${cat.count})</span>` : '';
+    btn.innerHTML = `${name}${countBadge}`;
     btn.addEventListener('click', () => {
       state.category = cat.id;
+      state.visibleLimit = 24;
       document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       fetchBooks();
@@ -206,9 +211,15 @@ async function fetchBooks() {
 
 function renderBooks() {
   booksGrid.innerHTML = '';
-  booksCount.textContent = `${state.books.length} ${t('statBooks').toLowerCase()}`;
+  const total = state.books.length;
+  const visibleBooks = state.books.slice(0, state.visibleLimit);
+  const showing = visibleBooks.length;
 
-  if (state.books.length === 0) {
+  // Format count
+  const countTemplate = t('showingCount') || 'Jemi {total} kitapdan {count} sanysy görkezilýär';
+  booksCount.textContent = countTemplate.replace('{total}', total).replace('{count}', showing);
+
+  if (total === 0) {
     booksGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
       <h3>Kitap tapylmady</h3>
       <p>Başga gözleg sözüni ýa-da bölümi saýlap görüň.</p>
@@ -216,7 +227,7 @@ function renderBooks() {
     return;
   }
 
-  state.books.forEach(book => {
+  visibleBooks.forEach(book => {
     const isFav = state.favorites.includes(book.id);
     const inCart = state.cart.some(i => i.id === book.id);
 
@@ -258,6 +269,26 @@ function renderBooks() {
     card.querySelector('.book-cover-wrapper').addEventListener('click', () => openBookModal(book.id));
     booksGrid.appendChild(card);
   });
+
+  // Render "Load More" button if more books exist
+  const existingLoadMore = document.getElementById('loadMoreContainer');
+  if (existingLoadMore) existingLoadMore.remove();
+
+  if (showing < total) {
+    const loadMoreContainer = document.createElement('div');
+    loadMoreContainer.id = 'loadMoreContainer';
+    loadMoreContainer.style.cssText = 'text-align: center; margin-top: 2.5rem; width: 100%; grid-column: 1 / -1;';
+    loadMoreContainer.innerHTML = `
+      <button class="btn-primary" style="padding: 0.8rem 2rem; font-size: 1rem; border-radius: 9999px; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);">
+        📥 ${t('loadMore')} (${total - showing} galan)
+      </button>
+    `;
+    loadMoreContainer.querySelector('button').addEventListener('click', () => {
+      state.visibleLimit += 24;
+      renderBooks();
+    });
+    booksGrid.parentNode.appendChild(loadMoreContainer);
+  }
 }
 
 function getGradient(category) {
@@ -282,12 +313,20 @@ function openBookModal(bookId) {
   const inCart = state.cart.some(i => i.id === book.id);
   const reviewsHtml = (book.reviews && book.reviews.length > 0)
     ? book.reviews.map(r => `
-        <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem; font-size: 0.85rem;">
-          <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 0.25rem;">
-            <span>${escapeHtml(r.user)}</span>
-            <span style="color: var(--accent);">⭐ ${r.rating}</span>
+        <div style="background: var(--bg-primary); padding: 0.9rem; border-radius: 10px; margin-bottom: 0.75rem; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold;">
+                ${escapeHtml(r.user ? r.user[0].toUpperCase() : 'U')}
+              </div>
+              <strong style="font-size: 0.88rem;">${escapeHtml(r.user)}</strong>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--accent); font-size: 0.82rem; font-weight: bold;">⭐ ${r.rating}</span>
+              ${r.date ? `<small style="color: var(--text-muted); font-size: 0.75rem;">${r.date}</small>` : ''}
+            </div>
           </div>
-          <p style="color: var(--text-muted);">${escapeHtml(r.comment)}</p>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin-left: 2.25rem;">${escapeHtml(r.comment)}</p>
         </div>
       `).join('')
     : `<p style="color: var(--text-muted); font-size: 0.85rem;">Entek teswir ýazylmandyr. Ilkinji bolup siz ýazyň!</p>`;

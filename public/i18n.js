@@ -66,7 +66,9 @@ const translations = {
     card: "Bank kartasy arkaly",
     confirmOrder: "Sargydy tassykla",
     badgeBest: "Bestseller",
-    badgeClassic: "Nusgawy"
+    badgeClassic: "Nusgawy",
+    loadMore: "Ýene 24 kitap görkez",
+    showingCount: "Jemi {total} kitapdan {count} sanysy görkezilýär"
   },
   uz: {
     brandTitle: "Turkman Kitob Do'koni",
@@ -135,7 +137,9 @@ const translations = {
     card: "Bank kartasi orqali",
     confirmOrder: "Buyurtmani tasdiqlash",
     badgeBest: "Bestseller",
-    badgeClassic: "Mumtoz"
+    badgeClassic: "Mumtoz",
+    loadMore: "Yana 24 ta kitob ko'rsatish",
+    showingCount: "Jami {total} kitobdan {count} tasi ko'rsatilmoqda"
   },
   ru: {
     brandTitle: "Туркменский Книжный Магазин",
@@ -204,7 +208,9 @@ const translations = {
     card: "Банковской картой",
     confirmOrder: "Подтвердить заказ",
     badgeBest: "Хит продаж",
-    badgeClassic: "Классика"
+    badgeClassic: "Классика",
+    loadMore: "Показать еще 24 книги",
+    showingCount: "Показано {count} из {total} книг"
   },
   en: {
     brandTitle: "Turkmen Book Store",
@@ -273,7 +279,9 @@ const translations = {
     card: "Bank Card",
     confirmOrder: "Confirm Order",
     badgeBest: "Bestseller",
-    badgeClassic: "Classic"
+    badgeClassic: "Classic",
+    loadMore: "Load 24 More Books",
+    showingCount: "Showing {count} of {total} books"
   }
 };
 
