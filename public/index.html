@@ -23,6 +23,7 @@
       <div class="search-box">
         <span class="search-icon">🔍</span>
         <input type="text" id="searchInput" class="search-input" placeholder="Kitap ady, awtor ýa-da söz boýunça gözläň...">
+        <div id="searchDropdown" class="search-dropdown"></div>
       </div>
 
       <div class="nav-actions">
@@ -53,6 +54,11 @@
         <button id="ordersNavBtn" class="btn-icon" title="Sargytlarym">
           📦
           <span id="ordersBadge" class="counter-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Profile button -->
+        <button id="profileNavBtn" class="btn-primary" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border); padding: 0.45rem 0.85rem; font-size: 0.82rem;">
+          <span id="profileNavIcon">👤</span> <span id="profileNavLabel" data-i18n="navLogin">Giriş</span>
         </button>
 
         <!-- Admin toggle -->
@@ -129,6 +135,13 @@
     </div>
     <div class="drawer-body" id="cartItems"></div>
     <div class="drawer-footer">
+      <!-- Promo code -->
+      <div class="promo-box">
+        <input type="text" id="promoInput" class="promo-input" placeholder="Promokod (mysal: PYRAGY300)">
+        <button id="applyPromoBtn" class="btn-primary" style="padding: 0.45rem 0.85rem; font-size: 0.8rem;">Ulan</button>
+      </div>
+      <div id="promoBadgeArea" style="display: none;"></div>
+
       <div class="summary-row">
         <span data-i18n="subtotal">Jemi harytlar:</span>
         <span id="cartSubtotal">0.00 TMT</span>
@@ -329,6 +342,142 @@
       </div>
     </div>
   </div>
+
+  <!-- Auth Modal (Login / Register) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-content" style="max-width: 440px;">
+      <button class="modal-close-btn" id="closeAuthModal">✕</button>
+      <div class="modal-tabs" style="margin-bottom: 1.25rem;">
+        <button type="button" id="authLoginTabBtn" class="modal-tab-btn active" data-i18n="loginTab">Giriş</button>
+        <button type="button" id="authRegTabBtn" class="modal-tab-btn" data-i18n="registerTab">Agza bolmak</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label data-i18n="emailInput">E-poçta ýa-da telefon</label>
+          <input type="text" id="loginEmail" class="form-control" required placeholder="batyr@dukany.tm">
+        </div>
+        <div class="form-group">
+          <label data-i18n="passwordInput">Açarsöz</label>
+          <input type="password" id="loginPassword" class="form-control" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; margin-top: 0.5rem;" data-i18n="loginTab">
+          Giriş
+        </button>
+        <div style="margin-top: 1rem; text-align: center;">
+          <button type="button" id="quickDemoLoginBtn" style="background: none; border: 1px dashed var(--primary); color: var(--primary); padding: 0.45rem 0.85rem; border-radius: 8px; font-size: 0.8rem; cursor: pointer; font-weight: 600;">
+            ⚡ Tiz synag: Batyr Jumamyradow hökmünde gir
+          </button>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" style="display: none;">
+        <div class="form-group">
+          <label data-i18n="fullName">Doly adyňyz</label>
+          <input type="text" id="regFullName" class="form-control" required placeholder="Merdan Allanazarow">
+        </div>
+        <div class="form-group">
+          <label data-i18n="emailInput">E-poçta</label>
+          <input type="email" id="regEmail" class="form-control" required placeholder="mysal@gmail.com">
+        </div>
+        <div class="form-group">
+          <label data-i18n="phone">Telefon belgiňiz</label>
+          <input type="tel" id="regPhone" class="form-control" placeholder="+993 65 00-00-00">
+        </div>
+        <div class="form-group">
+          <label data-i18n="region">Welaýat / Şäher</label>
+          <select id="regCity" class="form-control">
+            <option value="Aşgabat">Aşgabat</option>
+            <option value="Ahal">Ahal</option>
+            <option value="Balkan">Balkan</option>
+            <option value="Daşoguz">Daşoguz</option>
+            <option value="Lebap">Lebap</option>
+            <option value="Mary">Mary</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="passwordInput">Açarsöz</label>
+          <input type="password" id="regPassword" class="form-control" required placeholder="Iň az 6 belgi">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; margin-top: 0.5rem;" data-i18n="registerTab">
+          Agza bolmak
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- User Profile Modal -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-content" style="max-width: 550px;">
+      <button class="modal-close-btn" id="closeProfileModal">✕</button>
+      
+      <!-- Profile Header -->
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+        <div id="profileAvatarBig" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #059669, #0d9488); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);">
+          📚
+        </div>
+        <div>
+          <h3 id="profileNameDisplay" style="font-size: 1.25rem; font-weight: 800;">Ulanyjy</h3>
+          <p id="profileEmailDisplay" style="color: var(--text-muted); font-size: 0.85rem;">ulanyjy@dukany.tm</p>
+          <span style="display: inline-block; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; margin-top: 4px;">
+            ⭐ Aktiw Okyjy
+          </span>
+        </div>
+      </div>
+
+      <!-- Bonus card -->
+      <div style="background: linear-gradient(135deg, #065f46, #047857); color: white; padding: 1rem 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-size: 0.8rem; opacity: 0.85;" data-i18n="bonusCashback">Meniň Bonuslarym</span>
+          <h4 id="profileBonusDisplay" style="font-size: 1.5rem; font-weight: 800;">0.00 TMT</h4>
+        </div>
+        <div style="font-size: 2rem;">🎁</div>
+      </div>
+
+      <!-- Profile Form -->
+      <form id="profileForm">
+        <div class="form-group">
+          <label data-i18n="fullName">Doly adyňyz</label>
+          <input type="text" id="profileFullName" class="form-control" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label data-i18n="phone">Telefon belgiňiz</label>
+            <input type="tel" id="profilePhone" class="form-control">
+          </div>
+          <div class="form-group">
+            <label data-i18n="region">Welaýat</label>
+            <select id="profileCity" class="form-control">
+              <option value="Aşgabat">Aşgabat</option>
+              <option value="Ahal">Ahal</option>
+              <option value="Balkan">Balkan</option>
+              <option value="Daşoguz">Daşoguz</option>
+              <option value="Lebap">Lebap</option>
+              <option value="Mary">Mary</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="address">Yetkazib berish salgysy</label>
+          <input type="text" id="profileAddress" class="form-control" placeholder="Köçe, jaý, öý belgisi">
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; gap: 0.75rem; margin-top: 1.25rem;">
+          <button type="submit" class="btn-primary" style="flex: 1; justify-content: center;" data-i18n="saveProfile">
+            💾 Ýatda sakla
+          </button>
+          <button type="button" id="logoutBtn" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); padding: 0.55rem 1.1rem; border-radius: 8px; font-weight: 600; cursor: pointer;" data-i18n="logout">
+            🚪 Çykmak
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toastContainer" class="toast-container"></div>
 
   <!-- Footer -->
   <footer>

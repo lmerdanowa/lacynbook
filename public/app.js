@@ -10,6 +10,7 @@ const state = {
   cart: JSON.parse(localStorage.getItem('tkd_cart') || '[]'),
   favorites: JSON.parse(localStorage.getItem('tkd_favorites') || '[]'),
   myOrders: JSON.parse(localStorage.getItem('tkd_my_orders') || '["TKD-2960"]'),
+  user: JSON.parse(localStorage.getItem('tkd_user') || 'null'),
   currentBook: null,
   visibleLimit: 24
 };
@@ -59,6 +60,23 @@ const myOrdersList = document.getElementById('myOrdersList');
 const trackOrderInput = document.getElementById('trackOrderInput');
 const trackOrderBtn = document.getElementById('trackOrderBtn');
 
+const profileNavBtn = document.getElementById('profileNavBtn');
+const profileNavIcon = document.getElementById('profileNavIcon');
+const profileNavLabel = document.getElementById('profileNavLabel');
+
+const authModal = document.getElementById('authModal');
+const closeAuthModal = document.getElementById('closeAuthModal');
+const authLoginTabBtn = document.getElementById('authLoginTabBtn');
+const authRegTabBtn = document.getElementById('authRegTabBtn');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const quickDemoLoginBtn = document.getElementById('quickDemoLoginBtn');
+
+const profileModal = document.getElementById('profileModal');
+const closeProfileModal = document.getElementById('closeProfileModal');
+const profileForm = document.getElementById('profileForm');
+const logoutBtn = document.getElementById('logoutBtn');
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(state.theme);
@@ -70,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartUI();
   updateFavoritesUI();
   updateOrdersUI();
+  updateAuthUI();
   setupEventListeners();
 });
 
@@ -139,11 +158,50 @@ function setupEventListeners() {
   });
   closeAdminModal.addEventListener('click', () => adminModal.classList.remove('active'));
 
+  // Profile & Auth
+  profileNavBtn.addEventListener('click', () => {
+    if (state.user) {
+      renderProfileData();
+      profileModal.classList.add('active');
+    } else {
+      authModal.classList.add('active');
+    }
+  });
+
+  closeAuthModal.addEventListener('click', () => authModal.classList.remove('active'));
+  closeProfileModal.addEventListener('click', () => profileModal.classList.remove('active'));
+
+  authLoginTabBtn.addEventListener('click', () => {
+    authLoginTabBtn.classList.add('active');
+    authRegTabBtn.classList.remove('active');
+    loginForm.style.display = 'block';
+    registerForm.style.display = 'none';
+  });
+
+  authRegTabBtn.addEventListener('click', () => {
+    authRegTabBtn.classList.add('active');
+    authLoginTabBtn.classList.remove('active');
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'block';
+  });
+
+  quickDemoLoginBtn.addEventListener('click', quickDemoLogin);
+  loginForm.addEventListener('submit', handleLogin);
+  registerForm.addEventListener('submit', handleRegister);
+  profileForm.addEventListener('submit', handleProfileUpdate);
+  logoutBtn.addEventListener('click', handleLogout);
+
   closeBookModal.addEventListener('click', () => bookModal.classList.remove('active'));
   closeCheckoutModal.addEventListener('click', () => checkoutModal.classList.remove('active'));
 
   checkoutBtn.addEventListener('click', () => {
     if (state.cart.length === 0) return;
+    if (state.user) {
+      if (checkoutForm.fullName) checkoutForm.fullName.value = state.user.fullName || '';
+      if (checkoutForm.phone) checkoutForm.phone.value = state.user.phone || '';
+      if (checkoutForm.city && state.user.city) checkoutForm.city.value = state.user.city;
+      if (checkoutForm.address) checkoutForm.address.value = state.user.address || '';
+    }
     cartDrawer.classList.remove('active');
     checkoutModal.classList.add('active');
   });
@@ -838,6 +896,147 @@ function renderOrderCard(order) {
       </div>
     </div>
   `;
+}
+
+// Auth & Profile Logic
+function updateAuthUI() {
+  if (!profileNavBtn) return;
+  if (state.user) {
+    profileNavIcon.textContent = state.user.avatar || '👤';
+    profileNavLabel.textContent = state.user.fullName ? state.user.fullName.split(' ')[0] : 'Profil';
+  } else {
+    profileNavIcon.textContent = '👤';
+    profileNavLabel.textContent = t('navLogin');
+  }
+}
+
+function renderProfileData() {
+  if (!state.user) return;
+  const avatarEl = document.getElementById('profileAvatarBig');
+  if (avatarEl) avatarEl.textContent = state.user.avatar || '📚';
+  
+  const nameEl = document.getElementById('profileNameDisplay');
+  if (nameEl) nameEl.textContent = state.user.fullName;
+  
+  const emailEl = document.getElementById('profileEmailDisplay');
+  if (emailEl) emailEl.textContent = state.user.email;
+  
+  const bonusEl = document.getElementById('profileBonusDisplay');
+  if (bonusEl) bonusEl.textContent = `${(state.user.bonusPoints || 0).toFixed(2)} ${t('currency')}`;
+
+  const fnInput = document.getElementById('profileFullName');
+  if (fnInput) fnInput.value = state.user.fullName || '';
+  
+  const phoneInput = document.getElementById('profilePhone');
+  if (phoneInput) phoneInput.value = state.user.phone || '';
+  
+  const cityInput = document.getElementById('profileCity');
+  if (cityInput && state.user.city) cityInput.value = state.user.city;
+  
+  const addrInput = document.getElementById('profileAddress');
+  if (addrInput) addrInput.value = state.user.address || '';
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const emailOrPhone = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ emailOrPhone, password })
+    });
+    const json = await res.json();
+    if (json.success) {
+      state.user = json.data;
+      localStorage.setItem('tkd_user', JSON.stringify(state.user));
+      updateAuthUI();
+      authModal.classList.remove('active');
+      loginForm.reset();
+      alert(`Hoş geldiňiz, ${state.user.fullName}!`);
+    } else {
+      alert(json.message || 'Giriş şowsuz boldy.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Ýalňyşlyk ýüze çykdy.');
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const fullName = document.getElementById('regFullName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const city = document.getElementById('regCity').value;
+  const password = document.getElementById('regPassword').value;
+
+  try {
+    const res = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullName, email, phone, city, password })
+    });
+    const json = await res.json();
+    if (json.success) {
+      state.user = json.data;
+      localStorage.setItem('tkd_user', JSON.stringify(state.user));
+      updateAuthUI();
+      authModal.classList.remove('active');
+      registerForm.reset();
+      alert(`Agza bolduňyz! 10 TMT bonus bal sowgat berildi!`);
+    } else {
+      alert(json.message || 'Hasap açmak şowsuz boldy.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Ýalňyşlyk ýüze çykdy.');
+  }
+}
+
+async function handleProfileUpdate(e) {
+  e.preventDefault();
+  if (!state.user) return;
+
+  const fullName = document.getElementById('profileFullName').value.trim();
+  const phone = document.getElementById('profilePhone').value.trim();
+  const city = document.getElementById('profileCity').value;
+  const address = document.getElementById('profileAddress').value.trim();
+
+  try {
+    const res = await fetch(`/api/auth/profile/${state.user.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullName, phone, city, address })
+    });
+    const json = await res.json();
+    if (json.success) {
+      state.user = json.data;
+      localStorage.setItem('tkd_user', JSON.stringify(state.user));
+      updateAuthUI();
+      renderProfileData();
+      alert('Profil maglumatlaryňyz üstünlikli ýatda saklandy!');
+      profileModal.classList.remove('active');
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function handleLogout() {
+  state.user = null;
+  localStorage.removeItem('tkd_user');
+  updateAuthUI();
+  profileModal.classList.remove('active');
+  alert('Hasapdan çykdyňyz.');
+}
+
+async function quickDemoLogin() {
+  document.getElementById('loginEmail').value = 'batyr@dukany.tm';
+  document.getElementById('loginPassword').value = 'password123';
+  loginForm.requestSubmit();
 }
 
 // Utility

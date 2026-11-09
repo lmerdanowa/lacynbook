@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const DATA_DIR = path.join(__dirname, 'data');
 const BOOKS_FILE = path.join(DATA_DIR, 'books.json');
 const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
+const USERS_FILE = path.join(DATA_DIR, 'users.json');
 
 // Helper to read JSON
 function readData(filePath) {
@@ -282,6 +283,93 @@ app.get('/api/stats', (req, res) => {
       pendingOrders
     }
   });
+});
+
+// 11. AUTH ROUTES
+// 11.1 Register
+app.post('/api/auth/register', (req, res) => {
+  const { fullName, email, phone, city, address, password } = req.body;
+  if (!fullName || !email || !password) {
+    return res.status(400).json({ success: false, message: 'Doly adyňyz, email we açarsöz hökmanydyr' });
+  }
+
+  const users = readData(USERS_FILE);
+  const existing = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  if (existing) {
+    return res.status(400).json({ success: false, message: 'Bu email bilen eýýäm hasap açylan' });
+  }
+
+  const newUser = {
+    id: `usr-${Date.now()}`,
+    fullName,
+    email: email.toLowerCase(),
+    phone: phone || '',
+    city: city || 'Aşgabat',
+    address: address || '',
+    password, // For production we would hash with bcrypt
+    avatar: '📚',
+    bonusPoints: 10.00, // Welcoming bonus 10 TMT
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(newUser);
+  writeData(USERS_FILE, users);
+
+  const { password: _, ...userSafe } = newUser;
+  res.status(201).json({ success: true, message: 'Agza bolduňyz!', data: userSafe });
+});
+
+// 11.2 Login
+app.post('/api/auth/login', (req, res) => {
+  const { emailOrPhone, password } = req.body;
+  if (!emailOrPhone || !password) {
+    return res.status(400).json({ success: false, message: 'Email/telefon we açarsöz hökmanydyr' });
+  }
+
+  const users = readData(USERS_FILE);
+  const q = emailOrPhone.toLowerCase().trim();
+  const user = users.find(u => 
+    (u.email && u.email.toLowerCase() === q) || 
+    (u.phone && u.phone.replace(/\D/g, '') === q.replace(/\D/g, ''))
+  );
+
+  if (!user || user.password !== password) {
+    return res.status(401).json({ success: false, message: 'Email ýa-da açarsöz nädogry' });
+  }
+
+  const { password: _, ...userSafe } = user;
+  res.json({ success: true, message: 'Giriş üstünlikli!', data: userSafe });
+});
+
+// 11.3 Get Profile
+app.get('/api/auth/profile/:id', (req, res) => {
+  const users = readData(USERS_FILE);
+  const user = users.find(u => u.id === req.params.id);
+  if (!user) {
+    return res.status(404).json({ success: false, message: 'Ulanyjy tapylmady' });
+  }
+  const { password: _, ...userSafe } = user;
+  res.json({ success: true, data: userSafe });
+});
+
+// 11.4 Update Profile
+app.put('/api/auth/profile/:id', (req, res) => {
+  const users = readData(USERS_FILE);
+  const user = users.find(u => u.id === req.params.id);
+  if (!user) {
+    return res.status(404).json({ success: false, message: 'Ulanyjy tapylmady' });
+  }
+
+  const { fullName, phone, city, address, avatar } = req.body;
+  if (fullName) user.fullName = fullName;
+  if (phone) user.phone = phone;
+  if (city) user.city = city;
+  if (address) user.address = address;
+  if (avatar) user.avatar = avatar;
+
+  writeData(USERS_FILE, users);
+  const { password: _, ...userSafe } = user;
+  res.json({ success: true, message: 'Profil täzelendi', data: userSafe });
 });
 
 // Fallback to index.html

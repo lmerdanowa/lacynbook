@@ -1,0 +1,26 @@
+[
+  {
+    "id": "usr-101",
+    "fullName": "Batyr Jumamyradow",
+    "email": "batyr@dukany.tm",
+    "phone": "+993 65 12-34-56",
+    "city": "Aşgabat",
+    "address": "Magtymguly şaýoly, 45-nji jaý, 12-nji öý",
+    "password": "password123",
+    "avatar": "📚",
+    "bonusPoints": 45.00,
+    "createdAt": "2026-10-01T10:00:00.000Z"
+  },
+  {
+    "id": "usr-102",
+    "fullName": "Aýgül Berdiýewa",
+    "email": "aygul@dukany.tm",
+    "phone": "+993 62 98-76-54",
+    "city": "Mary",
+    "address": "Ýeňiş köçesi, 8-nji jaý",
+    "password": "password123",
+    "avatar": "🌺",
+    "bonusPoints": 20.00,
+    "createdAt": "2026-10-15T12:30:00.000Z"
+  }
+]
