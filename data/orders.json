@@ -1,0 +1,84 @@
+[
+  {
+    "id": "TKD-1001",
+    "createdAt": "2026-11-08T14:32:00.000Z",
+    "customer": {
+      "fullName": "Merdan Allanazarow",
+      "phone": "+993 65 12-34-56",
+      "city": "Aşgabat",
+      "address": "Magtymguly şaýoly, 45-nji jaý, 12-nji öý",
+      "notes": "Öýe 18:00-dan soň gowşursaňyz gowy bolar"
+    },
+    "items": [
+      {
+        "id": "book-1",
+        "title": "Saýlanan Eserler (3 jiltlik)",
+        "author": "Magtymguly Pyragy",
+        "price": 85.00,
+        "quantity": 1
+      },
+      {
+        "id": "book-4",
+        "title": "Şükür Bagşy",
+        "author": "Nurmyrat Saryhanow",
+        "price": 35.00,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 120.00,
+    "deliveryFee": 15.00,
+    "total": 135.00,
+    "paymentMethod": "nagt",
+    "status": "gowshuryldy"
+  },
+  {
+    "id": "TKD-1002",
+    "createdAt": "2026-11-09T09:15:00.000Z",
+    "customer": {
+      "fullName": "Güljemal Berdiýewa",
+      "phone": "+993 62 98-76-54",
+      "city": "Mary",
+      "address": "Ýeňiş köçesi, 8-nji jaý",
+      "notes": "Poçta arkaly gowşuryň"
+    },
+    "items": [
+      {
+        "id": "book-7",
+        "title": "Türkmen Halk Ertekileri",
+        "author": "Halk Döredijiligi",
+        "price": 50.00,
+        "quantity": 2
+      }
+    ],
+    "subtotal": 100.00,
+    "deliveryFee": 20.00,
+    "total": 120.00,
+    "paymentMethod": "karty",
+    "status": "ugradyldy"
+  },
+  {
+    "id": "TKD-1003",
+    "createdAt": "2026-11-09T16:20:00.000Z",
+    "customer": {
+      "fullName": "Döwlet Geldimyradow",
+      "phone": "+993 61 55-44-33",
+      "city": "Türkmenabat",
+      "address": "Bitaraplyk şaýoly, 14",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "book-10",
+        "title": "Python we Web Programmirleme Esaslary",
+        "author": "A. Merdanow, K. Begmyradow",
+        "price": 70.00,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 70.00,
+    "deliveryFee": 20.00,
+    "total": 90.00,
+    "paymentMethod": "karty",
+    "status": "taze"
+  }
+]

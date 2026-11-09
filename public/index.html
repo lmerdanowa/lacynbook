@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Türkmen Kitap Dükany - Millî Edebi Miras we Döwrebap Kitaplar</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo-area" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+        <div class="logo-icon">📖</div>
+        <div class="logo-text">
+          <h1 data-i18n="brandTitle">Türkmen Kitap Dükany</h1>
+          <p data-i18n="tagline">Millî Edebi Miras we Döwrebap Kitaplar</p>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Kitap ady, awtor ýa-da söz boýunça gözläň...">
+      </div>
+
+      <div class="nav-actions">
+        <!-- Language selector -->
+        <select id="langSelect" class="lang-select">
+          <option value="tm">🇹🇲 TM</option>
+          <option value="uz">🇺🇿 UZ</option>
+          <option value="ru">🇷🇺 RU</option>
+          <option value="en">🇬🇧 EN</option>
+        </select>
+
+        <!-- Theme toggle -->
+        <button id="themeToggle" class="btn-icon" title="Tema">🌙</button>
+
+        <!-- Wishlist -->
+        <button id="favBtn" class="btn-icon" title="Halanlarym">
+          🤍
+          <span id="favBadge" class="counter-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Cart button -->
+        <button id="cartBtn" class="btn-icon" title="Sebet">
+          🛒
+          <span id="cartBadge" class="counter-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Admin toggle -->
+        <button id="adminBtn" class="btn-primary" style="padding: 0.45rem 0.85rem; font-size: 0.82rem;">
+          ⚙️ <span data-i18n="navAdmin">Admin</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">✨ Magtymguly Pyragy — 300 ýyllyk ýubileýi</div>
+        <h2 data-i18n="heroTitle">Magtymguly Pyragynyň 300 ýyllygyna bagyşlanýar</h2>
+        <p data-i18n="heroDesc">
+          Türkmen nusgawy edebiýatynyň altyn hazynasy, taryhy dessanlar, ylmy kitaplar we çagalar edebiýaty bir ýerde. Öýüňize çenli tiz eltip bermek hyzmaty!
+        </p>
+        <button class="btn-primary" onclick="document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' })">
+          📚 <span data-i18n="heroBtn">Kitaplary görkez</span>
+        </button>
+
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <h3>1,500+</h3>
+            <p>Kitap görnüşi</p>
+          </div>
+          <div class="hero-stat-item">
+            <h3>5 Welaýat</h3>
+            <p>Eltip bermek</p>
+          </div>
+          <div class="hero-stat-item">
+            <h3>10,000+</h3>
+            <p>Okyjylar</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        📚✨
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <main class="main-content" id="catalogSection">
+    <div class="filter-bar">
+      <!-- Category Chips -->
+      <div class="category-chips" id="categoryChips"></div>
+
+      <!-- Sorting & Counter -->
+      <div class="sort-and-count">
+        <div class="books-count" id="booksCount">Ýüklenýär...</div>
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <select id="sortSelect" class="sort-select">
+            <option value="newest" data-i18n="sortNew">Iň täzeler</option>
+            <option value="price-asc" data-i18n="sortPriceAsc">Arzandan gymmada</option>
+            <option value="price-desc" data-i18n="sortPriceDesc">Gymmatdan arzana</option>
+            <option value="rating" data-i18n="sortRating">Iň ýokary baha</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Books Grid -->
+    <div class="books-grid" id="booksGrid"></div>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div class="drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h3 data-i18n="cartTitle">Siziň Sebediňiz</h3>
+      <button class="modal-close-btn" id="closeCartBtn" style="position: static;">✕</button>
+    </div>
+    <div class="drawer-body" id="cartItems"></div>
+    <div class="drawer-footer">
+      <div class="summary-row">
+        <span data-i18n="subtotal">Jemi harytlar:</span>
+        <span id="cartSubtotal">0.00 TMT</span>
+      </div>
+      <div class="summary-row">
+        <span data-i18n="delivery">Eltip bermek:</span>
+        <span>15.00 TMT</span>
+      </div>
+      <div class="summary-row total">
+        <span data-i18n="total">Jemi töleg:</span>
+        <span id="cartTotal">0.00 TMT</span>
+      </div>
+      <button id="checkoutBtn" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem; padding: 0.75rem;" disabled>
+        🛍️ <span data-i18n="checkoutBtn">Sargyt etmek</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Book Details Modal -->
+  <div class="modal-overlay" id="bookModal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="closeBookModal">✕</button>
+      <div id="bookModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div class="modal-overlay" id="favoritesModal">
+    <div class="modal-content" style="max-width: 500px;">
+      <button class="modal-close-btn" id="closeFavModal">✕</button>
+      <h3 data-i18n="favoritesTitle" style="margin-bottom: 1rem;">Halanlarym</h3>
+      <div id="favItems"></div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-content" style="max-width: 500px;">
+      <button class="modal-close-btn" id="closeCheckoutModal">✕</button>
+      <h3 data-i18n="checkoutModalTitle" style="margin-bottom: 1.25rem;">Sargydy resmileşdirmek</h3>
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label data-i18n="fullName">Doly adyňyz</label>
+          <input type="text" name="fullName" class="form-control" required placeholder="Merdan Allanazarow">
+        </div>
+        <div class="form-group">
+          <label data-i18n="phone">Telefon belgiňiz</label>
+          <input type="tel" name="phone" class="form-control" required placeholder="+993 65 12-34-56">
+        </div>
+        <div class="form-group">
+          <label data-i18n="region">Welaýat / Şäher</label>
+          <select name="city" class="form-control">
+            <option value="Aşgabat">Aşgabat şäheri</option>
+            <option value="Ahal">Ahal welaýaty</option>
+            <option value="Balkan">Balkan welaýaty</option>
+            <option value="Daşoguz">Daşoguz welaýaty</option>
+            <option value="Lebap">Lebap welaýaty</option>
+            <option value="Mary">Mary welaýaty</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="address">Salgyňyz</label>
+          <textarea name="address" class="form-control" rows="2" required placeholder="Köçe, jaý, öý belgisi"></textarea>
+        </div>
+        <div class="form-group">
+          <label data-i18n="paymentMethod">Töleg görnüşi</label>
+          <select name="paymentMethod" class="form-control">
+            <option value="nagt" data-i18n="cash">Eltip berlen wagty nagt</option>
+            <option value="karty" data-i18n="card">Bank kartasy arkaly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="notes">Goşmaça bellikler</label>
+          <input type="text" name="notes" class="form-control" placeholder="Eltip beriş wagty barada bellik">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; margin-top: 1rem;">
+          ✓ <span data-i18n="confirmOrder">Sargydy tassykla</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Panel Modal -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <button class="modal-close-btn" id="closeAdminModal">✕</button>
+      <h2 data-i18n="adminTitle" style="margin-bottom: 1.5rem;">Dükanyň Dolandyryş Paneli</h2>
+
+      <!-- Metrics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4 data-i18n="statBooks">Jemi kitaplar</h4>
+          <p id="adminStatBooks">0</p>
+        </div>
+        <div class="stat-card">
+          <h4 data-i18n="statOrders">Sargytlar sany</h4>
+          <p id="adminStatOrders">0</p>
+        </div>
+        <div class="stat-card">
+          <h4 data-i18n="statRevenue">Jemi girdeji</h4>
+          <p id="adminStatRevenue">0.00 TMT</p>
+        </div>
+        <div class="stat-card">
+          <h4 data-i18n="statPending">Garaşylýan sargytlar</h4>
+          <p id="adminStatPending">0</p>
+        </div>
+      </div>
+
+      <!-- Add Book Form -->
+      <div style="background: var(--bg-primary); padding: 1.25rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--border);">
+        <h3 data-i18n="addNewBook" style="margin-bottom: 1rem; font-size: 1.05rem;">+ Täze kitap goşmak</h3>
+        <form id="addBookForm">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+            <div class="form-group">
+              <label data-i18n="bookTitleInput">Kitabyň ady</label>
+              <input type="text" name="title" class="form-control" required placeholder="Eseriň ady">
+            </div>
+            <div class="form-group">
+              <label data-i18n="authorInput">Awtory</label>
+              <input type="text" name="author" class="form-control" required placeholder="Awtoryň ady">
+            </div>
+            <div class="form-group">
+              <label data-i18n="categorySelect">Bölümi</label>
+              <select name="category" class="form-control">
+                <option value="klassyka">Klassyky edebiýat</option>
+                <option value="roman">Taryhy romanlar</option>
+                <option value="sygyryet">Şygyrýet</option>
+                <option value="powest">Powest & Hekaýalar</option>
+                <option value="cagalar">Çagalar edebiýaty</option>
+                <option value="ylmy">Ylmy & Okuw</option>
+                <option value="dunya">Dünýä edebiýaty</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="priceInput">Bahasy (TMT)</label>
+              <input type="number" step="0.5" name="price" class="form-control" required placeholder="50.00">
+            </div>
+            <div class="form-group">
+              <label data-i18n="pagesInput">Sahypa sany</label>
+              <input type="number" name="pages" class="form-control" placeholder="320">
+            </div>
+            <div class="form-group">
+              <label data-i18n="yearInput">Çap edilen ýyly</label>
+              <input type="number" name="year" class="form-control" placeholder="2024">
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-i18n="descInput">Düşündiriş</label>
+            <textarea name="description" class="form-control" rows="2" placeholder="Kitap hakynda gysgaça maglumat"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="padding: 0.55rem 1.25rem;">
+            💾 <span data-i18n="saveBook">Kitaby ýatda sakla</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Orders List -->
+      <h3 data-i18n="ordersList" style="margin-bottom: 0.75rem; font-size: 1.05rem;">Sargytlar sanawy</h3>
+      <div style="overflow-x: auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Müşderi</th>
+              <th>Şäher</th>
+              <th>Harytlar</th>
+              <th>Ýagdaýy</th>
+              <th>Sene</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersTable">
+            <tr>
+              <td colspan="6" style="text-align: center;">Ýüklenýär...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div style="max-width: 380px;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <span style="font-size: 1.5rem;">📖</span>
+          <strong style="font-size: 1.1rem;" data-i18n="brandTitle">Türkmen Kitap Dükany</strong>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;" data-i18n="heroDesc">
+          Türkmenistanyň ähli welaýatlaryna kitaplary amatly bahadan we ýokary hilli eltip bermek hyzmaty.
+        </p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Welaýatlar boýunça</h4>
+        <ul style="list-style: none; font-size: 0.85rem; color: var(--text-muted); line-height: 2;">
+          <li>📍 Aşgabat şäheri</li>
+          <li>📍 Ahal welaýaty</li>
+          <li>📍 Balkan welaýaty</li>
+          <li>📍 Daşoguz welaýaty</li>
+          <li>📍 Lebap welaýaty</li>
+          <li>📍 Mary welaýaty</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Habarlaşmak</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">📞 +993 (12) 00-00-00</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">✉️ info@kitapdukany.tm</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">🕒 Her gün: 09:00 - 21:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Türkmen Kitap Dükany. Ähli hukuklar goralan.
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "turkmen-kitap-dukany",
+  "version": "1.0.0",
+  "description": "Türkmen Kitap Dükany - Onlaýn kitap söwda platformasy (Online Turkmen Bookstore)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "turkmen-kitap",
+    "bookstore",
+    "kitap-dukany",
+    "ecommerce"
+  ],
+  "author": "Batyr",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
