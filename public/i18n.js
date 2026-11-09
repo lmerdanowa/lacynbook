@@ -1,7 +1,7 @@
 const translations = {
   tm: {
-    brandTitle: "Türkmen Kitap Dükany",
-    tagline: "Millî Edebi Miras we Döwrebap Kitaplar",
+    brandTitle: "L.BookShop",
+    tagline: "Laçyn Kitap Dükany — lachynbookshop.online",
     navHome: "Baş sahypa",
     navCatalog: "Katalog",
     navOrders: "Sargytlarym",
@@ -89,8 +89,8 @@ const translations = {
     showingCount: "Jemi {total} kitapdan {count} sanysy görkezilýär"
   },
   uz: {
-    brandTitle: "Turkman Kitob Do'koni",
-    tagline: "Milliy Adabiy Meros va Zamonaviy Kitoblar",
+    brandTitle: "L.BookShop",
+    tagline: "Lochin Kitob Do'koni — lachynbookshop.online",
     navHome: "Bosh sahifa",
     navCatalog: "Katalog",
     navOrders: "Buyurtmalarim",
@@ -178,8 +178,8 @@ const translations = {
     showingCount: "Jami {total} kitobdan {count} tasi ko'rsatilmoqda"
   },
   ru: {
-    brandTitle: "Туркменский Книжный Магазин",
-    tagline: "Национальное литературное наследие и современные книги",
+    brandTitle: "L.BookShop",
+    tagline: "Книжный магазин — lachynbookshop.online",
     navHome: "Главная",
     navCatalog: "Каталог",
     navOrders: "Мои заказы",
@@ -267,8 +267,8 @@ const translations = {
     showingCount: "Показано {count} из {total} книг"
   },
   en: {
-    brandTitle: "Turkmen Book Store",
-    tagline: "National Literary Heritage & Modern Books",
+    brandTitle: "L.BookShop",
+    tagline: "Online Bookstore — lachynbookshop.online",
     navHome: "Home",
     navCatalog: "Catalog",
     navOrders: "My Orders",

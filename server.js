@@ -383,6 +383,6 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Türkmen Kitap Dükany serweri işläp dur: http://localhost:${PORT}`);
+  console.log(`L.BookShop (lachynbookshop.online) serweri işläp dur: http://localhost:${PORT}`);
 });
 

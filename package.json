@@ -1,7 +1,8 @@
 {
-  "name": "turkmen-kitap-dukany",
+  "name": "lachyn-bookshop",
   "version": "1.0.0",
-  "description": "Türkmen Kitap Dükany - Onlaýn kitap söwda platformasy (Online Turkmen Bookstore)",
+  "description": "L.BookShop - lachynbookshop.online | Türkmen Onlaýn Kitap Dükany (Laçyn BookShop)",
+  "homepage": "https://lachynbookshop.online",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

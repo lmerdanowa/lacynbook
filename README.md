@@ -1,4 +1,5 @@
-# 📚 Türkmen Kitap Dükany (Turkmen Bookstore Platform)
+# 🦅 L.BookShop — Onlaýn Kitap Dükany
+🌐 **Domen:** [lachynbookshop.online](https://lachynbookshop.online)
 
 Döwrebap, tiz we doly funksional onlaýn kitap söwda platformasy. Türkmen milli edebiýaty, taryhy eserler, nusgawy şygyrýet, ylmy-okuw gollanmalary we çagalar edebiýatyny özünde jemleýän internet-dükan.
 
@@ -6,12 +7,14 @@ Döwrebap, tiz we doly funksional onlaýn kitap söwda platformasy. Türkmen mil
 
 ## 🌟 Esasy Aýratynlyklary (Features)
 
+- 🦅 **Brend we Domen:** **L.BookShop** (`lachynbookshop.online`).
+- 👤 **Ýönekeý Giriş we Profil:** Diňe **Login** we **Parol** (Telefon we email gerek däl!).
 - 🌐 **Köp dillilik (i18n):** Türkmençe (TM), O'zbekcha (UZ), Русский (RU), English (EN).
+- 📚 **215+ Kitap:** Her bir kitap üçin giňişleýin düşündiriş we hakyky okyjy teswirleri (bahalandyrmalar).
 - 🎨 **Döwrebap Dizaýn:** Responsive mobil/planshet/desktop, ýagty we garaňky tema (Dark/Light Mode).
-- 🔍 **Akylly Gözleg we Filtrler:** Kitap ady, awtor, kategoriýa we baha boýunça tiz gözleg we tertipleşdirme.
+- 🔍 **Akylly Gözleg we Kategoriýalar:** Bölümler boýunça sanawlar (Klassika, Taryhy romanlar, Şygyrýet, Ylym we IT, Çagalar, Dünýä edebiýaty).
 - 🛒 **Sebet (Cart) & Halanlarym (Wishlist):** LocalStorage arkaly ýatda saklanýan harytlar, mukdary sazlamak, eltip bermek bahasyny hasaplamak.
-- 📦 **Sargyt Tiz Resmileşdirmek (Checkout):** Ähli 5 welaýat (Aşgabat, Ahal, Mary, Lebap, Daşoguz, Balkan) üçin amatly sargyt formasy.
-- 💬 **Teswirler we Bahalandyrma:** Kitaplara baha bermek (1-5 ýyldyz) we teswir ýazmak mümkinçiligi.
+- 📦 **Meniň Sargytlarym & Tracking:** Ähli sargyt edilen harytlary anyk atlary, bahalary we sargyt kody (mysal: `TKD-2960`) boýunça yzarlamak.
 - ⚙️ **Admin Dolandyryş Paneli (Dashboard):**
   - Jemi kitaplar, sargytlar sany, girdeji statistikasy.
   - Täze kitap goşmak formasy.
@@ -36,7 +39,7 @@ npm install
 ```bash
 npm start
 ```
-*Ýa-da awto-täzelenme üçin (dev mode):*
+*Awto-täzelenme üçin (dev mode):*
 ```bash
 npm run dev
 ```
@@ -44,6 +47,10 @@ npm run dev
 3. **Brauzerde açmak:**
 ```
 http://localhost:3000
+```
+*Online domen:*
+```
+https://lachynbookshop.online
 ```
 
 ---
@@ -55,35 +62,26 @@ Turkmen-Kitap-Dukany/
 ├── server.js              # Express REST API serweri
 ├── package.json           # Taslama maglumatlary we baglylyklar
 ├── data/                  # Maglumatlar bazasy (JSON)
-│   ├── books.json         # Kitaplar bazasy (12+ taýýar nusgawy eser)
-│   └── orders.json        # Sargytlar sanawy
+│   ├── books.json         # 215 sany doly maglumatly kitap
+│   ├── orders.json        # Sargytlar sanawy
+│   └── users.json         # Ulanyjylar bazasy (Login + Parol)
 ├── public/                # Frontend faýllary
 │   ├── index.html         # Esasy HTML interfeýs
 │   ├── styles.css         # CSS dizaýn, dark mode we animasiýalar
 │   ├── i18n.js            # 4 dildäki terjimeler (TM, UZ, RU, EN)
 │   └── app.js             # Client-side JavaScript logika
+├── scripts/
+│   └── generate_books.js  # 215+ kitap dörediji skript
 └── README.md              # Taslama gollanmasy
 ```
 
 ---
 
-## 📡 API Salgylary (REST API Endpoints)
-
-| Usul | Endpoint | Düşündiriş |
-|---|---|---|
-| `GET` | `/api/books` | Kitaplaryň sanawy (filtr, gözleg, sort) |
-| `GET` | `/api/books/:id` | Bellenen kitabyň giňişleýin maglumaty |
-| `POST` | `/api/books` | Täze kitap goşmak (Admin) |
-| `DELETE` | `/api/books/:id` | Kitaby pozmak (Admin) |
-| `POST` | `/api/books/:id/reviews` | Kitaba teswir we baha goşmak |
-| `GET` | `/api/categories` | Kategoriýalar sanawy |
-| `GET` | `/api/orders` | Sargytlar sanawy (Admin) |
-| `POST` | `/api/orders` | Täze sargyt resmileşdirmek (Checkout) |
-| `PATCH` | `/api/orders/:id/status`| Sargydyň ýagdaýyny täzelemek |
-| `GET` | `/api/stats` | Admin panel üçin umumy statistika |
+## 👤 Tiz Synag Hasaby:
+- **Login:** `batyr`
+- **Açarsöz (Parol):** `123456`
 
 ---
 
 ## 📜 Awtor we Hukuklar
-© 2026 **Türkmen Kitap Dükany**. MIT ygtyýarnamasy esasynda paýlanýar.
-
+&copy; 2026 **L.BookShop** ([lachynbookshop.online](https://lachynbookshop.online)). Ähli hukuklar goralan.
