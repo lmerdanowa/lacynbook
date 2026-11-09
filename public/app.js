@@ -596,12 +596,6 @@ function updateCartQty(bookId, delta) {
   updateCartUI();
   renderBooks();
 }
-  }
-
-  saveCart();
-  updateCartUI();
-  renderBooks();
-}
 
 function saveCart() {
   localStorage.setItem('tkd_cart', JSON.stringify(state.cart));
