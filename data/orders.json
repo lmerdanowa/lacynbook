@@ -1,5 +1,30 @@
 [
   {
+    "id": "TKD-2960",
+    "createdAt": "2026-11-09T12:59:36.489Z",
+    "customer": {
+      "fullName": "hjbjhb",
+      "phone": "bkjbmbjm",
+      "city": "Daşoguz",
+      "address": "mhbjb",
+      "notes": "nkl,n,n,k"
+    },
+    "items": [
+      {
+        "id": "book-28",
+        "title": "Suw Damjasy - Altyn Dänesi",
+        "author": "Berdi Kerbabaýew",
+        "price": 84,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 84,
+    "deliveryFee": 25,
+    "total": 109,
+    "paymentMethod": "karty",
+    "status": "taze"
+  },
+  {
     "id": "TKD-1001",
     "createdAt": "2026-11-08T14:32:00.000Z",
     "customer": {
@@ -14,20 +39,20 @@
         "id": "book-1",
         "title": "Saýlanan Eserler (3 jiltlik)",
         "author": "Magtymguly Pyragy",
-        "price": 85.00,
+        "price": 85,
         "quantity": 1
       },
       {
         "id": "book-4",
         "title": "Şükür Bagşy",
         "author": "Nurmyrat Saryhanow",
-        "price": 35.00,
+        "price": 35,
         "quantity": 1
       }
     ],
-    "subtotal": 120.00,
-    "deliveryFee": 15.00,
-    "total": 135.00,
+    "subtotal": 120,
+    "deliveryFee": 15,
+    "total": 135,
     "paymentMethod": "nagt",
     "status": "gowshuryldy"
   },
@@ -46,13 +71,13 @@
         "id": "book-7",
         "title": "Türkmen Halk Ertekileri",
         "author": "Halk Döredijiligi",
-        "price": 50.00,
+        "price": 50,
         "quantity": 2
       }
     ],
-    "subtotal": 100.00,
-    "deliveryFee": 20.00,
-    "total": 120.00,
+    "subtotal": 100,
+    "deliveryFee": 20,
+    "total": 120,
     "paymentMethod": "karty",
     "status": "ugradyldy"
   },
@@ -71,15 +96,14 @@
         "id": "book-10",
         "title": "Python we Web Programmirleme Esaslary",
         "author": "A. Merdanow, K. Begmyradow",
-        "price": 70.00,
+        "price": 70,
         "quantity": 1
       }
     ],
-    "subtotal": 70.00,
-    "deliveryFee": 20.00,
-    "total": 90.00,
+    "subtotal": 70,
+    "deliveryFee": 20,
+    "total": 90,
     "paymentMethod": "karty",
     "status": "taze"
   }
 ]
-

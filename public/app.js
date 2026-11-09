@@ -9,6 +9,7 @@ const state = {
   sort: 'newest',
   cart: JSON.parse(localStorage.getItem('tkd_cart') || '[]'),
   favorites: JSON.parse(localStorage.getItem('tkd_favorites') || '[]'),
+  myOrders: JSON.parse(localStorage.getItem('tkd_my_orders') || '["TKD-2960"]'),
   currentBook: null,
   visibleLimit: 24
 };
@@ -23,6 +24,8 @@ const langSelect = document.getElementById('langSelect');
 const themeToggle = document.getElementById('themeToggle');
 const cartBtn = document.getElementById('cartBtn');
 const favBtn = document.getElementById('favBtn');
+const ordersNavBtn = document.getElementById('ordersNavBtn');
+const ordersBadge = document.getElementById('ordersBadge');
 const adminBtn = document.getElementById('adminBtn');
 const cartDrawer = document.getElementById('cartDrawer');
 const closeCartBtn = document.getElementById('closeCartBtn');
@@ -50,6 +53,12 @@ const favoritesModal = document.getElementById('favoritesModal');
 const closeFavModal = document.getElementById('closeFavModal');
 const favItemsContainer = document.getElementById('favItems');
 
+const ordersModal = document.getElementById('ordersModal');
+const closeOrdersModal = document.getElementById('closeOrdersModal');
+const myOrdersList = document.getElementById('myOrdersList');
+const trackOrderInput = document.getElementById('trackOrderInput');
+const trackOrderBtn = document.getElementById('trackOrderBtn');
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(state.theme);
@@ -60,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchBooks();
   updateCartUI();
   updateFavoritesUI();
+  updateOrdersUI();
   setupEventListeners();
 });
 
@@ -103,6 +113,24 @@ function setupEventListeners() {
     favoritesModal.classList.add('active');
   });
   closeFavModal.addEventListener('click', () => favoritesModal.classList.remove('active'));
+
+  ordersNavBtn.addEventListener('click', () => {
+    renderMyOrders();
+    ordersModal.classList.add('active');
+  });
+  closeOrdersModal.addEventListener('click', () => ordersModal.classList.remove('active'));
+
+  trackOrderBtn.addEventListener('click', () => {
+    const trackId = trackOrderInput.value.trim();
+    if (trackId) trackSingleOrder(trackId);
+  });
+
+  trackOrderInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const trackId = trackOrderInput.value.trim();
+      if (trackId) trackSingleOrder(trackId);
+    }
+  });
 
   adminBtn.addEventListener('click', () => {
     loadAdminStats();
@@ -555,12 +583,20 @@ async function handleCheckout(e) {
     });
     const json = await res.json();
     if (json.success) {
-      alert(`${t('orderSuccess')}${json.data.id}\nSiziň bilen tiz wagtda habarlaşarys!`);
+      if (!state.myOrders.includes(json.data.id)) {
+        state.myOrders.unshift(json.data.id);
+        localStorage.setItem('tkd_my_orders', JSON.stringify(state.myOrders));
+      }
+      updateOrdersUI();
       state.cart = [];
       saveCart();
       updateCartUI();
       checkoutModal.classList.remove('active');
       checkoutForm.reset();
+
+      // Open My Orders modal right away to show the placed order!
+      renderMyOrders();
+      ordersModal.classList.add('active');
     }
   } catch (err) {
     alert('Ýalňyşlyk ýüze çykdy. Gaýtadan synanyşyň.');
@@ -600,7 +636,20 @@ async function loadAdminOrders() {
           <td><strong>${order.id}</strong></td>
           <td>${escapeHtml(order.customer.fullName)}<br><small style="color: var(--text-muted);">${order.customer.phone}</small></td>
           <td>${order.customer.city}</td>
-          <td>${order.items.length} kitap (${order.total.toFixed(2)} ${t('currency')})</td>
+          <td>
+            <div style="font-weight: 700; color: var(--primary); margin-bottom: 4px;">
+              ${order.items.length} kitap (${order.total.toFixed(2)} ${t('currency')})
+            </div>
+            <div style="background: var(--bg-primary); border-radius: 6px; padding: 6px; border: 1px solid var(--border);">
+              ${order.items.map(item => `
+                <div style="font-size: 0.82rem; margin-bottom: 2px;">
+                  📖 <strong>${escapeHtml(item.title)}</strong> × ${item.quantity || 1} 
+                  <span style="color: var(--primary); font-weight: 600;">(${(item.price * (item.quantity || 1)).toFixed(2)} ${t('currency')})</span>
+                </div>
+              `).join('')}
+            </div>
+            ${order.customer.address ? `<div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">📍 ${escapeHtml(order.customer.address)}</div>` : ''}
+          </td>
           <td>
             <select class="status-badge status-${order.status}" onchange="updateOrderStatus('${order.id}', this.value)">
               <option value="taze" ${order.status === 'taze' ? 'selected' : ''}>Täze</option>
@@ -666,6 +715,131 @@ async function handleAddBook(e) {
   }
 }
 
+// My Orders Logic
+function updateOrdersUI() {
+  if (!ordersBadge) return;
+  ordersBadge.textContent = state.myOrders.length;
+  ordersBadge.style.display = state.myOrders.length > 0 ? 'flex' : 'none';
+}
+
+async function renderMyOrders() {
+  myOrdersList.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-muted);">Sargytlar ýüklenýär...</div>';
+
+  try {
+    const res = await fetch('/api/orders');
+    const json = await res.json();
+    if (!json.success) return;
+
+    const allOrders = json.data;
+    // Show user's orders or all recent if none saved
+    let matched = allOrders.filter(o => state.myOrders.includes(o.id));
+    if (matched.length === 0 && allOrders.length > 0) {
+      // If user hasn't saved orders yet, show their latest placed orders
+      matched = allOrders.slice(0, 3);
+    }
+
+    if (matched.length === 0) {
+      myOrdersList.innerHTML = `
+        <div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">📦</div>
+          <h4>${t('myOrdersEmpty')}</h4>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem;">Ýokardaky meýdança sargyt belgiňizi (mysal: TKD-2960) ýazyp, sargydyňyzy barlap bilersiňiz.</p>
+        </div>
+      `;
+      return;
+    }
+
+    myOrdersList.innerHTML = matched.map(order => renderOrderCard(order)).join('');
+  } catch (err) {
+    console.error('Error fetching my orders:', err);
+    myOrdersList.innerHTML = '<div style="color: red; text-align: center;">Ýalňyşlyk ýüze çykdy.</div>';
+  }
+}
+
+async function trackSingleOrder(orderId) {
+  myOrdersList.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-muted);">Gözlenýär...</div>';
+  try {
+    const res = await fetch(`/api/orders/${encodeURIComponent(orderId)}`);
+    const json = await res.json();
+    if (json.success && json.data) {
+      if (!state.myOrders.includes(json.data.id)) {
+        state.myOrders.unshift(json.data.id);
+        localStorage.setItem('tkd_my_orders', JSON.stringify(state.myOrders));
+        updateOrdersUI();
+      }
+      myOrdersList.innerHTML = renderOrderCard(json.data);
+    } else {
+      myOrdersList.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: #ef4444;">
+          <h4>Sargyt tapylmady: "${escapeHtml(orderId)}"</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Belginiň dogrulygyny barlaň.</p>
+        </div>
+      `;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function renderOrderCard(order) {
+  const statusTexts = {
+    taze: 'Täze (Kabul edildi)',
+    tayyarlanyar: 'Taýýarlanýar',
+    ugradyldy: 'Ýolda (Ugradyldy)',
+    gowshuryldy: 'Gowşuryldy (Tamamlandy)'
+  };
+
+  const itemsHtml = order.items.map(item => `
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px dashed var(--border); font-size: 0.9rem;">
+      <div>
+        <div style="font-weight: 700; color: var(--text-main);">📖 ${escapeHtml(item.title)}</div>
+        <div style="font-size: 0.78rem; color: var(--text-muted);">${escapeHtml(item.author || '')}</div>
+      </div>
+      <div style="text-align: right;">
+        <span style="font-weight: 800; color: var(--primary);">${(item.price * (item.quantity || 1)).toFixed(2)} ${t('currency')}</span>
+        <div style="font-size: 0.75rem; color: var(--text-muted);">${item.quantity || 1} sany × ${item.price.toFixed(2)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; box-shadow: var(--card-shadow); margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);">
+        <div>
+          <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Sargyt belgisi</span>
+          <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">${order.id}</h4>
+          <small style="color: var(--text-muted);">${new Date(order.createdAt).toLocaleString()}</small>
+        </div>
+        <span class="status-badge status-${order.status}" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">
+          ${statusTexts[order.status] || order.status}
+        </span>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <h5 style="font-size: 0.82rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">Sargyt edilen kitaplar:</h5>
+        ${itemsHtml}
+      </div>
+
+      <div style="background: var(--bg-primary); border-radius: 10px; padding: 0.85rem; font-size: 0.85rem; margin-bottom: 0.75rem; border: 1px solid var(--border);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+          <span style="color: var(--text-muted);">Müşderi:</span>
+          <strong>${escapeHtml(order.customer.fullName)} (${escapeHtml(order.customer.phone)})</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+          <span style="color: var(--text-muted);">Eltip berilýän ýer:</span>
+          <strong>${order.customer.city}, ${escapeHtml(order.customer.address)}</strong>
+        </div>
+        ${order.customer.notes ? `<div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px;">💬 Bellik: ${escapeHtml(order.customer.notes)}</div>` : ''}
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: 800; padding-top: 0.5rem;">
+        <span>Jemi töleg:</span>
+        <span style="color: var(--primary); font-size: 1.3rem;">${order.total.toFixed(2)} ${t('currency')}</span>
+      </div>
+    </div>
+  `;
+}
+
 // Utility
 function escapeHtml(str) {
   if (!str) return '';
@@ -688,4 +862,6 @@ window.openBookModal = openBookModal;
 window.submitReview = submitReview;
 window.updateOrderStatus = updateOrderStatus;
 window.renderFavorites = renderFavorites;
+window.renderMyOrders = renderMyOrders;
+window.trackSingleOrder = trackSingleOrder;
 

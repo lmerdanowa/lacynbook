@@ -199,6 +199,16 @@ app.get('/api/orders', (req, res) => {
   res.json({ success: true, count: orders.length, data: orders });
 });
 
+// 7.1 GET /api/orders/:id (Search single order by ID)
+app.get('/api/orders/:id', (req, res) => {
+  const orders = readData(ORDERS_FILE);
+  const order = orders.find(o => o.id.toLowerCase() === req.params.id.toLowerCase());
+  if (!order) {
+    return res.status(404).json({ success: false, message: 'Sargyt tapylmady' });
+  }
+  res.json({ success: true, data: order });
+});
+
 // 8. POST /api/orders (Create checkout order)
 app.post('/api/orders', (req, res) => {
   const { customer, items, paymentMethod } = req.body;

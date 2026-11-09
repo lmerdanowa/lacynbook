@@ -457,3 +457,4 @@ while (allBooks.length < 215) {
 // Write to books.json
 fs.writeFileSync(booksPath, JSON.stringify(allBooks, null, 2), 'utf-8');
 console.log(`Successfully generated and saved ${allBooks.length} books to ${booksPath}`);
+
