@@ -12,15 +12,21 @@
       --admin-sidebar-hover: #1e293b;
       --admin-sidebar-text: #94a3b8;
       --admin-sidebar-active: #059669;
+      --admin-bg: #f8fafc;
+      --admin-card: #ffffff;
+      --admin-border: #e2e8f0;
+      --admin-text: #0f172a;
+      --admin-muted: #64748b;
     }
 
     body {
-      background: #f1f5f9;
-      color: #0f172a;
+      background: var(--admin-bg);
+      color: var(--admin-text);
       margin: 0;
       padding: 0;
       display: flex;
       min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     /* Admin Login Screen */
@@ -58,7 +64,7 @@
 
     /* Sidebar */
     .admin-sidebar {
-      width: 260px;
+      width: 270px;
       background: var(--admin-sidebar);
       color: white;
       display: flex;
@@ -68,6 +74,7 @@
       top: 0;
       height: 100vh;
       box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+      z-index: 100;
     }
 
     .admin-brand {
@@ -85,6 +92,7 @@
       flex-direction: column;
       gap: 0.35rem;
       flex: 1;
+      overflow-y: auto;
     }
 
     .admin-nav-item {
@@ -95,7 +103,7 @@
       border-radius: 10px;
       color: var(--admin-sidebar-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -125,7 +133,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--admin-border);
       position: sticky;
       top: 0;
       z-index: 50;
@@ -146,14 +154,225 @@
 
     .card {
       background: white;
-      border: 1px solid var(--border);
+      border: 1px solid var(--admin-border);
       border-radius: 16px;
       padding: 1.5rem;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       margin-bottom: 1.5rem;
     }
 
-    @media (max-width: 768px) {
+    /* Stats Grid */
+    .stats-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card-kpi {
+      background: white;
+      border: 1px solid var(--admin-border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-card-kpi:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px -3px rgba(0,0,0,0.08);
+    }
+
+    .stat-card-kpi h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--admin-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card-kpi .kpi-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--admin-text);
+    }
+
+    .stat-card-kpi .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--admin-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* Inventory Pills */
+    .filter-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .filter-pill {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .filter-pill:hover {
+      background: #e2e8f0;
+    }
+
+    .filter-pill.active {
+      background: #0f172a;
+      color: white;
+      border-color: #0f172a;
+    }
+
+    .pill-count {
+      background: rgba(0,0,0,0.08);
+      padding: 1px 6px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+    }
+
+    .filter-pill.active .pill-count {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* Stock control button */
+    .stock-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 2px 4px;
+    }
+
+    .stock-btn {
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #334155;
+    }
+
+    .stock-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .stock-val {
+      min-width: 30px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    /* Badges */
+    .badge-stock {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-stock-ok { background: #dcfce7; color: #166534; }
+    .badge-stock-low { background: #fef3c7; color: #b45309; }
+    .badge-stock-out { background: #fee2e2; color: #991b1b; }
+
+    .badge-discount {
+      background: #ffedd5;
+      color: #c2410c;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    /* Quick Preset Buttons */
+    .preset-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+    .preset-btn:hover, .preset-btn.active {
+      background: #059669;
+      color: white;
+      border-color: #059669;
+    }
+
+    /* Tables */
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .admin-table th {
+      background: #f8fafc;
+      color: #475569;
+      font-weight: 700;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid var(--admin-border);
+      white-space: nowrap;
+    }
+
+    .admin-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--admin-border);
+      vertical-align: middle;
+    }
+
+    .admin-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    /* Status Badges */
+    .status-badge {
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+    .status-taze { background: #dbeafe; color: #1e40af; }
+    .status-tayyarlanyar { background: #fef3c7; color: #92400e; }
+    .status-ugradyldy { background: #e0e7ff; color: #4338ca; }
+    .status-gowshuryldy { background: #dcfce7; color: #166534; }
+    .status-yatyrlyldy { background: #fee2e2; color: #991b1b; }
+
+    @media (max-width: 900px) {
       .admin-layout.active {
         flex-direction: column;
       }
@@ -180,51 +399,51 @@
           <input type="text" id="adminUsername" class="form-control" required placeholder="admin" style="padding: 0.75rem; border-radius: 10px;">
         </div>
         <div class="form-group" style="text-align: left;">
-          <label style="font-weight: 600; font-size: 0.85rem; color: #475569;">Açarsöz (Parol)</label>
-          <input type="password" id="adminPassword" class="form-control" required placeholder="admin123" style="padding: 0.75rem; border-radius: 10px;">
+          <label style="font-weight: 600; font-size: 0.85rem; color: #475569;">Admin Açarsözi</label>
+          <input type="password" id="adminPassword" class="form-control" required placeholder="••••••••" style="padding: 0.75rem; border-radius: 10px;">
         </div>
-        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem; border-radius: 10px; margin-top: 0.5rem;">
-          🔐 Paneli Açmak
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; border-radius: 12px; margin-top: 1rem; font-weight: 700;">
+          🔐 Dolandyryş Paneline Gir
         </button>
       </form>
 
-      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
-        <button type="button" id="adminQuickDemoBtn" style="background: none; border: 1px dashed #059669; color: #059669; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;">
-          ⚡ Tiz admin synagy: admin / admin123
+      <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #f1f5f9; font-size: 0.8rem; color: #94a3b8;">
+        Synag üçin: <strong>admin</strong> / <strong>admin123</strong>
+        <br>
+        <button id="adminQuickDemoBtn" style="background: none; border: none; color: #059669; font-weight: 700; cursor: pointer; text-decoration: underline; margin-top: 0.5rem;">
+          Bir basyşda doldur
         </button>
-      </div>
-
-      <div style="margin-top: 1rem;">
-        <a href="/" style="color: #64748b; font-size: 0.82rem; text-decoration: none;">← Esasy dükana dolanmak</a>
       </div>
     </div>
   </div>
 
   <!-- ADMIN DASHBOARD LAYOUT -->
   <div class="admin-layout" id="adminDashboardLayout">
-    
     <!-- Sidebar -->
     <aside class="admin-sidebar">
       <div class="admin-brand">
         <img src="assets/logo-icon.svg" alt="L.BookShop" style="width: 40px; height: 40px; border-radius: 10px;">
         <div>
-          <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0;">L.BookShop</h3>
-          <small style="color: #10b981; font-weight: 700; font-size: 0.7rem;">admin.lachynbookshop.online</small>
+          <div style="font-weight: 800; font-size: 1.1rem; line-height: 1.2;">L.BookShop</div>
+          <small style="color: #6ee7b7; font-size: 0.75rem;">Admin Suite</small>
         </div>
       </div>
 
       <ul class="admin-nav">
         <li class="admin-nav-item active" data-tab="tab-overview">
-          📊 Synp (Overview)
+          <span>📊</span> <span>Umumy Syn & Derňew</span>
         </li>
         <li class="admin-nav-item" data-tab="tab-orders">
-          📦 Sargytlar dolandyryşy
+          <span>📦</span> <span>Sargytlar Dolandyryşy</span>
         </li>
-        <li class="admin-nav-item" data-tab="tab-books">
-          📚 Kitaplar gory (215+)
+        <li class="admin-nav-item" data-tab="tab-inventory">
+          <span>🏷️</span> <span>Ammar & Nyrh (Stok/Aksiýa)</span>
+        </li>
+        <li class="admin-nav-item" data-tab="tab-analytics">
+          <span>📈</span> <span>Maliýe & Peýda Hasabaty</span>
         </li>
         <li class="admin-nav-item" data-tab="tab-users">
-          👥 Ulanyjylar
+          <span>👥</span> <span>Hasaba Alnan Ulanyjylar</span>
         </li>
       </ul>
 
@@ -246,6 +465,9 @@
           <a href="/" target="_blank" class="btn-primary" style="padding: 0.45rem 0.85rem; font-size: 0.85rem; background: #0f172a;">
             🌐 Dükany açmak
           </a>
+          <button class="btn-primary" style="padding: 0.45rem 0.85rem; font-size: 0.85rem;" onclick="refreshAllAdminData()">
+            🔄 Täzele
+          </button>
           <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 700; background: #e2e8f0; padding: 0.4rem 0.8rem; border-radius: 9999px;">
             <span>🛡️</span> <span>Baş Administrator</span>
           </div>
@@ -255,31 +477,68 @@
       <!-- Content Area -->
       <div class="admin-content">
 
-        <!-- TAB 1: OVERVIEW -->
+        <!-- TAB 1: OVERVIEW & EXECUTIVE METRICS -->
         <section class="admin-tab active" id="tab-overview">
-          <div class="stats-grid">
-            <div class="stat-card">
-              <h4>Jemi girdeji</h4>
-              <p id="statTotalRevenue">0.00 TMT</p>
+          <!-- 6 KPI Metric Cards -->
+          <div class="stats-grid-6">
+            <div class="stat-card-kpi">
+              <h4>Jemi Tushum / Satyş <span>💰</span></h4>
+              <p class="kpi-value" id="statTotalRevenue">0.00 TMT</p>
+              <div class="kpi-sub">Sargytlar boýunça jemi girdeji</div>
             </div>
-            <div class="stat-card">
-              <h4>Jemi sargytlar</h4>
-              <p id="statTotalOrders">0</p>
+            <div class="stat-card-kpi" style="border-left: 4px solid #059669;">
+              <h4>Arassa Peýda (Net Profit) <span>📈</span></h4>
+              <p class="kpi-value" id="statTotalProfit" style="color: #059669;">0.00 TMT</p>
+              <div class="kpi-sub" id="statProfitMargin">Marja: 0.0%</div>
             </div>
-            <div class="stat-card">
-              <h4>Kitaplar sany</h4>
-              <p id="statTotalBooks">0</p>
+            <div class="stat-card-kpi">
+              <h4>Jemi Sargytlar <span>📦</span></h4>
+              <p class="kpi-value" id="statTotalOrders">0</p>
+              <div class="kpi-sub" id="statPendingSub" style="color: #f59e0b;">0 garaşylýar</div>
             </div>
-            <div class="stat-card">
-              <h4>Garaşylýan sargytlar</h4>
-              <p id="statPendingOrders" style="color: #f59e0b;">0</p>
+            <div class="stat-card-kpi">
+              <h4>Ammardaky Stok <span>📚</span></h4>
+              <p class="kpi-value" id="statTotalStock">0</p>
+              <div class="kpi-sub">215 kitap görnüşi</div>
+            </div>
+            <div class="stat-card-kpi" style="border-left: 4px solid #f59e0b;">
+              <h4>Az Galan Kitaplar <span>⚠️</span></h4>
+              <p class="kpi-value" id="statLowStock" style="color: #d97706;">0</p>
+              <div class="kpi-sub">Stok &le; 5 sany galdy</div>
+            </div>
+            <div class="stat-card-kpi" style="border-left: 4px solid #ef4444;">
+              <h4>Gutaran Kitaplar <span>❌</span></h4>
+              <p class="kpi-value" id="statOutOfStock" style="color: #dc2626;">0</p>
+              <div class="kpi-sub">Ammarda 0 sany</div>
+            </div>
+          </div>
+
+          <!-- Performance Grids: Category Revenue + Top 5 Best Sellers -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+            <!-- Category Performance -->
+            <div class="card" style="margin-bottom: 0;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0 0 1rem 0;">Bölümler boýunça satyş & peýda</h3>
+              <div id="categoryPerformanceBars" style="display: flex; flex-direction: column; gap: 0.85rem;">
+                <p style="color: var(--admin-muted); font-size: 0.85rem;">Ýüklenýär...</p>
+              </div>
+            </div>
+
+            <!-- Top 5 Best Sellers -->
+            <div class="card" style="margin-bottom: 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0;">🔥 Iň köp satylan 5 kitap</h3>
+                <button class="filter-pill" onclick="switchAdminTab('tab-analytics')" style="font-size: 0.75rem;">Ählisi →</button>
+              </div>
+              <div id="overviewTopSellers" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <p style="color: var(--admin-muted); font-size: 0.85rem;">Ýüklenýär...</p>
+              </div>
             </div>
           </div>
 
           <!-- Quick Orders Card -->
           <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0;">Soňky sargytlar</h3>
+              <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0;">Soňky sargytlar we olaryň peýdasy</h3>
               <button class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="switchAdminTab('tab-orders')">
                 Ählisini görkez →
               </button>
@@ -292,25 +551,26 @@
                     <th>Müşderi</th>
                     <th>Şäher</th>
                     <th>Harytlar</th>
+                    <th>Tushum & Peýda</th>
                     <th>Ýagdaýy</th>
                     <th>Sene</th>
                   </tr>
                 </thead>
                 <tbody id="overviewOrdersTable">
-                  <tr><td colspan="6" style="text-align: center;">Ýüklenýär...</td></tr>
+                  <tr><td colspan="7" style="text-align: center;">Ýüklenýär...</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
         </section>
 
-        <!-- TAB 2: ORDERS -->
+        <!-- TAB 2: ORDERS MANAGEMENT -->
         <section class="admin-tab" id="tab-orders">
           <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
               <div>
                 <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">Sargytlar dolandyryşy</h3>
-                <small style="color: var(--text-muted);">Ähli gelen sargytlaryň sanawy we ýagdaýlary</small>
+                <small style="color: var(--admin-muted);">Ähli gelen sargytlaryň sanawy, girdeji we arassa peýda hasaby</small>
               </div>
               <div style="display: flex; gap: 0.5rem;">
                 <select id="orderStatusFilter" class="form-control" style="width: auto; padding: 0.45rem 0.85rem;" onchange="filterAdminOrders()">
@@ -319,6 +579,7 @@
                   <option value="tayyarlanyar">Taýýarlanýar</option>
                   <option value="ugradyldy">Ýolda / Ugradyldy</option>
                   <option value="gowshuryldy">Gowşuryldy</option>
+                  <option value="yatyrlyldy">Ýatyryldy (Stok yzyna gaýtarylan)</option>
                 </select>
                 <button class="btn-primary" style="padding: 0.45rem 0.85rem;" onclick="loadAdminOrdersData()">🔄 Täzele</button>
               </div>
@@ -332,48 +593,12 @@
                     <th>Müşderi</th>
                     <th>Şäher / Salgy</th>
                     <th>Sargyt edilen kitaplar</th>
+                    <th>Tushum / Peýda</th>
                     <th>Ýagdaýy</th>
                     <th>Sene</th>
                   </tr>
                 </thead>
                 <tbody id="fullOrdersTable">
-                  <tr><td colspan="6" style="text-align: center;">Ýüklenýär...</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        <!-- TAB 3: BOOKS -->
-        <section class="admin-tab" id="tab-books">
-          <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-              <div>
-                <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">Kitaplar gory</h3>
-                <small style="color: var(--text-muted);" id="adminBooksCount">0 kitap bar</small>
-              </div>
-              <div style="display: flex; gap: 0.75rem;">
-                <input type="text" id="adminBookSearch" class="form-control" placeholder="Kitap gözleg..." style="width: 240px; padding: 0.45rem 0.85rem;" oninput="filterAdminBooks()">
-                <button class="btn-primary" style="padding: 0.45rem 1rem;" onclick="document.getElementById('adminAddBookModal').classList.add('active')">
-                  + Täze kitap goşmak
-                </button>
-              </div>
-            </div>
-
-            <div style="overflow-x: auto;">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Ady</th>
-                    <th>Awtory</th>
-                    <th>Bölümi</th>
-                    <th>Bahasy</th>
-                    <th>Sahypa</th>
-                    <th>Hereket</th>
-                  </tr>
-                </thead>
-                <tbody id="adminBooksTable">
                   <tr><td colspan="7" style="text-align: center;">Ýüklenýär...</td></tr>
                 </tbody>
               </table>
@@ -381,11 +606,155 @@
           </div>
         </section>
 
-        <!-- TAB 4: USERS -->
+        <!-- TAB 3: INVENTORY, PRICING & DISCOUNTS (AMMAR & ARZANLADYŞ) -->
+        <section class="admin-tab" id="tab-inventory">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">Ammar, Nyrh & Arzanlaşyk Dolandyryşy</h3>
+                <small style="color: var(--admin-muted);" id="inventoryBooksCount">215 kitap hasapda dur</small>
+              </div>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <input type="text" id="inventorySearch" class="form-control" placeholder="Kitap ýa-da awtor gözleg..." style="width: 220px; padding: 0.45rem 0.85rem;" oninput="filterInventory()">
+                <select id="inventoryCategoryFilter" class="form-control" style="width: auto; padding: 0.45rem 0.85rem;" onchange="filterInventory()">
+                  <option value="all">Ähli bölümler</option>
+                  <option value="klassyka">Klassyky edebiýat</option>
+                  <option value="roman">Taryhy romanlar</option>
+                  <option value="sygyryet">Şygyrýet</option>
+                  <option value="powest">Powest & Hekaýalar</option>
+                  <option value="cagalar">Çagalar edebiýaty</option>
+                  <option value="ylmy">Ylmy & Okuw</option>
+                  <option value="dunya">Dünýä edebiýaty</option>
+                </select>
+                <button class="btn-primary" style="padding: 0.45rem 1rem;" onclick="document.getElementById('adminAddBookModal').classList.add('active')">
+                  + Täze kitap goşmak
+                </button>
+              </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-pills" id="inventoryPills">
+              <button class="filter-pill active" data-filter="all" onclick="setInventoryFilter('all')">
+                📌 Ähli kitaplar <span class="pill-count" id="pillAllCount">0</span>
+              </button>
+              <button class="filter-pill" data-filter="low_stock" onclick="setInventoryFilter('low_stock')">
+                ⚠️ Az galanlar (&le;5) <span class="pill-count" id="pillLowCount" style="color: #b45309;">0</span>
+              </button>
+              <button class="filter-pill" data-filter="out_of_stock" onclick="setInventoryFilter('out_of_stock')">
+                ❌ Gutaranlar (0) <span class="pill-count" id="pillOutCount" style="color: #b91c1c;">0</span>
+              </button>
+              <button class="filter-pill" data-filter="discounted" onclick="setInventoryFilter('discounted')">
+                🔥 Arzanlaşykdakylar <span class="pill-count" id="pillDiscCount" style="color: #c2410c;">0</span>
+              </button>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID & Kitap</th>
+                    <th>Bölümi</th>
+                    <th>Ammar Sany</th>
+                    <th>Satylan</th>
+                    <th>Tannarx (Cost)</th>
+                    <th>Satyş Bahasy</th>
+                    <th>Arzanlaşyk</th>
+                    <th>Birlikdäki Peýda</th>
+                    <th>Amallar</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryTable">
+                  <tr><td colspan="9" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: FINANCIAL & SALES ANALYTICS (PEÝDA & SATYŞ HASABATY) -->
+        <section class="admin-tab" id="tab-analytics">
+          <!-- Inventory Capital Valuation Cards -->
+          <div class="stats-grid-6">
+            <div class="stat-card-kpi">
+              <h4>Ammar Tannarhy (COGS) <span>🏢</span></h4>
+              <p class="kpi-value" id="finAssetCost">0.00 TMT</p>
+              <div class="kpi-sub">Ammardaky harytlaryň özüne düşüşi</div>
+            </div>
+            <div class="stat-card-kpi">
+              <h4>Ammar Satyş Bahasy <span>🏷️</span></h4>
+              <p class="kpi-value" id="finRetailValue">0.00 TMT</p>
+              <div class="kpi-sub">Doly satylanda garaşylýan tushum</div>
+            </div>
+            <div class="stat-card-kpi" style="border-left: 4px solid #059669;">
+              <h4>Garaşylýan Geljekki Peýda <span>🔮</span></h4>
+              <p class="kpi-value" id="finProjectedProfit" style="color: #059669;">0.00 TMT</p>
+              <div class="kpi-sub">Ammar doly satylanda gazanyljak</div>
+            </div>
+            <div class="stat-card-kpi">
+              <h4>Jemi Satylan Kitaplar <span>📦</span></h4>
+              <p class="kpi-value" id="finUnitsSold">0</p>
+              <div class="kpi-sub">Birlikde satylan kitap sany</div>
+            </div>
+          </div>
+
+          <!-- Top 10 Bestsellers Detailed Table -->
+          <div class="card">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 0.5rem 0;">🏆 Top-10 Iň köp satylan kitaplar (Girdeji & Peýda paýy)</h3>
+            <small style="color: var(--admin-muted); display: block; margin-bottom: 1rem;">Her kitabyň dükana getiren umumy tushumy we arassa peýdasy</small>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Kitap Ady</th>
+                    <th>Awtory</th>
+                    <th>Satylan sany</th>
+                    <th>Satyş Bahasy</th>
+                    <th>Tannarhy</th>
+                    <th>Birlik Peýda</th>
+                    <th>Jemi Satyş</th>
+                    <th>Jemi Peýda</th>
+                  </tr>
+                </thead>
+                <tbody id="analyticsTopTable">
+                  <tr><td colspan="9" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Category Financial Breakdown Table -->
+          <div class="card">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 0.5rem 0;">📊 Bölümler boýunça jikme-jik maliýe hasabaty</h3>
+            <small style="color: var(--admin-muted); display: block; margin-bottom: 1rem;">Bölüm boýunça kitap sany, ammardaky stok, satyş we peýda marjasy</small>
+
+            <div style="overflow-x: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Bölüm</th>
+                    <th>Kitap Sany</th>
+                    <th>Ammar Stok</th>
+                    <th>Satylan</th>
+                    <th>Jemi Girdeji</th>
+                    <th>Arassa Peýda</th>
+                    <th>Peýda Marjasy</th>
+                  </tr>
+                </thead>
+                <tbody id="analyticsCategoryTable">
+                  <tr><td colspan="7" style="text-align: center;">Ýüklenýär...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: USERS -->
         <section class="admin-tab" id="tab-users">
           <div class="card">
             <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem;">Hasaba alnan ulanyjylar</h3>
-            <small style="color: var(--text-muted); display: block; margin-bottom: 1.25rem;">Dükanyň agzalary we olaryň bonus ballary</small>
+            <small style="color: var(--admin-muted); display: block; margin-bottom: 1.25rem;">Dükanyň agzalary we olaryň bonus ballary</small>
 
             <div style="overflow-x: auto;">
               <table class="admin-table">
@@ -410,10 +779,103 @@
     </main>
   </div>
 
-  <!-- Add Book Modal -->
+  <!-- MODAL 1: QUICK DISCOUNT (ARZANLADYŞ MODALY) -->
+  <div class="modal-overlay" id="adminDiscountModal">
+    <div class="modal-content" style="max-width: 480px;">
+      <button class="modal-close-btn" onclick="closeAdminModal('adminDiscountModal')">✕</button>
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.25rem;">🏷️ Arzanlaşyk sazlamak</h3>
+      <p style="color: var(--admin-muted); font-size: 0.85rem; margin-bottom: 1.25rem;" id="discModalBookTitle">Kitap ady</p>
+
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+          <span style="color: var(--admin-muted);">Esasy bahasy:</span>
+          <strong id="discBasePrice">0.00 TMT</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+          <span style="color: var(--admin-muted);">Tannarhy (Özüne düşüşi):</span>
+          <strong id="discCostPrice">0.00 TMT</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 1.05rem; font-weight: 800; border-top: 1px dashed #cbd5e1; padding-top: 0.5rem;">
+          <span>Täze arzanlaşyk bahasy:</span>
+          <span style="color: #059669;" id="discNewPricePreview">0.00 TMT</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-top: 0.35rem;">
+          <span style="color: var(--admin-muted);">Täze birlikdäki peýda:</span>
+          <strong style="color: #059669;" id="discNewProfitPreview">+0.00 TMT</strong>
+        </div>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <label style="font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem; display: block;">Tiz göterim saýlaň:</label>
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; margin-bottom: 1.25rem;">
+        <button type="button" class="preset-btn" onclick="applyDiscPreset(10)">-10%</button>
+        <button type="button" class="preset-btn" onclick="applyDiscPreset(15)">-15%</button>
+        <button type="button" class="preset-btn" onclick="applyDiscPreset(20)">-20%</button>
+        <button type="button" class="preset-btn" onclick="applyDiscPreset(25)">-25%</button>
+        <button type="button" class="preset-btn" onclick="applyDiscPreset(30)">-30%</button>
+        <button type="button" class="preset-btn" onclick="applyDiscPreset(50)">-50%</button>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 1rem;">
+        <label style="font-weight: 600; font-size: 0.85rem;">Ýa-da anyk aksiýa bahasy giriziň (TMT):</label>
+        <input type="number" step="0.5" id="discCustomPrice" class="form-control" placeholder="Mysal: 25.00" oninput="updateDiscFromCustomPrice()">
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+        <button type="button" class="btn-primary" style="flex: 1; justify-content: center; padding: 0.75rem;" onclick="submitDiscount()">
+          💾 Arzanlaşygy tassykla
+        </button>
+        <button type="button" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; padding: 0.75rem 1rem; border-radius: 10px; font-weight: 700; cursor: pointer;" onclick="removeDiscount()">
+          Aýyr (Öňki baha)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: FULL PRICING & INVENTORY EDIT (NYRH & STOK SAZLAMAK) -->
+  <div class="modal-overlay" id="adminPricingModal">
+    <div class="modal-content" style="max-width: 520px;">
+      <button class="modal-close-btn" onclick="closeAdminModal('adminPricingModal')">✕</button>
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.25rem;">✏️ Nyrh & Ammar Galyndysy</h3>
+      <p style="color: var(--admin-muted); font-size: 0.85rem; margin-bottom: 1.25rem;" id="priceModalBookTitle">Kitap ady</p>
+
+      <form id="adminPricingForm" onsubmit="submitPricingUpdate(event)">
+        <input type="hidden" id="editBookId">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label style="font-weight: 600; font-size: 0.85rem;">Satyş Bahasy (TMT)</label>
+            <input type="number" step="0.5" id="editPrice" class="form-control" required oninput="calcPricingProfit()">
+          </div>
+          <div class="form-group">
+            <label style="font-weight: 600; font-size: 0.85rem;">Tannarhy / Özüne düşüşi (TMT)</label>
+            <input type="number" step="0.5" id="editCostPrice" class="form-control" required oninput="calcPricingProfit()">
+          </div>
+          <div class="form-group">
+            <label style="font-weight: 600; font-size: 0.85rem;">Ammardaky Stok (Sany)</label>
+            <input type="number" id="editStock" class="form-control" required min="0">
+          </div>
+          <div class="form-group">
+            <label style="font-weight: 600; font-size: 0.85rem;">Arzanlaşyk Göterimi (%)</label>
+            <input type="number" id="editDiscountPercent" class="form-control" min="0" max="90" oninput="calcPricingProfit()">
+          </div>
+        </div>
+
+        <div style="background: #f1f5f9; border-radius: 10px; padding: 0.85rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.85rem; color: #475569;">Birlikdäki arassa peýda:</span>
+          <strong style="color: #059669; font-size: 1.1rem;" id="editProfitPreview">+0.00 TMT</strong>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem;">
+          💾 Maglumatlary täzele
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: ADD BOOK MODAL -->
   <div class="modal-overlay" id="adminAddBookModal">
     <div class="modal-content" style="max-width: 600px;">
-      <button class="modal-close-btn" onclick="document.getElementById('adminAddBookModal').classList.remove('active')">✕</button>
+      <button class="modal-close-btn" onclick="closeAdminModal('adminAddBookModal')">✕</button>
       <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">+ Täze kitap goşmak</h3>
       <form id="adminCreateBookForm">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
@@ -438,8 +900,16 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Bahasy (TMT)</label>
+            <label>Satyş Bahasy (TMT)</label>
             <input type="number" step="0.5" name="price" class="form-control" required placeholder="50.00">
+          </div>
+          <div class="form-group">
+            <label>Tannarhy / Cost (TMT)</label>
+            <input type="number" step="0.5" name="costPrice" class="form-control" placeholder="25.00">
+          </div>
+          <div class="form-group">
+            <label>Ammardaky Stok (Sany)</label>
+            <input type="number" name="stock" class="form-control" placeholder="30" value="25">
           </div>
           <div class="form-group">
             <label>Sahypa sany</label>
@@ -466,6 +936,9 @@
     let adminToken = sessionStorage.getItem('tkd_admin_auth') || null;
     let allOrders = [];
     let allBooks = [];
+    let businessMetrics = null;
+    let currentInventoryFilter = 'all';
+    let currentDiscountBook = null;
 
     const authScreen = document.getElementById('adminAuthScreen');
     const dashboardLayout = document.getElementById('adminDashboardLayout');
@@ -493,10 +966,14 @@
     function showDashboard() {
       authScreen.style.display = 'none';
       dashboardLayout.classList.add('active');
-      loadOverviewStats();
-      loadAdminOrdersData();
-      loadAdminBooksData();
-      loadAdminUsersData();
+      refreshAllAdminData();
+    }
+
+    async function refreshAllAdminData() {
+      await loadAnalyticsData();
+      await loadAdminOrdersData();
+      await loadAdminBooksData();
+      await loadAdminUsersData();
     }
 
     function setupForms() {
@@ -530,15 +1007,18 @@
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
+        const price = parseFloat(formData.get('price'));
+        const costPrice = parseFloat(formData.get('costPrice')) || parseFloat((price * 0.55).toFixed(2));
         const bookData = {
           title: formData.get('title'),
           author: formData.get('author'),
           category: formData.get('category'),
-          price: parseFloat(formData.get('price')),
+          price,
+          costPrice,
+          stock: parseInt(formData.get('stock')) || 25,
           pages: parseInt(formData.get('pages')) || 200,
           year: parseInt(formData.get('year')) || 2026,
-          description: formData.get('description'),
-          stock: 20
+          description: formData.get('description')
         };
 
         try {
@@ -551,9 +1031,8 @@
           if (json.success) {
             alert('Täze kitap üstünlikli goşuldy!');
             form.reset();
-            document.getElementById('adminAddBookModal').classList.remove('active');
-            loadAdminBooksData();
-            loadOverviewStats();
+            closeAdminModal('adminAddBookModal');
+            refreshAllAdminData();
           }
         } catch (err) {
           console.error(err);
@@ -581,29 +1060,140 @@
       if (targetTab) targetTab.classList.add('active');
 
       const titles = {
-        'tab-overview': 'Umumy Syn (Dashboard)',
+        'tab-overview': 'Umumy Syn & Derňew (Dashboard)',
         'tab-orders': 'Sargytlar Dolandyryşy',
-        'tab-books': 'Kitaplar Gory',
+        'tab-inventory': 'Ammar & Nyrh (Stok / Arzanlaşyk)',
+        'tab-analytics': 'Maliýe & Peýda Hasabaty',
         'tab-users': 'Hasaba Alnan Ulanyjylar'
       };
-      document.getElementById('adminTabTitle').textContent = titles[tabId] || 'Admin Panel';
+      document.getElementById('adminTabTitle').textContent = titles[tabId] || 'Admin Suite';
     }
 
-    async function loadOverviewStats() {
+    function closeAdminModal(modalId) {
+      const el = document.getElementById(modalId);
+      if (el) el.classList.remove('active');
+    }
+
+    // 1. ANALYTICS & STATS
+    async function loadAnalyticsData() {
       try {
-        const res = await fetch('/api/stats');
+        const res = await fetch('/api/admin/analytics');
         const json = await res.json();
         if (json.success) {
-          document.getElementById('statTotalRevenue').textContent = `${json.data.totalRevenue} TMT`;
-          document.getElementById('statTotalOrders').textContent = json.data.totalOrders;
-          document.getElementById('statTotalBooks').textContent = json.data.totalBooks;
-          document.getElementById('statPendingOrders').textContent = json.data.pendingOrders;
+          businessMetrics = json.data;
+          renderOverviewKPIs(businessMetrics);
+          renderCategoryPerformance(businessMetrics.categoryPerformance);
+          renderOverviewTopSellers(businessMetrics.topSellingBooks);
+          renderFinancialTab(businessMetrics);
         }
       } catch (err) {
         console.error(err);
       }
     }
 
+    function renderOverviewKPIs(m) {
+      document.getElementById('statTotalRevenue').textContent = `${m.totalRevenue.toFixed(2)} TMT`;
+      document.getElementById('statTotalProfit').textContent = `+${m.totalProfit.toFixed(2)} TMT`;
+      document.getElementById('statProfitMargin').textContent = `Peýda marjasy: ${m.profitMargin}%`;
+      document.getElementById('statTotalOrders').textContent = m.totalOrders;
+      document.getElementById('statPendingSub').textContent = `${m.pendingOrders} garaşylýar`;
+      document.getElementById('statTotalStock').textContent = `${m.totalStock} sany`;
+      document.getElementById('statLowStock').textContent = m.lowStockCount;
+      document.getElementById('statOutOfStock').textContent = m.outOfStockCount;
+
+      // Pills count
+      document.getElementById('pillAllCount').textContent = m.totalBooks;
+      document.getElementById('pillLowCount').textContent = m.lowStockCount;
+      document.getElementById('pillOutCount').textContent = m.outOfStockCount;
+      document.getElementById('pillDiscCount').textContent = m.discountedCount;
+    }
+
+    function renderCategoryPerformance(cats) {
+      const container = document.getElementById('categoryPerformanceBars');
+      if (!container || !cats) return;
+
+      const maxRev = Math.max(...cats.map(c => c.revenue), 100);
+      container.innerHTML = cats.map(c => {
+        const pct = Math.min(100, Math.round((c.revenue / maxRev) * 100));
+        return `
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px;">
+              <span>${c.nameTm} (${c.sold} satyldy)</span>
+              <span>${c.revenue.toFixed(2)} TMT <small style="color: #059669;">(+${c.profit.toFixed(2)} TMT)</small></span>
+            </div>
+            <div style="height: 8px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; display: flex;">
+              <div style="width: ${pct}%; background: #059669; border-radius: 9999px;"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderOverviewTopSellers(topBooks) {
+      const container = document.getElementById('overviewTopSellers');
+      if (!container || !topBooks) return;
+
+      container.innerHTML = topBooks.slice(0, 5).map((b, i) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: #0f172a; color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem;">
+              #${i+1}
+            </div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.88rem;">${escapeHtml(b.title)}</div>
+              <small style="color: var(--admin-muted);">${escapeHtml(b.author)} • <strong>${b.soldCount} sany satyldy</strong></small>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 800; font-size: 0.9rem; color: #059669;">+${b.totalProfit.toFixed(2)} TMT</div>
+            <small style="color: var(--admin-muted); font-size: 0.75rem;">Jemi: ${b.totalRevenue.toFixed(2)} TMT</small>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderFinancialTab(m) {
+      document.getElementById('finAssetCost').textContent = `${m.inventoryAssetCost.toFixed(2)} TMT`;
+      document.getElementById('finRetailValue').textContent = `${m.inventoryRetailValue.toFixed(2)} TMT`;
+      document.getElementById('finProjectedProfit').textContent = `+${m.inventoryProjectedProfit.toFixed(2)} TMT`;
+      document.getElementById('finUnitsSold').textContent = `${m.totalUnitsSold} sany`;
+
+      // Top 10 Analytics Table
+      const topTbody = document.getElementById('analyticsTopTable');
+      if (topTbody && m.topSellingBooks) {
+        topTbody.innerHTML = m.topSellingBooks.map((b, i) => `
+          <tr>
+            <td><strong>#${i+1}</strong></td>
+            <td><strong>${escapeHtml(b.title)}</strong></td>
+            <td>${escapeHtml(b.author)}</td>
+            <td><span style="background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-weight: 700;">${b.soldCount} sany</span></td>
+            <td>${b.price.toFixed(2)} TMT</td>
+            <td>${b.costPrice.toFixed(2)} TMT</td>
+            <td><strong style="color: #059669;">+${b.profitPerUnit.toFixed(2)} TMT</strong></td>
+            <td><strong>${b.totalRevenue.toFixed(2)} TMT</strong></td>
+            <td><strong style="color: #059669; font-size: 0.95rem;">+${b.totalProfit.toFixed(2)} TMT</strong></td>
+          </tr>
+        `).join('');
+      }
+
+      // Category Analytics Table
+      const catTbody = document.getElementById('analyticsCategoryTable');
+      if (catTbody && m.categoryPerformance) {
+        catTbody.innerHTML = m.categoryPerformance.map(c => `
+          <tr>
+            <td><strong>${c.nameTm}</strong></td>
+            <td>${c.booksCount}</td>
+            <td>${c.stock} sany</td>
+            <td><strong>${c.sold} sany</strong></td>
+            <td>${c.revenue.toFixed(2)} TMT</td>
+            <td><strong style="color: #059669;">+${c.profit.toFixed(2)} TMT</strong></td>
+            <td><span style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700;">${c.marginPercent}%</span></td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    // 2. ORDERS MANAGEMENT
     async function loadAdminOrdersData() {
       try {
         const res = await fetch('/api/orders');
@@ -618,41 +1208,47 @@
     }
 
     function renderOrdersTables(orders) {
-      const renderRow = (o) => `
-        <tr>
-          <td><strong>${o.id}</strong></td>
-          <td>${escapeHtml(o.customer.fullName)}<br><small style="color: #64748b;">${o.customer.phone}</small></td>
-          <td>${o.customer.city}<br><small style="color: #64748b;">${escapeHtml(o.customer.address || '')}</small></td>
-          <td>
-            <div style="font-weight: 700; color: #059669; margin-bottom: 3px;">
-              ${o.items.length} kitap (${o.total.toFixed(2)} TMT)
-            </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px; font-size: 0.8rem;">
-              ${o.items.map(i => `<div>• <strong>${escapeHtml(i.title)}</strong> × ${i.quantity || 1}</div>`).join('')}
-            </div>
-          </td>
-          <td>
-            <select class="status-badge status-${o.status}" onchange="changeOrderStatus('${o.id}', this.value)">
-              <option value="taze" ${o.status === 'taze' ? 'selected' : ''}>Täze</option>
-              <option value="tayyarlanyar" ${o.status === 'tayyarlanyar' ? 'selected' : ''}>Taýýarlanýar</option>
-              <option value="ugradyldy" ${o.status === 'ugradyldy' ? 'selected' : ''}>Ugradyldy</option>
-              <option value="gowshuryldy" ${o.status === 'gowshuryldy' ? 'selected' : ''}>Gowşuryldy</option>
-            </select>
-          </td>
-          <td><small>${new Date(o.createdAt).toLocaleDateString()}</small></td>
-        </tr>
-      `;
+      const renderRow = (o) => {
+        const profit = o.profit || (o.subtotal ? (o.subtotal * 0.45) : 0);
+        return `
+          <tr>
+            <td><strong>${o.id}</strong></td>
+            <td>${escapeHtml(o.customer.fullName)}<br><small style="color: #64748b;">${o.customer.phone}</small></td>
+            <td>${o.customer.city}<br><small style="color: #64748b;">${escapeHtml(o.customer.address || '')}</small></td>
+            <td>
+              <div style="font-weight: 700; color: #0f172a; margin-bottom: 3px;">
+                ${o.items.length} kitap
+              </div>
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px; font-size: 0.8rem;">
+                ${o.items.map(i => `<div>• <strong>${escapeHtml(i.title)}</strong> × ${i.quantity || 1}</div>`).join('')}
+              </div>
+            </td>
+            <td>
+              <div style="font-weight: 800; font-size: 0.95rem;">${o.total.toFixed(2)} TMT</div>
+              <div style="font-size: 0.75rem; color: #059669; font-weight: 700;">Peýda: +${profit.toFixed(2)} TMT</div>
+            </td>
+            <td>
+              <select class="status-badge status-${o.status}" onchange="changeOrderStatus('${o.id}', this.value)">
+                <option value="taze" ${o.status === 'taze' ? 'selected' : ''}>Täze</option>
+                <option value="tayyarlanyar" ${o.status === 'tayyarlanyar' ? 'selected' : ''}>Taýýarlanýar</option>
+                <option value="ugradyldy" ${o.status === 'ugradyldy' ? 'selected' : ''}>Ugradyldy</option>
+                <option value="gowshuryldy" ${o.status === 'gowshuryldy' ? 'selected' : ''}>Gowşuryldy</option>
+                <option value="yatyrlyldy" ${o.status === 'yatyrlyldy' ? 'selected' : ''}>Ýatyryldy (Stok dikelt)</option>
+              </select>
+            </td>
+            <td><small>${new Date(o.createdAt).toLocaleDateString()}</small></td>
+          </tr>
+        `;
+      };
 
-      // Overview 5 latest
       const overviewTbody = document.getElementById('overviewOrdersTable');
       if (overviewTbody) {
-        overviewTbody.innerHTML = orders.slice(0, 5).map(renderRow).join('') || '<tr><td colspan="6">Sargyt ýok</td></tr>';
+        overviewTbody.innerHTML = orders.slice(0, 5).map(renderRow).join('') || '<tr><td colspan="7">Sargyt ýok</td></tr>';
       }
 
-      // Full orders
       const fullTbody = document.getElementById('fullOrdersTable');
       if (fullTbody) {
-        fullTbody.innerHTML = orders.map(renderRow).join('') || '<tr><td colspan="6">Sargyt ýok</td></tr>';
+        fullTbody.innerHTML = orders.map(renderRow).join('') || '<tr><td colspan="7">Sargyt ýok</td></tr>';
       }
     }
 
@@ -673,55 +1269,278 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ status })
         });
-        loadOverviewStats();
-        loadAdminOrdersData();
+        refreshAllAdminData();
       } catch (err) {
         console.error(err);
       }
     }
 
+    // 3. INVENTORY & STOCK & DISCOUNTS
     async function loadAdminBooksData() {
       try {
         const res = await fetch('/api/books');
         const json = await res.json();
         if (json.success) {
           allBooks = json.data;
-          document.getElementById('adminBooksCount').textContent = `${allBooks.length} kitap hasapda dur`;
-          renderBooksTable(allBooks);
+          document.getElementById('inventoryBooksCount').textContent = `${allBooks.length} kitap hasapda dur`;
+          filterInventory();
         }
       } catch (err) {
         console.error(err);
       }
     }
 
-    function renderBooksTable(books) {
-      const tbody = document.getElementById('adminBooksTable');
-      if (!tbody) return;
-
-      tbody.innerHTML = books.slice(0, 100).map(b => `
-        <tr>
-          <td><small style="color: #64748b;">${b.id}</small></td>
-          <td><strong>${escapeHtml(b.title)}</strong></td>
-          <td>${escapeHtml(b.author)}</td>
-          <td><span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">${b.category}</span></td>
-          <td><strong>${b.price.toFixed(2)} TMT</strong></td>
-          <td>${b.pages}</td>
-          <td>
-            <button onclick="deleteBookItem('${b.id}')" style="background: none; border: 1px solid #ef4444; color: #ef4444; border-radius: 6px; padding: 2px 8px; cursor: pointer; font-size: 0.75rem;">
-              🗑️ Poz
-            </button>
-          </td>
-        </tr>
-      `).join('');
+    function setInventoryFilter(filterType) {
+      currentInventoryFilter = filterType;
+      document.querySelectorAll('#inventoryPills .filter-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === filterType);
+      });
+      filterInventory();
     }
 
-    function filterAdminBooks() {
-      const q = document.getElementById('adminBookSearch').value.toLowerCase().trim();
-      if (!q) {
-        renderBooksTable(allBooks);
-      } else {
-        const filtered = allBooks.filter(b => b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q));
-        renderBooksTable(filtered);
+    function filterInventory() {
+      const q = (document.getElementById('inventorySearch').value || '').toLowerCase().trim();
+      const cat = document.getElementById('inventoryCategoryFilter').value;
+
+      let list = allBooks;
+
+      // 1. Pill filter
+      if (currentInventoryFilter === 'low_stock') {
+        list = list.filter(b => (b.stock || 0) > 0 && (b.stock || 0) <= 5);
+      } else if (currentInventoryFilter === 'out_of_stock') {
+        list = list.filter(b => (b.stock || 0) === 0);
+      } else if (currentInventoryFilter === 'discounted') {
+        list = list.filter(b => (b.discountPercent || 0) > 0);
+      }
+
+      // 2. Category
+      if (cat !== 'all') {
+        list = list.filter(b => b.category.toLowerCase() === cat.toLowerCase());
+      }
+
+      // 3. Search query
+      if (q) {
+        list = list.filter(b => b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q));
+      }
+
+      renderInventoryTable(list);
+    }
+
+    function renderInventoryTable(books) {
+      const tbody = document.getElementById('inventoryTable');
+      if (!tbody) return;
+
+      if (!books.length) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--admin-muted); padding: 2rem;">Kitap tapylmady</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = books.slice(0, 100).map(b => {
+        const stock = b.stock || 0;
+        let stockBadge = `<span class="badge-stock badge-stock-ok">${stock} sany</span>`;
+        if (stock === 0) {
+          stockBadge = `<span class="badge-stock badge-stock-out">Gutardy (0)</span>`;
+        } else if (stock <= 5) {
+          stockBadge = `<span class="badge-stock badge-stock-low">Az (${stock})</span>`;
+        }
+
+        const cost = b.costPrice || parseFloat((b.price * 0.55).toFixed(2));
+        const profit = b.price - cost;
+        const margin = b.price > 0 ? Math.round((profit / b.price) * 100) : 0;
+        const discountBadge = (b.discountPercent > 0)
+          ? `<span class="badge-discount">-${b.discountPercent}%</span> <s style="color: #94a3b8; font-size: 0.75rem;">${(b.originalPrice || b.oldPrice || b.price).toFixed(2)}</s>`
+          : `<span style="color: #94a3b8; font-size: 0.8rem;">Ýok</span>`;
+
+        return `
+          <tr>
+            <td>
+              <strong>${escapeHtml(b.title)}</strong><br>
+              <small style="color: #64748b;">${escapeHtml(b.author)} • ID: ${b.id}</small>
+            </td>
+            <td><span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">${b.category}</span></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div class="stock-control">
+                  <button class="stock-btn" onclick="quickStockChange('${b.id}', -1)" title="1 sany aýyr">-</button>
+                  <span class="stock-val">${stock}</span>
+                  <button class="stock-btn" onclick="quickStockChange('${b.id}', 1)" title="1 sany goş">+</button>
+                </div>
+                ${stockBadge}
+              </div>
+            </td>
+            <td><strong style="color: #0f172a;">${b.soldCount || 0}</strong></td>
+            <td>${cost.toFixed(2)} TMT</td>
+            <td><strong>${b.price.toFixed(2)} TMT</strong></td>
+            <td>${discountBadge}</td>
+            <td><strong style="color: #059669;">+${profit.toFixed(2)} TMT</strong> <small style="color: #64748b;">(${margin}%)</small></td>
+            <td>
+              <div style="display: flex; gap: 0.35rem;">
+                <button class="filter-pill" style="padding: 3px 8px; font-size: 0.75rem;" onclick="openDiscountModal('${b.id}')" title="Arzanlaşyk ber">
+                  🏷️ Skidka
+                </button>
+                <button class="filter-pill" style="padding: 3px 8px; font-size: 0.75rem;" onclick="openPricingModal('${b.id}')" title="Nyrh & Stok sazla">
+                  ✏️ Sazla
+                </button>
+                <button onclick="deleteBookItem('${b.id}')" style="background: none; border: 1px solid #ef4444; color: #ef4444; border-radius: 6px; padding: 2px 6px; cursor: pointer; font-size: 0.75rem;" title="Kitaby poz">
+                  🗑️
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function quickStockChange(bookId, delta) {
+      try {
+        const res = await fetch(`/api/admin/books/${bookId}/stock`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ delta })
+        });
+        const json = await res.json();
+        if (json.success) {
+          const idx = allBooks.findIndex(b => b.id === bookId);
+          if (idx !== -1) allBooks[idx].stock = json.data.stock;
+          filterInventory();
+          loadAnalyticsData();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // DISCOUNT MODAL LOGIC
+    function openDiscountModal(bookId) {
+      const book = allBooks.find(b => b.id === bookId);
+      if (!book) return;
+      currentDiscountBook = book;
+
+      const basePrice = book.originalPrice || book.oldPrice || book.price;
+      const costPrice = book.costPrice || (book.price * 0.55);
+
+      document.getElementById('discModalBookTitle').textContent = `${book.title} (${book.author})`;
+      document.getElementById('discBasePrice').textContent = `${basePrice.toFixed(2)} TMT`;
+      document.getElementById('discCostPrice').textContent = `${costPrice.toFixed(2)} TMT`;
+      document.getElementById('discCustomPrice').value = '';
+
+      // Default preview
+      updateDiscPreview(book.discountPercent || 20);
+      document.getElementById('adminDiscountModal').classList.add('active');
+    }
+
+    function applyDiscPreset(pct) {
+      document.querySelectorAll('#adminDiscountModal .preset-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('discCustomPrice').value = '';
+      updateDiscPreview(pct);
+    }
+
+    function updateDiscFromCustomPrice() {
+      if (!currentDiscountBook) return;
+      const base = currentDiscountBook.originalPrice || currentDiscountBook.oldPrice || currentDiscountBook.price;
+      const custom = parseFloat(document.getElementById('discCustomPrice').value);
+      if (!isNaN(custom) && custom > 0 && custom < base) {
+        const pct = Math.round(((base - custom) / base) * 100);
+        updateDiscPreview(pct, custom);
+      }
+    }
+
+    function updateDiscPreview(pct, explicitPrice = null) {
+      if (!currentDiscountBook) return;
+      const base = currentDiscountBook.originalPrice || currentDiscountBook.oldPrice || currentDiscountBook.price;
+      const cost = currentDiscountBook.costPrice || (currentDiscountBook.price * 0.55);
+
+      const newPrice = explicitPrice !== null ? explicitPrice : parseFloat((base * (1 - pct / 100)).toFixed(2));
+      const newProfit = newPrice - cost;
+
+      document.getElementById('discNewPricePreview').textContent = `${newPrice.toFixed(2)} TMT (-${pct}%)`;
+      document.getElementById('discNewProfitPreview').textContent = `+${newProfit.toFixed(2)} TMT`;
+      currentDiscountBook._targetPct = pct;
+      currentDiscountBook._targetPrice = newPrice;
+    }
+
+    async function submitDiscount() {
+      if (!currentDiscountBook) return;
+      try {
+        const res = await fetch(`/api/admin/books/${currentDiscountBook.id}/discount`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ discountPercent: currentDiscountBook._targetPct })
+        });
+        const json = await res.json();
+        if (json.success) {
+          closeAdminModal('adminDiscountModal');
+          refreshAllAdminData();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function removeDiscount() {
+      if (!currentDiscountBook) return;
+      try {
+        const res = await fetch(`/api/admin/books/${currentDiscountBook.id}/discount`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ removeDiscount: true })
+        });
+        const json = await res.json();
+        if (json.success) {
+          closeAdminModal('adminDiscountModal');
+          refreshAllAdminData();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // PRICING MODAL LOGIC
+    function openPricingModal(bookId) {
+      const book = allBooks.find(b => b.id === bookId);
+      if (!book) return;
+
+      document.getElementById('editBookId').value = book.id;
+      document.getElementById('priceModalBookTitle').textContent = `${book.title} (${book.author})`;
+      document.getElementById('editPrice').value = book.price;
+      document.getElementById('editCostPrice').value = book.costPrice || (book.price * 0.55).toFixed(2);
+      document.getElementById('editStock').value = book.stock || 0;
+      document.getElementById('editDiscountPercent').value = book.discountPercent || 0;
+
+      calcPricingProfit();
+      document.getElementById('adminPricingModal').classList.add('active');
+    }
+
+    function calcPricingProfit() {
+      const p = parseFloat(document.getElementById('editPrice').value) || 0;
+      const c = parseFloat(document.getElementById('editCostPrice').value) || 0;
+      const profit = p - c;
+      const margin = p > 0 ? Math.round((profit / p) * 100) : 0;
+      document.getElementById('editProfitPreview').textContent = `+${profit.toFixed(2)} TMT (${margin}%)`;
+    }
+
+    async function submitPricingUpdate(e) {
+      e.preventDefault();
+      const bookId = document.getElementById('editBookId').value;
+      const price = parseFloat(document.getElementById('editPrice').value);
+      const costPrice = parseFloat(document.getElementById('editCostPrice').value);
+      const stock = parseInt(document.getElementById('editStock').value, 10);
+      const discountPercent = parseInt(document.getElementById('editDiscountPercent').value, 10);
+
+      try {
+        const res = await fetch(`/api/admin/books/${bookId}/pricing`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ price, costPrice, stock, discountPercent })
+        });
+        const json = await res.json();
+        if (json.success) {
+          closeAdminModal('adminPricingModal');
+          refreshAllAdminData();
+        }
+      } catch (err) {
+        console.error(err);
       }
     }
 
@@ -731,14 +1550,14 @@
         const res = await fetch(`/api/books/${bookId}`, { method: 'DELETE' });
         const json = await res.json();
         if (json.success) {
-          loadAdminBooksData();
-          loadOverviewStats();
+          refreshAllAdminData();
         }
       } catch (err) {
         console.error(err);
       }
     }
 
+    // 4. USERS
     async function loadAdminUsersData() {
       try {
         const tbody = document.getElementById('adminUsersTable');
@@ -776,9 +1595,21 @@
     window.switchAdminTab = switchAdminTab;
     window.changeOrderStatus = changeOrderStatus;
     window.deleteBookItem = deleteBookItem;
-    window.filterAdminBooks = filterAdminBooks;
     window.filterAdminOrders = filterAdminOrders;
     window.loadAdminOrdersData = loadAdminOrdersData;
+    window.setInventoryFilter = setInventoryFilter;
+    window.filterInventory = filterInventory;
+    window.quickStockChange = quickStockChange;
+    window.openDiscountModal = openDiscountModal;
+    window.applyDiscPreset = applyDiscPreset;
+    window.updateDiscFromCustomPrice = updateDiscFromCustomPrice;
+    window.submitDiscount = submitDiscount;
+    window.removeDiscount = removeDiscount;
+    window.openPricingModal = openPricingModal;
+    window.calcPricingProfit = calcPricingProfit;
+    window.submitPricingUpdate = submitPricingUpdate;
+    window.closeAdminModal = closeAdminModal;
+    window.refreshAllAdminData = refreshAllAdminData;
   </script>
 </body>
 </html>

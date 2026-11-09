@@ -231,17 +231,66 @@ app.get('/api/orders/:id', (req, res) => {
   res.json({ success: true, data: order });
 });
 
-// 8. POST /api/orders (Create checkout order)
+// 8. POST /api/orders (Create checkout order, deduct inventory, calculate profit)
 app.post('/api/orders', (req, res) => {
   const { customer, items, paymentMethod } = req.body;
   if (!customer || !items || !items.length) {
     return res.status(400).json({ success: false, message: 'Müşderi maglumatlary we harytlar zerur' });
   }
 
+  const books = readData(BOOKS_FILE);
   const orders = readData(ORDERS_FILE);
-  const subtotal = items.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+
+  // 1. Stock validation check
+  for (const item of items) {
+    const book = books.find(b => b.id === item.id);
+    if (!book) {
+      return res.status(400).json({ success: false, message: `Kitap tapylmady (ID: ${item.id})` });
+    }
+    const reqQty = item.quantity || 1;
+    if ((book.stock || 0) < reqQty) {
+      if ((book.stock || 0) <= 0) {
+        return res.status(400).json({
+          success: false,
+          message: `"${book.title}" kitaby ammarymyzda gutardy (0 sany galdy)!`
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: `"${book.title}" kitabyndan diňe ${book.stock} sany galdy. Sargyt sanyny azaldyň!`
+        });
+      }
+    }
+  }
+
+  // 2. Deduct stock & record sales + cost
+  let totalOrderCost = 0;
+  const enrichedItems = items.map(item => {
+    const book = books.find(b => b.id === item.id);
+    const qty = item.quantity || 1;
+    book.stock = Math.max(0, (book.stock || 0) - qty);
+    book.soldCount = (book.soldCount || 0) + qty;
+
+    const unitCost = book.costPrice || parseFloat((book.price * 0.55).toFixed(2));
+    totalOrderCost += unitCost * qty;
+
+    return {
+      id: book.id,
+      title: book.title,
+      author: book.author,
+      price: book.price,
+      costPrice: unitCost,
+      quantity: qty
+    };
+  });
+
+  // Save updated books inventory
+  writeData(BOOKS_FILE, books);
+
+  const subtotal = enrichedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const deliveryFee = customer.city === 'Aşgabat' ? 15.00 : 25.00;
   const total = subtotal + deliveryFee;
+  const orderProfit = subtotal - totalOrderCost;
 
   const newOrder = {
     id: `TKD-${Math.floor(1000 + Math.random() * 9000)}`,
@@ -253,12 +302,14 @@ app.post('/api/orders', (req, res) => {
       address: customer.address,
       notes: customer.notes || ''
     },
-    items,
-    subtotal,
-    deliveryFee,
-    total,
+    items: enrichedItems,
+    subtotal: parseFloat(subtotal.toFixed(2)),
+    deliveryFee: parseFloat(deliveryFee.toFixed(2)),
+    total: parseFloat(total.toFixed(2)),
+    cost: parseFloat(totalOrderCost.toFixed(2)),
+    profit: parseFloat(orderProfit.toFixed(2)),
     paymentMethod: paymentMethod || 'nagt',
-    status: 'taze' // taze, tayyarlanyar, ugradyldy, gowshuryldy
+    status: 'taze' // taze, tayyarlanyar, ugradyldy, gowshuryldy, yatyrlyldy
   };
 
   orders.unshift(newOrder);
@@ -266,12 +317,12 @@ app.post('/api/orders', (req, res) => {
 
   res.status(201).json({
     success: true,
-    message: 'Sargydyňyz kabul edildi!',
+    message: 'Sargydyňyz üstünlikli kabul edildi!',
     data: newOrder
   });
 });
 
-// 9. PATCH /api/orders/:id/status (Admin updates order status)
+// 9. PATCH /api/orders/:id/status (Admin updates order status, restores stock on cancel)
 app.patch('/api/orders/:id/status', (req, res) => {
   const { status } = req.body;
   const orders = readData(ORDERS_FILE);
@@ -280,30 +331,253 @@ app.patch('/api/orders/:id/status', (req, res) => {
     return res.status(404).json({ success: false, message: 'Sargyt tapylmady' });
   }
 
+  const prevStatus = order.status;
   order.status = status;
+
+  // Restore inventory if cancelled
+  if (status === 'yatyrlyldy' && prevStatus !== 'yatyrlyldy') {
+    const books = readData(BOOKS_FILE);
+    order.items.forEach(item => {
+      const book = books.find(b => b.id === item.id);
+      if (book) {
+        book.stock = (book.stock || 0) + (item.quantity || 1);
+        book.soldCount = Math.max(0, (book.soldCount || 0) - (item.quantity || 1));
+      }
+    });
+    writeData(BOOKS_FILE, books);
+  } else if (prevStatus === 'yatyrlyldy' && status !== 'yatyrlyldy') {
+    // Deduct stock if un-cancelled
+    const books = readData(BOOKS_FILE);
+    order.items.forEach(item => {
+      const book = books.find(b => b.id === item.id);
+      if (book) {
+        book.stock = Math.max(0, (book.stock || 0) - (item.quantity || 1));
+        book.soldCount = (book.soldCount || 0) + (item.quantity || 1);
+      }
+    });
+    writeData(BOOKS_FILE, books);
+  }
+
   writeData(ORDERS_FILE, orders);
   res.json({ success: true, message: 'Sargyt ýagdaýy täzelendi', data: order });
 });
 
-// 10. GET /api/stats (Admin dashboard metrics)
-app.get('/api/stats', (req, res) => {
+// Helper for comprehensive business analytics
+function calculateBusinessMetrics() {
   const books = readData(BOOKS_FILE);
   const orders = readData(ORDERS_FILE);
 
   const totalBooks = books.length;
   const totalOrders = orders.length;
-  const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+
+  const validOrders = orders.filter(o => o.status !== 'yatyrlyldy');
+  const totalRevenue = validOrders.reduce((sum, o) => sum + (o.subtotal || o.total || 0), 0);
+  const totalCost = validOrders.reduce((sum, o) => sum + (o.cost || ((o.subtotal || o.total || 0) * 0.55)), 0);
+  const totalProfit = totalRevenue - totalCost;
+  const profitMargin = totalRevenue > 0 ? (totalProfit / totalRevenue) * 100 : 0;
+
   const pendingOrders = orders.filter(o => o.status === 'taze' || o.status === 'tayyarlanyar').length;
 
+  // Inventory
+  const totalStock = books.reduce((sum, b) => sum + (b.stock || 0), 0);
+  const lowStockCount = books.filter(b => (b.stock || 0) > 0 && (b.stock || 0) <= 5).length;
+  const outOfStockCount = books.filter(b => (b.stock || 0) === 0).length;
+  const discountedCount = books.filter(b => (b.discountPercent || 0) > 0).length;
+  const totalUnitsSold = books.reduce((sum, b) => sum + (b.soldCount || 0), 0);
+
+  // Asset values
+  const inventoryAssetCost = books.reduce((sum, b) => sum + ((b.costPrice || (b.price * 0.55)) * (b.stock || 0)), 0);
+  const inventoryRetailValue = books.reduce((sum, b) => sum + (b.price * (b.stock || 0)), 0);
+  const inventoryProjectedProfit = inventoryRetailValue - inventoryAssetCost;
+
+  // Top selling books
+  const sorted = [...books].sort((a, b) => (b.soldCount || 0) - (a.soldCount || 0));
+  const topSellingBooks = sorted.slice(0, 10).map(b => {
+    const cost = b.costPrice || parseFloat((b.price * 0.55).toFixed(2));
+    const profitPerUnit = parseFloat((b.price - cost).toFixed(2));
+    return {
+      id: b.id,
+      title: b.title,
+      author: b.author,
+      category: b.category,
+      price: b.price,
+      costPrice: cost,
+      profitPerUnit,
+      stock: b.stock || 0,
+      soldCount: b.soldCount || 0,
+      totalRevenue: parseFloat((b.price * (b.soldCount || 0)).toFixed(2)),
+      totalProfit: parseFloat((profitPerUnit * (b.soldCount || 0)).toFixed(2))
+    };
+  });
+
+  // Category breakdown
+  const categoryPerformance = CATEGORIES.filter(c => c.id !== 'all').map(cat => {
+    const catBooks = books.filter(b => b.category.toLowerCase() === cat.id.toLowerCase());
+    const stock = catBooks.reduce((sum, b) => sum + (b.stock || 0), 0);
+    const sold = catBooks.reduce((sum, b) => sum + (b.soldCount || 0), 0);
+    const rev = catBooks.reduce((sum, b) => sum + (b.price * (b.soldCount || 0)), 0);
+    const cst = catBooks.reduce((sum, b) => sum + ((b.costPrice || (b.price * 0.55)) * (b.soldCount || 0)), 0);
+    const prf = rev - cst;
+    const margin = rev > 0 ? (prf / rev) * 100 : 0;
+    return {
+      id: cat.id,
+      nameTm: cat.nameTm,
+      booksCount: catBooks.length,
+      stock,
+      sold,
+      revenue: parseFloat(rev.toFixed(2)),
+      profit: parseFloat(prf.toFixed(2)),
+      marginPercent: parseFloat(margin.toFixed(1))
+    };
+  });
+
+  return {
+    totalBooks,
+    totalStock,
+    totalOrders,
+    totalRevenue: parseFloat(totalRevenue.toFixed(2)),
+    totalCost: parseFloat(totalCost.toFixed(2)),
+    totalProfit: parseFloat(totalProfit.toFixed(2)),
+    profitMargin: parseFloat(profitMargin.toFixed(1)),
+    pendingOrders,
+    lowStockCount,
+    outOfStockCount,
+    discountedCount,
+    totalUnitsSold,
+    inventoryAssetCost: parseFloat(inventoryAssetCost.toFixed(2)),
+    inventoryRetailValue: parseFloat(inventoryRetailValue.toFixed(2)),
+    inventoryProjectedProfit: parseFloat(inventoryProjectedProfit.toFixed(2)),
+    topSellingBooks,
+    categoryPerformance
+  };
+}
+
+// 10. GET /api/stats (Admin stats)
+app.get('/api/stats', (req, res) => {
   res.json({
     success: true,
-    data: {
-      totalBooks,
-      totalOrders,
-      totalRevenue: totalRevenue.toFixed(2),
-      pendingOrders
-    }
+    data: calculateBusinessMetrics()
   });
+});
+
+// 10.1 GET /api/admin/analytics (Detailed analytics)
+app.get('/api/admin/analytics', (req, res) => {
+  res.json({
+    success: true,
+    data: calculateBusinessMetrics()
+  });
+});
+
+// 10.2 PATCH /api/admin/books/:id/stock (Quick stock adjust: absolute or delta)
+app.patch('/api/admin/books/:id/stock', (req, res) => {
+  const { stock, delta } = req.body;
+  const books = readData(BOOKS_FILE);
+  const book = books.find(b => b.id === req.params.id);
+  if (!book) {
+    return res.status(404).json({ success: false, message: 'Kitap tapylmady' });
+  }
+
+  if (typeof stock === 'number') {
+    book.stock = Math.max(0, Math.floor(stock));
+  } else if (typeof delta === 'number') {
+    book.stock = Math.max(0, (book.stock || 0) + Math.floor(delta));
+  } else {
+    return res.status(400).json({ success: false, message: 'Stok mukdary nädogry' });
+  }
+
+  writeData(BOOKS_FILE, books);
+  res.json({ success: true, message: 'Ammar sany täzelendi', data: book });
+});
+
+// 10.3 PATCH /api/admin/books/:id/discount (Discount management)
+app.patch('/api/admin/books/:id/discount', (req, res) => {
+  const { discountPercent, salePrice, removeDiscount } = req.body;
+  const books = readData(BOOKS_FILE);
+  const book = books.find(b => b.id === req.params.id);
+  if (!book) {
+    return res.status(404).json({ success: false, message: 'Kitap tapylmady' });
+  }
+
+  const basePrice = book.originalPrice || book.oldPrice || book.price;
+
+  if (removeDiscount) {
+    book.price = basePrice;
+    book.originalPrice = basePrice;
+    book.oldPrice = null;
+    book.discountPercent = 0;
+  } else if (typeof discountPercent === 'number' && discountPercent > 0) {
+    const pct = Math.min(90, Math.max(1, Math.round(discountPercent)));
+    const newPrice = parseFloat((basePrice * (1 - pct / 100)).toFixed(2));
+    book.originalPrice = basePrice;
+    book.oldPrice = basePrice;
+    book.price = newPrice;
+    book.discountPercent = pct;
+  } else if (typeof salePrice === 'number' && salePrice > 0 && salePrice < basePrice) {
+    const pct = Math.round(((basePrice - salePrice) / basePrice) * 100);
+    book.originalPrice = basePrice;
+    book.oldPrice = basePrice;
+    book.price = parseFloat(salePrice.toFixed(2));
+    book.discountPercent = pct;
+  } else {
+    return res.status(400).json({ success: false, message: 'Arzanlaşyk maglumaty nädogry' });
+  }
+
+  writeData(BOOKS_FILE, books);
+  res.json({ success: true, message: 'Arzanlaşyk üstünlikli girizildi', data: book });
+});
+
+// 10.4 PUT /api/admin/books/:id/pricing (Full pricing, cost, stock, discount update)
+app.put('/api/admin/books/:id/pricing', (req, res) => {
+  const { price, costPrice, stock, discountPercent } = req.body;
+  const books = readData(BOOKS_FILE);
+  const book = books.find(b => b.id === req.params.id);
+  if (!book) {
+    return res.status(404).json({ success: false, message: 'Kitap tapylmady' });
+  }
+
+  if (price !== undefined) {
+    const newPrice = parseFloat(price);
+    if (!isNaN(newPrice) && newPrice > 0) {
+      book.price = newPrice;
+      if (!book.discountPercent || book.discountPercent === 0) {
+        book.originalPrice = newPrice;
+      }
+    }
+  }
+
+  if (costPrice !== undefined) {
+    const newCost = parseFloat(costPrice);
+    if (!isNaN(newCost) && newCost >= 0) {
+      book.costPrice = newCost;
+    }
+  }
+
+  if (stock !== undefined) {
+    const newStock = parseInt(stock, 10);
+    if (!isNaN(newStock) && newStock >= 0) {
+      book.stock = newStock;
+    }
+  }
+
+  if (discountPercent !== undefined) {
+    const pct = parseInt(discountPercent, 10);
+    if (!isNaN(pct)) {
+      if (pct <= 0) {
+        book.price = book.originalPrice || book.price;
+        book.oldPrice = null;
+        book.discountPercent = 0;
+      } else {
+        const base = book.originalPrice || book.price;
+        book.originalPrice = base;
+        book.oldPrice = base;
+        book.discountPercent = Math.min(90, pct);
+        book.price = parseFloat((base * (1 - pct / 100)).toFixed(2));
+      }
+    }
+  }
+
+  writeData(BOOKS_FILE, books);
+  res.json({ success: true, message: 'Baha we ammar maglumatlary täzelendi', data: book });
 });
 
 // 11. AUTH ROUTES (Pure Login + Password)

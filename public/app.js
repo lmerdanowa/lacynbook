@@ -320,11 +320,27 @@ function renderBooks() {
   visibleBooks.forEach(book => {
     const isFav = state.favorites.includes(book.id);
     const inCart = state.cart.some(i => i.id === book.id);
+    const stock = typeof book.stock === 'number' ? book.stock : 25;
+    const isOutOfStock = stock <= 0;
+
+    let stockHtml = '';
+    if (isOutOfStock) {
+      stockHtml = `<div style="font-size: 0.72rem; color: #dc2626; font-weight: 700; margin-top: 2px;">❌ Gutardy (0 sany)</div>`;
+    } else if (stock <= 5) {
+      stockHtml = `<div style="font-size: 0.72rem; color: #d97706; font-weight: 700; margin-top: 2px;">⚠️ Diňe ${stock} sany galdy!</div>`;
+    } else {
+      stockHtml = `<div style="font-size: 0.72rem; color: #059669; font-weight: 600; margin-top: 2px;">📦 Ammarda: ${stock} sany</div>`;
+    }
+
+    const discountBadgeHtml = (book.discountPercent && book.discountPercent > 0)
+      ? `<div style="position: absolute; top: 10px; left: 10px; background: #ea580c; color: white; padding: 2px 7px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; z-index: 2; box-shadow: 0 2px 6px rgba(234,88,12,0.4);">-${book.discountPercent}%</div>`
+      : '';
 
     const card = document.createElement('div');
     card.className = 'book-card';
     card.innerHTML = `
       <div class="book-cover-wrapper" style="background: linear-gradient(135deg, ${getGradient(book.category)});">
+        ${discountBadgeHtml}
         <button class="fav-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${book.id}')" title="Halanlaryma goş">
           ${isFav ? '❤️' : '🤍'}
         </button>
@@ -342,14 +358,15 @@ function renderBooks() {
             <span>⭐ ${book.rating.toFixed(1)}</span>
             <span class="rating-count">(${book.reviewsCount})</span>
           </div>
+          ${stockHtml}
         </div>
         <div class="book-footer">
           <div class="price-tag">
             <span class="current-price">${book.price.toFixed(2)} ${t('currency')}</span>
-            ${book.oldPrice ? `<span class="old-price">${book.oldPrice.toFixed(2)} ${t('currency')}</span>` : ''}
+            ${(book.oldPrice || (book.originalPrice && book.originalPrice > book.price)) ? `<span class="old-price">${(book.originalPrice || book.oldPrice).toFixed(2)} ${t('currency')}</span>` : ''}
           </div>
-          <button class="btn-add-cart" onclick="addToCart('${book.id}')">
-            ${inCart ? '✓ ' + t('inCart') : '+ ' + t('addToCart')}
+          <button class="btn-add-cart" ${isOutOfStock ? 'disabled style="opacity: 0.55; cursor: not-allowed; background: #64748b;"' : ''} onclick="${isOutOfStock ? '' : `addToCart('${book.id}')`}">
+            ${isOutOfStock ? '❌ Gutardy' : (inCart ? '✓ ' + t('inCart') : '+ ' + t('addToCart'))}
           </button>
         </div>
       </div>
@@ -434,22 +451,39 @@ function openBookModal(bookId) {
         <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.35rem;">${escapeHtml(book.title)}</h2>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem;">Awtory: <strong>${escapeHtml(book.author)}</strong></p>
         
-        <div style="display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap;">
           <span>📖 ${book.pages} sahypa</span>
           <span>📅 ${book.year}-nji ýyl</span>
           <span>🌐 ${book.language}</span>
           <span>⭐ ${book.rating.toFixed(1)}</span>
         </div>
 
-        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;">
-          ${book.price.toFixed(2)} ${t('currency')}
-          ${book.oldPrice ? `<span style="font-size: 0.9rem; text-decoration: line-through; color: var(--text-muted); margin-left: 0.5rem;">${book.oldPrice.toFixed(2)} ${t('currency')}</span>` : ''}
+        <div style="margin-bottom: 1rem; font-size: 0.88rem;">
+          ${(typeof book.stock === 'number' && book.stock <= 0)
+            ? '<span style="color: #dc2626; font-weight: 800; background: #fee2e2; padding: 3px 8px; border-radius: 6px;">❌ Ammarda gutardy (0 sany)</span>'
+            : (book.stock <= 5
+              ? `<span style="color: #b45309; font-weight: 800; background: #fef3c7; padding: 3px 8px; border-radius: 6px;">⚠️ Diňe ${book.stock} sany galdy!</span>`
+              : `<span style="color: #166534; font-weight: 700; background: #dcfce7; padding: 3px 8px; border-radius: 6px;">📦 Ammarda bar: ${book.stock} sany</span>`
+            )
+          }
+        </div>
+
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span>${book.price.toFixed(2)} ${t('currency')}</span>
+          ${(book.oldPrice || (book.originalPrice && book.originalPrice > book.price))
+            ? `<span style="font-size: 0.95rem; text-decoration: line-through; color: var(--text-muted);">${(book.originalPrice || book.oldPrice).toFixed(2)} ${t('currency')}</span>`
+            : ''
+          }
+          ${(book.discountPercent && book.discountPercent > 0)
+            ? `<span style="background: #ea580c; color: white; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 800;">-${book.discountPercent}% Aksiýa</span>`
+            : ''
+          }
         </div>
 
         <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; color: var(--text-main);">${escapeHtml(book.description)}</p>
 
-        <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="addToCart('${book.id}'); bookModal.classList.remove('active');">
-          ${inCart ? '✓ ' + t('inCart') : '+ ' + t('addToCart')}
+        <button class="btn-primary" style="width: 100%; justify-content: center; ${typeof book.stock === 'number' && book.stock <= 0 ? 'opacity: 0.5; cursor: not-allowed; background: #64748b;' : ''}" ${(typeof book.stock === 'number' && book.stock <= 0) ? 'disabled' : ''} onclick="addToCart('${book.id}'); bookModal.classList.remove('active');">
+          ${(typeof book.stock === 'number' && book.stock <= 0) ? '❌ Gutardy' : (inCart ? '✓ ' + t('inCart') : '+ ' + t('addToCart'))}
         </button>
       </div>
     </div>
@@ -513,8 +547,18 @@ function addToCart(bookId) {
   const book = state.books.find(b => b.id === bookId);
   if (!book) return;
 
+  const stock = typeof book.stock === 'number' ? book.stock : 25;
+  if (stock <= 0) {
+    alert(`"${book.title}" kitaby ammarymyzda gutardy!`);
+    return;
+  }
+
   const existing = state.cart.find(i => i.id === bookId);
   if (existing) {
+    if (existing.quantity >= stock) {
+      alert(`"${book.title}" kitabyndan ammarymyzda diňe ${stock} sany bar!`);
+      return;
+    }
     existing.quantity += 1;
   } else {
     state.cart.push({
@@ -535,9 +579,23 @@ function updateCartQty(bookId, delta) {
   const item = state.cart.find(i => i.id === bookId);
   if (!item) return;
 
+  const book = state.books.find(b => b.id === bookId);
+  const stock = (book && typeof book.stock === 'number') ? book.stock : 999;
+
+  if (delta > 0 && item.quantity >= stock) {
+    alert(`Ammarda diňe ${stock} sany bar!`);
+    return;
+  }
+
   item.quantity += delta;
   if (item.quantity <= 0) {
     state.cart = state.cart.filter(i => i.id !== bookId);
+  }
+
+  saveCart();
+  updateCartUI();
+  renderBooks();
+}
   }
 
   saveCart();
@@ -656,9 +714,14 @@ async function handleCheckout(e) {
       checkoutModal.classList.remove('active');
       checkoutForm.reset();
 
+      // Refresh books to update stock levels on the storefront live!
+      fetchBooks();
+
       // Open My Orders modal right away to show the placed order!
       renderMyOrders();
       ordersModal.classList.add('active');
+    } else {
+      alert(json.message || 'Sargyt kabul edilmedi');
     }
   } catch (err) {
     alert('Ýalňyşlyk ýüze çykdy. Gaýtadan synanyşyň.');

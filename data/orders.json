@@ -1,5 +1,33 @@
 [
   {
+    "id": "TKD-9372",
+    "createdAt": "2026-11-09T14:46:48.697Z",
+    "customer": {
+      "fullName": "Aman Myradow",
+      "phone": "+993 65 99-88-77",
+      "city": "Aşgabat",
+      "address": "Bitaraplyk şaýoly, 10",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "book-1",
+        "title": "Saýlanan Eserler (3 jiltlik)",
+        "author": "Magtymguly Pyragy",
+        "price": 38,
+        "costPrice": 17.33,
+        "quantity": 3
+      }
+    ],
+    "subtotal": 114,
+    "deliveryFee": 15,
+    "total": 129,
+    "cost": 51.99,
+    "profit": 62.01,
+    "paymentMethod": "nagt",
+    "status": "yatyrlyldy"
+  },
+  {
     "id": "TKD-2960",
     "createdAt": "2026-11-09T12:59:36.489Z",
     "customer": {
@@ -22,7 +50,9 @@
     "deliveryFee": 25,
     "total": 109,
     "paymentMethod": "karty",
-    "status": "taze"
+    "status": "taze",
+    "cost": 46.2,
+    "profit": 37.8
   },
   {
     "id": "TKD-1001",
@@ -54,7 +84,9 @@
     "deliveryFee": 15,
     "total": 135,
     "paymentMethod": "nagt",
-    "status": "gowshuryldy"
+    "status": "gowshuryldy",
+    "cost": 66,
+    "profit": 54
   },
   {
     "id": "TKD-1002",
@@ -79,7 +111,9 @@
     "deliveryFee": 20,
     "total": 120,
     "paymentMethod": "karty",
-    "status": "ugradyldy"
+    "status": "ugradyldy",
+    "cost": 55,
+    "profit": 45
   },
   {
     "id": "TKD-1003",
@@ -104,6 +138,8 @@
     "deliveryFee": 20,
     "total": 90,
     "paymentMethod": "karty",
-    "status": "taze"
+    "status": "taze",
+    "cost": 38.5,
+    "profit": 31.5
   }
 ]

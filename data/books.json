@@ -4,14 +4,14 @@
     "title": "Saýlanan Eserler (3 jiltlik)",
     "author": "Magtymguly Pyragy",
     "category": "klassyka",
-    "price": 31.5,
+    "price": 38,
     "oldPrice": 47.5,
     "rating": 4.8999999999999995,
     "reviewsCount": 17,
     "pages": 674,
     "year": 2026,
     "language": "Türkmençe",
-    "stock": 38,
+    "stock": 40,
     "badge": "Altyn Fond",
     "gradient": "from-teal-800 to-emerald-950",
     "description": "Beýik akyldar we nusgawy şahyrymyz Magtymguly Pyragynyň 300 ýyllyk ýubileýine bagyşlanyp taýýarlanan iň doly neşir. Şahyryň watançylyk, ynsanperwerlik, ahlak we pelsepe temalaryndaky goşgulary, nesihatlary jemlenen.",
@@ -28,7 +28,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-08-09"
       }
-    ]
+    ],
+    "costPrice": 17.33,
+    "originalPrice": 47.5,
+    "discountPercent": 20,
+    "soldCount": 145
   },
   {
     "id": "book-2",
@@ -77,7 +81,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-11-08"
       }
-    ]
+    ],
+    "costPrice": 41.28,
+    "originalPrice": 96.5,
+    "discountPercent": 33,
+    "soldCount": 24
   },
   {
     "id": "book-3",
@@ -91,7 +99,7 @@
     "pages": 235,
     "year": 2025,
     "language": "Türkmençe",
-    "stock": 26,
+    "stock": 3,
     "badge": "ÝUNESKO",
     "gradient": "from-emerald-700 to-teal-950",
     "description": "Şahyryň türkmen halkynyň agzybirligi, döwletliligi we garaşsyzlygy ugrundaky çagyryşlaryny beýan edýän nusgawy şygyrlar ýygyndysy.",
@@ -126,7 +134,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-27"
       }
-    ]
+    ],
+    "costPrice": 25.25,
+    "originalPrice": 49.5,
+    "discountPercent": 0,
+    "soldCount": 18
   },
   {
     "id": "book-4",
@@ -157,7 +169,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-10-05"
       }
-    ]
+    ],
+    "costPrice": 44.66,
+    "originalPrice": 77,
+    "discountPercent": 0,
+    "soldCount": 145
   },
   {
     "id": "book-5",
@@ -206,7 +222,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-08-11"
       }
-    ]
+    ],
+    "costPrice": 57.57,
+    "originalPrice": 129,
+    "discountPercent": 22,
+    "soldCount": 16
   },
   {
     "id": "book-6",
@@ -220,7 +240,7 @@
     "pages": 219,
     "year": 2020,
     "language": "Türkmençe",
-    "stock": 10,
+    "stock": 0,
     "badge": "Nusgawy",
     "gradient": "from-emerald-700 to-teal-950",
     "description": "Gündogar şygryýetiniň iň ajaýyp däplerini özünde jemleýän näzik duýguly aýdymlaryň, goşgularyň we lirik bentleriň toplumy.",
@@ -237,7 +257,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-10-25"
       }
-    ]
+    ],
+    "costPrice": 44,
+    "originalPrice": 88,
+    "discountPercent": 0,
+    "soldCount": 40
   },
   {
     "id": "book-7",
@@ -280,7 +304,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-10-03"
       }
-    ]
+    ],
+    "costPrice": 32.64,
+    "originalPrice": 64,
+    "discountPercent": 0,
+    "soldCount": 41
   },
   {
     "id": "book-8",
@@ -329,7 +357,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-10-09"
       }
-    ]
+    ],
+    "costPrice": 17.55,
+    "originalPrice": 32.5,
+    "discountPercent": 0,
+    "soldCount": 47
   },
   {
     "id": "book-9",
@@ -343,7 +375,7 @@
     "pages": 229,
     "year": 2025,
     "language": "Türkmençe",
-    "stock": 35,
+    "stock": 3,
     "badge": "Täze",
     "gradient": "from-emerald-700 to-teal-950",
     "description": "Batyr şahyr Seýitnazar Seýdiniň gaýduwsyzlyk, merdanalyk we Watany goramak temasyndaky gahrymançylykly goşgulary.",
@@ -366,7 +398,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-07-12"
       }
-    ]
+    ],
+    "costPrice": 39,
+    "originalPrice": 99,
+    "discountPercent": 34,
+    "soldCount": 42
   },
   {
     "id": "book-10",
@@ -403,7 +439,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-07-02"
       }
-    ]
+    ],
+    "costPrice": 39.78,
+    "originalPrice": 95,
+    "discountPercent": 18,
+    "soldCount": 9
   },
   {
     "id": "book-11",
@@ -446,7 +486,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-07-06"
       }
-    ]
+    ],
+    "costPrice": 47.69,
+    "originalPrice": 93.5,
+    "discountPercent": 0,
+    "soldCount": 55
   },
   {
     "id": "book-12",
@@ -477,7 +521,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-08-12"
       }
-    ]
+    ],
+    "costPrice": 44.37,
+    "originalPrice": 87,
+    "discountPercent": 0,
+    "soldCount": 23
   },
   {
     "id": "book-13",
@@ -485,7 +533,7 @@
     "author": "Nurmuhammet Andalyp",
     "category": "klassyka",
     "price": 101,
-    "oldPrice": null,
+    "oldPrice": 126.25,
     "rating": 4.8999999999999995,
     "reviewsCount": 37,
     "pages": 540,
@@ -520,7 +568,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-09"
       }
-    ]
+    ],
+    "costPrice": 57.57,
+    "originalPrice": 126.25,
+    "discountPercent": 20,
+    "soldCount": 55
   },
   {
     "id": "book-14",
@@ -563,7 +615,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-07"
       }
-    ]
+    ],
+    "costPrice": 23.76,
+    "originalPrice": 44,
+    "discountPercent": 0,
+    "soldCount": 21
   },
   {
     "id": "book-15",
@@ -577,7 +633,7 @@
     "pages": 646,
     "year": 2020,
     "language": "Türkmençe",
-    "stock": 8,
+    "stock": 0,
     "badge": "Täze",
     "gradient": "from-emerald-600 to-cyan-950",
     "description": "Türkmen halkynyň gadymy taryhyny, Oguz hanyň we onuň ogullarynyň şöhratly ýörişlerini wasp edýän taryhy-edebi ýadygärlik.",
@@ -606,7 +662,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-09-16"
       }
-    ]
+    ],
+    "costPrice": 37.41,
+    "originalPrice": 97.5,
+    "discountPercent": 34,
+    "soldCount": 45
   },
   {
     "id": "book-16",
@@ -637,7 +697,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-10-28"
       }
-    ]
+    ],
+    "costPrice": 41.82,
+    "originalPrice": 106,
+    "discountPercent": 23,
+    "soldCount": 13
   },
   {
     "id": "book-17",
@@ -645,7 +709,7 @@
     "author": "Halk Dessany (ÝUNESKO)",
     "category": "klassyka",
     "price": 37.5,
-    "oldPrice": null,
+    "oldPrice": 46.88,
     "rating": 4.8999999999999995,
     "reviewsCount": 14,
     "pages": 609,
@@ -680,7 +744,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-08-26"
       }
-    ]
+    ],
+    "costPrice": 19.13,
+    "originalPrice": 46.88,
+    "discountPercent": 20,
+    "soldCount": 38
   },
   {
     "id": "book-18",
@@ -717,7 +785,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-02"
       }
-    ]
+    ],
+    "costPrice": 21.42,
+    "originalPrice": 42,
+    "discountPercent": 0,
+    "soldCount": 65
   },
   {
     "id": "book-19",
@@ -754,7 +826,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-10-28"
       }
-    ]
+    ],
+    "costPrice": 37.46,
+    "originalPrice": 78.5,
+    "discountPercent": 19,
+    "soldCount": 15
   },
   {
     "id": "book-20",
@@ -791,7 +867,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-08-24"
       }
-    ]
+    ],
+    "costPrice": 28.84,
+    "originalPrice": 71.5,
+    "discountPercent": 28,
+    "soldCount": 18
   },
   {
     "id": "book-21",
@@ -822,7 +902,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-18"
       }
-    ]
+    ],
+    "costPrice": 36.48,
+    "originalPrice": 89,
+    "discountPercent": 28,
+    "soldCount": 64
   },
   {
     "id": "book-22",
@@ -836,7 +920,7 @@
     "pages": 349,
     "year": 2018,
     "language": "Türkmençe",
-    "stock": 32,
+    "stock": 3,
     "badge": "Altyn Fond",
     "gradient": "from-teal-800 to-emerald-950",
     "description": "Dutar sungatynyň, sazandalaryň we bagşyçylyk däpleriniň gadymy köklerini açyp görkezýän ajaýyp halk dessany.",
@@ -859,7 +943,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-09-25"
       }
-    ]
+    ],
+    "costPrice": 57.34,
+    "originalPrice": 94,
+    "discountPercent": 0,
+    "soldCount": 39
   },
   {
     "id": "book-23",
@@ -902,7 +990,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-02"
       }
-    ]
+    ],
+    "costPrice": 55.25,
+    "originalPrice": 142.5,
+    "discountPercent": 22,
+    "soldCount": 58
   },
   {
     "id": "book-24",
@@ -951,7 +1043,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-07-08"
       }
-    ]
+    ],
+    "costPrice": 51.2,
+    "originalPrice": 115,
+    "discountPercent": 30,
+    "soldCount": 63
   },
   {
     "id": "book-25",
@@ -959,7 +1055,7 @@
     "author": "Gadymy Oguz Mirasy",
     "category": "klassyka",
     "price": 31.5,
-    "oldPrice": null,
+    "oldPrice": 39.38,
     "rating": 4.8999999999999995,
     "reviewsCount": 29,
     "pages": 464,
@@ -994,7 +1090,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-07-09"
       }
-    ]
+    ],
+    "costPrice": 17.64,
+    "originalPrice": 39.38,
+    "discountPercent": 20,
+    "soldCount": 21
   },
   {
     "id": "book-26",
@@ -1043,7 +1143,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-08-28"
       }
-    ]
+    ],
+    "costPrice": 65.72,
+    "originalPrice": 140,
+    "discountPercent": 24,
+    "soldCount": 25
   },
   {
     "id": "book-27",
@@ -1092,7 +1196,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-09-15"
       }
-    ]
+    ],
+    "costPrice": 50.88,
+    "originalPrice": 92.5,
+    "discountPercent": 0,
+    "soldCount": 32
   },
   {
     "id": "book-28",
@@ -1129,7 +1237,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-10-05"
       }
-    ]
+    ],
+    "costPrice": 52.08,
+    "originalPrice": 109,
+    "discountPercent": 23,
+    "soldCount": 145
   },
   {
     "id": "book-29",
@@ -1160,7 +1272,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-08"
       }
-    ]
+    ],
+    "costPrice": 24.4,
+    "originalPrice": 55,
+    "discountPercent": 27,
+    "soldCount": 56
   },
   {
     "id": "book-30",
@@ -1197,7 +1313,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-08-24"
       }
-    ]
+    ],
+    "costPrice": 48.17,
+    "originalPrice": 84.5,
+    "discountPercent": 0,
+    "soldCount": 41
   },
   {
     "id": "book-31",
@@ -1228,7 +1348,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-07-16"
       }
-    ]
+    ],
+    "costPrice": 24.07,
+    "originalPrice": 56.5,
+    "discountPercent": 27,
+    "soldCount": 35
   },
   {
     "id": "book-32",
@@ -1265,7 +1389,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-07-03"
       }
-    ]
+    ],
+    "costPrice": 48.45,
+    "originalPrice": 109,
+    "discountPercent": 22,
+    "soldCount": 51
   },
   {
     "id": "book-33",
@@ -1302,7 +1430,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-10-22"
       }
-    ]
+    ],
+    "costPrice": 45.5,
+    "originalPrice": 109,
+    "discountPercent": 17,
+    "soldCount": 53
   },
   {
     "id": "book-34",
@@ -1345,7 +1477,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-26"
       }
-    ]
+    ],
+    "costPrice": 51.94,
+    "originalPrice": 98,
+    "discountPercent": 0,
+    "soldCount": 50
   },
   {
     "id": "book-35",
@@ -1376,7 +1512,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-10-07"
       }
-    ]
+    ],
+    "costPrice": 34.29,
+    "originalPrice": 93.5,
+    "discountPercent": 32,
+    "soldCount": 33
   },
   {
     "id": "book-36",
@@ -1419,7 +1559,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-09-27"
       }
-    ]
+    ],
+    "costPrice": 28.89,
+    "originalPrice": 53.5,
+    "discountPercent": 0,
+    "soldCount": 14
   },
   {
     "id": "book-37",
@@ -1456,7 +1600,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-10-19"
       }
-    ]
+    ],
+    "costPrice": 39.38,
+    "originalPrice": 91.5,
+    "discountPercent": 32,
+    "soldCount": 10
   },
   {
     "id": "book-38",
@@ -1499,7 +1647,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-10-17"
       }
-    ]
+    ],
+    "costPrice": 57.68,
+    "originalPrice": 103,
+    "discountPercent": 0,
+    "soldCount": 34
   },
   {
     "id": "book-39",
@@ -1548,7 +1700,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-22"
       }
-    ]
+    ],
+    "costPrice": 45.43,
+    "originalPrice": 102,
+    "discountPercent": 25,
+    "soldCount": 34
   },
   {
     "id": "book-40",
@@ -1591,7 +1747,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-08-08"
       }
-    ]
+    ],
+    "costPrice": 44.28,
+    "originalPrice": 110,
+    "discountPercent": 25,
+    "soldCount": 10
   },
   {
     "id": "book-41",
@@ -1599,7 +1759,7 @@
     "author": "Öwez Durdyýew",
     "category": "roman",
     "price": 77,
-    "oldPrice": null,
+    "oldPrice": 96.25,
     "rating": 4.8,
     "reviewsCount": 32,
     "pages": 661,
@@ -1634,7 +1794,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-19"
       }
-    ]
+    ],
+    "costPrice": 44.66,
+    "originalPrice": 96.25,
+    "discountPercent": 20,
+    "soldCount": 48
   },
   {
     "id": "book-42",
@@ -1665,7 +1829,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-11-11"
       }
-    ]
+    ],
+    "costPrice": 42,
+    "originalPrice": 70,
+    "discountPercent": 0,
+    "soldCount": 23
   },
   {
     "id": "book-43",
@@ -1702,7 +1870,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-11-03"
       }
-    ]
+    ],
+    "costPrice": 42.66,
+    "originalPrice": 112.5,
+    "discountPercent": 28,
+    "soldCount": 21
   },
   {
     "id": "book-44",
@@ -1739,7 +1911,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-11-01"
       }
-    ]
+    ],
+    "costPrice": 26.25,
+    "originalPrice": 52.5,
+    "discountPercent": 0,
+    "soldCount": 25
   },
   {
     "id": "book-45",
@@ -1747,7 +1923,7 @@
     "author": "Kerim Gurbannepesow",
     "category": "sygyryet",
     "price": 44.5,
-    "oldPrice": null,
+    "oldPrice": 55.63,
     "rating": 4.8,
     "reviewsCount": 31,
     "pages": 234,
@@ -1782,7 +1958,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-07-04"
       }
-    ]
+    ],
+    "costPrice": 22.7,
+    "originalPrice": 55.63,
+    "discountPercent": 20,
+    "soldCount": 41
   },
   {
     "id": "book-46",
@@ -1813,7 +1993,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-07-15"
       }
-    ]
+    ],
+    "costPrice": 24.44,
+    "originalPrice": 47,
+    "discountPercent": 0,
+    "soldCount": 24
   },
   {
     "id": "book-47",
@@ -1850,7 +2034,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-21"
       }
-    ]
+    ],
+    "costPrice": 46.48,
+    "originalPrice": 113.5,
+    "discountPercent": 26,
+    "soldCount": 67
   },
   {
     "id": "book-48",
@@ -1893,7 +2081,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-11-06"
       }
-    ]
+    ],
+    "costPrice": 16.43,
+    "originalPrice": 31,
+    "discountPercent": 0,
+    "soldCount": 26
   },
   {
     "id": "book-49",
@@ -1901,7 +2093,7 @@
     "author": "Berdinazar Hudaýnazarow",
     "category": "sygyryet",
     "price": 79,
-    "oldPrice": null,
+    "oldPrice": 98.75,
     "rating": 4.8999999999999995,
     "reviewsCount": 13,
     "pages": 628,
@@ -1930,7 +2122,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-10-02"
       }
-    ]
+    ],
+    "costPrice": 43.45,
+    "originalPrice": 98.75,
+    "discountPercent": 20,
+    "soldCount": 23
   },
   {
     "id": "book-50",
@@ -1973,7 +2169,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-26"
       }
-    ]
+    ],
+    "costPrice": 18.27,
+    "originalPrice": 31.5,
+    "discountPercent": 0,
+    "soldCount": 35
   },
   {
     "id": "book-51",
@@ -2004,7 +2204,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-27"
       }
-    ]
+    ],
+    "costPrice": 44.46,
+    "originalPrice": 85.5,
+    "discountPercent": 0,
+    "soldCount": 12
   },
   {
     "id": "book-52",
@@ -2041,7 +2245,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-09-25"
       }
-    ]
+    ],
+    "costPrice": 17.64,
+    "originalPrice": 31.5,
+    "discountPercent": 0,
+    "soldCount": 18
   },
   {
     "id": "book-53",
@@ -2072,7 +2280,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-10-08"
       }
-    ]
+    ],
+    "costPrice": 25.11,
+    "originalPrice": 59.5,
+    "discountPercent": 32,
+    "soldCount": 57
   },
   {
     "id": "book-54",
@@ -2121,7 +2333,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-11-09"
       }
-    ]
+    ],
+    "costPrice": 54.45,
+    "originalPrice": 128,
+    "discountPercent": 23,
+    "soldCount": 30
   },
   {
     "id": "book-55",
@@ -2158,7 +2374,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-11-28"
       }
-    ]
+    ],
+    "costPrice": 28.6,
+    "originalPrice": 55,
+    "discountPercent": 0,
+    "soldCount": 42
   },
   {
     "id": "book-56",
@@ -2201,7 +2421,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-07-12"
       }
-    ]
+    ],
+    "costPrice": 61.65,
+    "originalPrice": 104.5,
+    "discountPercent": 0,
+    "soldCount": 45
   },
   {
     "id": "book-57",
@@ -2238,7 +2462,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-09-06"
       }
-    ]
+    ],
+    "costPrice": 20.06,
+    "originalPrice": 59,
+    "discountPercent": 42,
+    "soldCount": 58
   },
   {
     "id": "book-58",
@@ -2269,7 +2497,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-07-12"
       }
-    ]
+    ],
+    "costPrice": 30.09,
+    "originalPrice": 78,
+    "discountPercent": 35,
+    "soldCount": 62
   },
   {
     "id": "book-59",
@@ -2306,7 +2538,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-10-27"
       }
-    ]
+    ],
+    "costPrice": 32.76,
+    "originalPrice": 91.5,
+    "discountPercent": 36,
+    "soldCount": 13
   },
   {
     "id": "book-60",
@@ -2337,7 +2573,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-07-21"
       }
-    ]
+    ],
+    "costPrice": 20.5,
+    "originalPrice": 41,
+    "discountPercent": 0,
+    "soldCount": 18
   },
   {
     "id": "book-61",
@@ -2374,7 +2614,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-07-12"
       }
-    ]
+    ],
+    "costPrice": 18.36,
+    "originalPrice": 54,
+    "discountPercent": 33,
+    "soldCount": 40
   },
   {
     "id": "book-62",
@@ -2423,7 +2667,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-11-24"
       }
-    ]
+    ],
+    "costPrice": 17.64,
+    "originalPrice": 31.5,
+    "discountPercent": 0,
+    "soldCount": 47
   },
   {
     "id": "book-63",
@@ -2460,7 +2708,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-11-04"
       }
-    ]
+    ],
+    "costPrice": 33,
+    "originalPrice": 75,
+    "discountPercent": 27,
+    "soldCount": 58
   },
   {
     "id": "book-64",
@@ -2509,7 +2761,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-09-13"
       }
-    ]
+    ],
+    "costPrice": 64.58,
+    "originalPrice": 102.5,
+    "discountPercent": 0,
+    "soldCount": 44
   },
   {
     "id": "book-65",
@@ -2540,7 +2796,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-07-14"
       }
-    ]
+    ],
+    "costPrice": 15.81,
+    "originalPrice": 59,
+    "discountPercent": 47,
+    "soldCount": 44
   },
   {
     "id": "book-66",
@@ -2589,7 +2849,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-10-05"
       }
-    ]
+    ],
+    "costPrice": 40.88,
+    "originalPrice": 99,
+    "discountPercent": 26,
+    "soldCount": 57
   },
   {
     "id": "book-67",
@@ -2626,7 +2890,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-10-17"
       }
-    ]
+    ],
+    "costPrice": 16.16,
+    "originalPrice": 63.5,
+    "discountPercent": 52,
+    "soldCount": 33
   },
   {
     "id": "book-68",
@@ -2669,7 +2937,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-09-24"
       }
-    ]
+    ],
+    "costPrice": 23.7,
+    "originalPrice": 61.5,
+    "discountPercent": 36,
+    "soldCount": 23
   },
   {
     "id": "book-69",
@@ -2700,7 +2972,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-07-21"
       }
-    ]
+    ],
+    "costPrice": 68.67,
+    "originalPrice": 141,
+    "discountPercent": 23,
+    "soldCount": 41
   },
   {
     "id": "book-70",
@@ -2749,7 +3025,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-10-18"
       }
-    ]
+    ],
+    "costPrice": 59.52,
+    "originalPrice": 96,
+    "discountPercent": 0,
+    "soldCount": 28
   },
   {
     "id": "book-71",
@@ -2786,7 +3066,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-11-06"
       }
-    ]
+    ],
+    "costPrice": 68.36,
+    "originalPrice": 130.5,
+    "discountPercent": 17,
+    "soldCount": 62
   },
   {
     "id": "book-72",
@@ -2823,7 +3107,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-11-23"
       }
-    ]
+    ],
+    "costPrice": 42.18,
+    "originalPrice": 103.5,
+    "discountPercent": 31,
+    "soldCount": 15
   },
   {
     "id": "book-73",
@@ -2860,7 +3148,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-10-18"
       }
-    ]
+    ],
+    "costPrice": 18.2,
+    "originalPrice": 63,
+    "discountPercent": 44,
+    "soldCount": 26
   },
   {
     "id": "book-74",
@@ -2891,7 +3183,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-07-07"
       }
-    ]
+    ],
+    "costPrice": 24.48,
+    "originalPrice": 76.5,
+    "discountPercent": 42,
+    "soldCount": 37
   },
   {
     "id": "book-75",
@@ -2928,7 +3224,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-11-17"
       }
-    ]
+    ],
+    "costPrice": 34.34,
+    "originalPrice": 54.5,
+    "discountPercent": 0,
+    "soldCount": 52
   },
   {
     "id": "book-76",
@@ -2971,7 +3271,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-09-09"
       }
-    ]
+    ],
+    "costPrice": 34.58,
+    "originalPrice": 87.5,
+    "discountPercent": 24,
+    "soldCount": 15
   },
   {
     "id": "book-77",
@@ -3020,7 +3324,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-11-24"
       }
-    ]
+    ],
+    "costPrice": 51.7,
+    "originalPrice": 118,
+    "discountPercent": 20,
+    "soldCount": 32
   },
   {
     "id": "book-78",
@@ -3057,7 +3365,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-11-11"
       }
-    ]
+    ],
+    "costPrice": 61,
+    "originalPrice": 131,
+    "discountPercent": 24,
+    "soldCount": 35
   },
   {
     "id": "book-79",
@@ -3094,7 +3406,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-08-26"
       }
-    ]
+    ],
+    "costPrice": 23.94,
+    "originalPrice": 70,
+    "discountPercent": 40,
+    "soldCount": 12
   },
   {
     "id": "book-80",
@@ -3137,7 +3453,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-11-08"
       }
-    ]
+    ],
+    "costPrice": 42.21,
+    "originalPrice": 67,
+    "discountPercent": 0,
+    "soldCount": 60
   },
   {
     "id": "book-81",
@@ -3180,7 +3500,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-22"
       }
-    ]
+    ],
+    "costPrice": 46.17,
+    "originalPrice": 110.5,
+    "discountPercent": 23,
+    "soldCount": 28
   },
   {
     "id": "book-82",
@@ -3223,7 +3547,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-08-06"
       }
-    ]
+    ],
+    "costPrice": 31.36,
+    "originalPrice": 56,
+    "discountPercent": 0,
+    "soldCount": 27
   },
   {
     "id": "book-83",
@@ -3260,7 +3588,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-10-23"
       }
-    ]
+    ],
+    "costPrice": 26.25,
+    "originalPrice": 52.5,
+    "discountPercent": 0,
+    "soldCount": 60
   },
   {
     "id": "book-84",
@@ -3309,7 +3641,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-10-06"
       }
-    ]
+    ],
+    "costPrice": 17.98,
+    "originalPrice": 31,
+    "discountPercent": 0,
+    "soldCount": 27
   },
   {
     "id": "book-85",
@@ -3358,7 +3694,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-07-05"
       }
-    ]
+    ],
+    "costPrice": 50.5,
+    "originalPrice": 131,
+    "discountPercent": 23,
+    "soldCount": 50
   },
   {
     "id": "book-86",
@@ -3395,7 +3735,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-09-09"
       }
-    ]
+    ],
+    "costPrice": 42.24,
+    "originalPrice": 93,
+    "discountPercent": 29,
+    "soldCount": 41
   },
   {
     "id": "book-87",
@@ -3438,7 +3782,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-10-04"
       }
-    ]
+    ],
+    "costPrice": 20.4,
+    "originalPrice": 62,
+    "discountPercent": 35,
+    "soldCount": 10
   },
   {
     "id": "book-88",
@@ -3475,7 +3823,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-08-06"
       }
-    ]
+    ],
+    "costPrice": 43.07,
+    "originalPrice": 95,
+    "discountPercent": 23,
+    "soldCount": 17
   },
   {
     "id": "book-89",
@@ -3524,7 +3876,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-07-09"
       }
-    ]
+    ],
+    "costPrice": 60.14,
+    "originalPrice": 140.5,
+    "discountPercent": 25,
+    "soldCount": 20
   },
   {
     "id": "book-90",
@@ -3567,7 +3923,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-10-03"
       }
-    ]
+    ],
+    "costPrice": 43.31,
+    "originalPrice": 86,
+    "discountPercent": 17,
+    "soldCount": 30
   },
   {
     "id": "book-91",
@@ -3604,7 +3964,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-11-03"
       }
-    ]
+    ],
+    "costPrice": 35.19,
+    "originalPrice": 69,
+    "discountPercent": 0,
+    "soldCount": 62
   },
   {
     "id": "book-92",
@@ -3653,7 +4017,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-07-08"
       }
-    ]
+    ],
+    "costPrice": 25.42,
+    "originalPrice": 56,
+    "discountPercent": 27,
+    "soldCount": 17
   },
   {
     "id": "book-93",
@@ -3661,7 +4029,7 @@
     "author": "Ernest Hemingueý",
     "category": "dunya",
     "price": 69.5,
-    "oldPrice": null,
+    "oldPrice": 86.88,
     "rating": 4.8999999999999995,
     "reviewsCount": 18,
     "pages": 451,
@@ -3696,7 +4064,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-10-12"
       }
-    ]
+    ],
+    "costPrice": 40.31,
+    "originalPrice": 86.88,
+    "discountPercent": 20,
+    "soldCount": 17
   },
   {
     "id": "book-94",
@@ -3727,7 +4099,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-09-26"
       }
-    ]
+    ],
+    "costPrice": 52.47,
+    "originalPrice": 127,
+    "discountPercent": 22,
+    "soldCount": 27
   },
   {
     "id": "book-95",
@@ -3770,7 +4146,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-08-23"
       }
-    ]
+    ],
+    "costPrice": 43.21,
+    "originalPrice": 89.5,
+    "discountPercent": 17,
+    "soldCount": 35
   },
   {
     "id": "book-96",
@@ -3801,7 +4181,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-08-03"
       }
-    ]
+    ],
+    "costPrice": 26.56,
+    "originalPrice": 60.5,
+    "discountPercent": 31,
+    "soldCount": 45
   },
   {
     "id": "book-97",
@@ -3832,7 +4216,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-11-13"
       }
-    ]
+    ],
+    "costPrice": 26.54,
+    "originalPrice": 72.5,
+    "discountPercent": 40,
+    "soldCount": 26
   },
   {
     "id": "book-98",
@@ -3875,7 +4263,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-07-05"
       }
-    ]
+    ],
+    "costPrice": 67.58,
+    "originalPrice": 139,
+    "discountPercent": 22,
+    "soldCount": 17
   },
   {
     "id": "book-99",
@@ -3924,7 +4316,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-23"
       }
-    ]
+    ],
+    "costPrice": 21.66,
+    "originalPrice": 57.5,
+    "discountPercent": 38,
+    "soldCount": 15
   },
   {
     "id": "book-100",
@@ -3973,7 +4369,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-07-21"
       }
-    ]
+    ],
+    "costPrice": 37.21,
+    "originalPrice": 82,
+    "discountPercent": 26,
+    "soldCount": 10
   },
   {
     "id": "book-101",
@@ -3981,7 +4381,7 @@
     "author": "Gabriel Garsia Markes",
     "category": "dunya",
     "price": 35,
-    "oldPrice": null,
+    "oldPrice": 43.75,
     "rating": 4.8999999999999995,
     "reviewsCount": 22,
     "pages": 287,
@@ -4004,7 +4404,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-09-19"
       }
-    ]
+    ],
+    "costPrice": 21,
+    "originalPrice": 43.75,
+    "discountPercent": 20,
+    "soldCount": 29
   },
   {
     "id": "book-102",
@@ -4035,7 +4439,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-10-28"
       }
-    ]
+    ],
+    "costPrice": 32,
+    "originalPrice": 80,
+    "discountPercent": 38,
+    "soldCount": 21
   },
   {
     "id": "book-103",
@@ -4072,7 +4480,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-07-04"
       }
-    ]
+    ],
+    "costPrice": 63.36,
+    "originalPrice": 132,
+    "discountPercent": 25,
+    "soldCount": 39
   },
   {
     "id": "book-104",
@@ -4115,7 +4527,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-07-08"
       }
-    ]
+    ],
+    "costPrice": 33.48,
+    "originalPrice": 97,
+    "discountPercent": 36,
+    "soldCount": 63
   },
   {
     "id": "book-105",
@@ -4158,7 +4574,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-11-05"
       }
-    ]
+    ],
+    "costPrice": 39.02,
+    "originalPrice": 93.5,
+    "discountPercent": 18,
+    "soldCount": 26
   },
   {
     "id": "book-106",
@@ -4195,7 +4615,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-08-22"
       }
-    ]
+    ],
+    "costPrice": 49.75,
+    "originalPrice": 127.5,
+    "discountPercent": 22,
+    "soldCount": 53
   },
   {
     "id": "book-107",
@@ -4238,7 +4662,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-09-25"
       }
-    ]
+    ],
+    "costPrice": 38.1,
+    "originalPrice": 88.5,
+    "discountPercent": 28,
+    "soldCount": 32
   },
   {
     "id": "book-108",
@@ -4281,7 +4709,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-11-10"
       }
-    ]
+    ],
+    "costPrice": 65.83,
+    "originalPrice": 104.5,
+    "discountPercent": 0,
+    "soldCount": 58
   },
   {
     "id": "book-109",
@@ -4324,7 +4756,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-10-08"
       }
-    ]
+    ],
+    "costPrice": 53.82,
+    "originalPrice": 135.5,
+    "discountPercent": 24,
+    "soldCount": 30
   },
   {
     "id": "book-110",
@@ -4373,7 +4809,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-07-06"
       }
-    ]
+    ],
+    "costPrice": 30.6,
+    "originalPrice": 88,
+    "discountPercent": 32,
+    "soldCount": 16
   },
   {
     "id": "book-111",
@@ -4404,7 +4844,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-11-26"
       }
-    ]
+    ],
+    "costPrice": 43.79,
+    "originalPrice": 75.5,
+    "discountPercent": 0,
+    "soldCount": 41
   },
   {
     "id": "book-112",
@@ -4447,7 +4891,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-10-23"
       }
-    ]
+    ],
+    "costPrice": 39.37,
+    "originalPrice": 84.5,
+    "discountPercent": 25,
+    "soldCount": 62
   },
   {
     "id": "book-113",
@@ -4455,7 +4903,7 @@
     "author": "Ýuwal Noa Harari",
     "category": "dunya",
     "price": 50.5,
-    "oldPrice": null,
+    "oldPrice": 63.13,
     "rating": 4.8999999999999995,
     "reviewsCount": 28,
     "pages": 383,
@@ -4484,7 +4932,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-11-01"
       }
-    ]
+    ],
+    "costPrice": 25.75,
+    "originalPrice": 63.13,
+    "discountPercent": 20,
+    "soldCount": 30
   },
   {
     "id": "book-114",
@@ -4533,7 +4985,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-11-14"
       }
-    ]
+    ],
+    "costPrice": 45.9,
+    "originalPrice": 107,
+    "discountPercent": 21,
+    "soldCount": 54
   },
   {
     "id": "book-115",
@@ -4576,7 +5032,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-10-20"
       }
-    ]
+    ],
+    "costPrice": 28.21,
+    "originalPrice": 45.5,
+    "discountPercent": 0,
+    "soldCount": 55
   },
   {
     "id": "book-116",
@@ -4625,7 +5085,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-10-08"
       }
-    ]
+    ],
+    "costPrice": 42.77,
+    "originalPrice": 92.5,
+    "discountPercent": 22,
+    "soldCount": 52
   },
   {
     "id": "book-117",
@@ -4674,7 +5138,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-16"
       }
-    ]
+    ],
+    "costPrice": 50.1,
+    "originalPrice": 105.5,
+    "discountPercent": 21,
+    "soldCount": 47
   },
   {
     "id": "book-118",
@@ -4705,7 +5173,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-07-06"
       }
-    ]
+    ],
+    "costPrice": 40.23,
+    "originalPrice": 74.5,
+    "discountPercent": 0,
+    "soldCount": 59
   },
   {
     "id": "book-119",
@@ -4736,7 +5208,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-07-06"
       }
-    ]
+    ],
+    "costPrice": 62.4,
+    "originalPrice": 104,
+    "discountPercent": 0,
+    "soldCount": 25
   },
   {
     "id": "book-120",
@@ -4767,7 +5243,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-07-22"
       }
-    ]
+    ],
+    "costPrice": 35.59,
+    "originalPrice": 81.5,
+    "discountPercent": 31,
+    "soldCount": 53
   },
   {
     "id": "book-121",
@@ -4810,7 +5290,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-11-04"
       }
-    ]
+    ],
+    "costPrice": 24.96,
+    "originalPrice": 75,
+    "discountPercent": 36,
+    "soldCount": 57
   },
   {
     "id": "book-122",
@@ -4841,7 +5325,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-11-22"
       }
-    ]
+    ],
+    "costPrice": 53.7,
+    "originalPrice": 118.5,
+    "discountPercent": 24,
+    "soldCount": 26
   },
   {
     "id": "book-123",
@@ -4878,7 +5366,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-08-02"
       }
-    ]
+    ],
+    "costPrice": 26.5,
+    "originalPrice": 53,
+    "discountPercent": 0,
+    "soldCount": 22
   },
   {
     "id": "book-124",
@@ -4921,7 +5413,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-08-10"
       }
-    ]
+    ],
+    "costPrice": 34.52,
+    "originalPrice": 58.5,
+    "discountPercent": 0,
+    "soldCount": 26
   },
   {
     "id": "book-125",
@@ -4929,7 +5425,7 @@
     "author": "Magtymguly Pyragy",
     "category": "klassyka",
     "price": 88,
-    "oldPrice": null,
+    "oldPrice": 110,
     "rating": 4.8,
     "reviewsCount": 28,
     "pages": 162,
@@ -4964,7 +5460,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-07-10"
       }
-    ]
+    ],
+    "costPrice": 48.4,
+    "originalPrice": 110,
+    "discountPercent": 20,
+    "soldCount": 45
   },
   {
     "id": "book-126",
@@ -4995,7 +5495,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-08-27"
       }
-    ]
+    ],
+    "costPrice": 45.45,
+    "originalPrice": 86.5,
+    "discountPercent": 14,
+    "soldCount": 14
   },
   {
     "id": "book-127",
@@ -5038,7 +5542,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-09-05"
       }
-    ]
+    ],
+    "costPrice": 52.77,
+    "originalPrice": 86.5,
+    "discountPercent": 0,
+    "soldCount": 52
   },
   {
     "id": "book-128",
@@ -5081,7 +5589,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-09-16"
       }
-    ]
+    ],
+    "costPrice": 27.9,
+    "originalPrice": 60.5,
+    "discountPercent": 23,
+    "soldCount": 10
   },
   {
     "id": "book-129",
@@ -5089,7 +5601,7 @@
     "author": "Magtymguly Pyragy",
     "category": "klassyka",
     "price": 53,
-    "oldPrice": null,
+    "oldPrice": 66.25,
     "rating": 4.8,
     "reviewsCount": 17,
     "pages": 598,
@@ -5118,7 +5630,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-06-23"
       }
-    ]
+    ],
+    "costPrice": 29.68,
+    "originalPrice": 66.25,
+    "discountPercent": 20,
+    "soldCount": 53
   },
   {
     "id": "book-130",
@@ -5161,7 +5677,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-06-17"
       }
-    ]
+    ],
+    "costPrice": 37.18,
+    "originalPrice": 100.5,
+    "discountPercent": 29,
+    "soldCount": 30
   },
   {
     "id": "book-131",
@@ -5192,7 +5712,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-08-26"
       }
-    ]
+    ],
+    "costPrice": 54.72,
+    "originalPrice": 85.5,
+    "discountPercent": 0,
+    "soldCount": 34
   },
   {
     "id": "book-132",
@@ -5229,7 +5753,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-09-19"
       }
-    ]
+    ],
+    "costPrice": 28.35,
+    "originalPrice": 76.5,
+    "discountPercent": 31,
+    "soldCount": 54
   },
   {
     "id": "book-133",
@@ -5266,7 +5794,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-06-02"
       }
-    ]
+    ],
+    "costPrice": 56.11,
+    "originalPrice": 104.5,
+    "discountPercent": 13,
+    "soldCount": 57
   },
   {
     "id": "book-134",
@@ -5303,7 +5835,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-11-04"
       }
-    ]
+    ],
+    "costPrice": 51.8,
+    "originalPrice": 92.5,
+    "discountPercent": 0,
+    "soldCount": 45
   },
   {
     "id": "book-135",
@@ -5334,7 +5870,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-10-16"
       }
-    ]
+    ],
+    "costPrice": 22.42,
+    "originalPrice": 57,
+    "discountPercent": 33,
+    "soldCount": 29
   },
   {
     "id": "book-136",
@@ -5371,7 +5911,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-09-22"
       }
-    ]
+    ],
+    "costPrice": 32.45,
+    "originalPrice": 85,
+    "discountPercent": 35,
+    "soldCount": 64
   },
   {
     "id": "book-137",
@@ -5379,7 +5923,7 @@
     "author": "Mollanepes",
     "category": "klassyka",
     "price": 40,
-    "oldPrice": null,
+    "oldPrice": 50,
     "rating": 4.7,
     "reviewsCount": 27,
     "pages": 581,
@@ -5402,7 +5946,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-09-24"
       }
-    ]
+    ],
+    "costPrice": 21.6,
+    "originalPrice": 50,
+    "discountPercent": 20,
+    "soldCount": 42
   },
   {
     "id": "book-138",
@@ -5433,7 +5981,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-10-04"
       }
-    ]
+    ],
+    "costPrice": 25.75,
+    "originalPrice": 51.5,
+    "discountPercent": 0,
+    "soldCount": 47
   },
   {
     "id": "book-139",
@@ -5470,7 +6022,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-07-28"
       }
-    ]
+    ],
+    "costPrice": 48.05,
+    "originalPrice": 77.5,
+    "discountPercent": 0,
+    "soldCount": 23
   },
   {
     "id": "book-140",
@@ -5501,7 +6057,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-08-03"
       }
-    ]
+    ],
+    "costPrice": 43.36,
+    "originalPrice": 73.5,
+    "discountPercent": 0,
+    "soldCount": 23
   },
   {
     "id": "book-141",
@@ -5538,7 +6098,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-07-09"
       }
-    ]
+    ],
+    "costPrice": 23.25,
+    "originalPrice": 53.5,
+    "discountPercent": 30,
+    "soldCount": 64
   },
   {
     "id": "book-142",
@@ -5581,7 +6145,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-09-23"
       }
-    ]
+    ],
+    "costPrice": 25.5,
+    "originalPrice": 50,
+    "discountPercent": 0,
+    "soldCount": 13
   },
   {
     "id": "book-143",
@@ -5624,7 +6192,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-09-10"
       }
-    ]
+    ],
+    "costPrice": 32.94,
+    "originalPrice": 61,
+    "discountPercent": 0,
+    "soldCount": 9
   },
   {
     "id": "book-144",
@@ -5655,7 +6227,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-06-07"
       }
-    ]
+    ],
+    "costPrice": 44.41,
+    "originalPrice": 70.5,
+    "discountPercent": 0,
+    "soldCount": 30
   },
   {
     "id": "book-145",
@@ -5663,7 +6239,7 @@
     "author": "Andalyp",
     "category": "klassyka",
     "price": 37,
-    "oldPrice": null,
+    "oldPrice": 46.25,
     "rating": 5,
     "reviewsCount": 23,
     "pages": 376,
@@ -5686,7 +6262,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-11-15"
       }
-    ]
+    ],
+    "costPrice": 21.83,
+    "originalPrice": 46.25,
+    "discountPercent": 20,
+    "soldCount": 43
   },
   {
     "id": "book-146",
@@ -5723,7 +6303,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-08-04"
       }
-    ]
+    ],
+    "costPrice": 42.63,
+    "originalPrice": 104.5,
+    "discountPercent": 26,
+    "soldCount": 50
   },
   {
     "id": "book-147",
@@ -5760,7 +6344,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-06-25"
       }
-    ]
+    ],
+    "costPrice": 40.82,
+    "originalPrice": 103.5,
+    "discountPercent": 24,
+    "soldCount": 59
   },
   {
     "id": "book-148",
@@ -5797,7 +6385,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-06-17"
       }
-    ]
+    ],
+    "costPrice": 54.6,
+    "originalPrice": 112,
+    "discountPercent": 19,
+    "soldCount": 31
   },
   {
     "id": "book-149",
@@ -5805,7 +6397,7 @@
     "author": "Döwletmämmet Azady",
     "category": "klassyka",
     "price": 42,
-    "oldPrice": null,
+    "oldPrice": 52.5,
     "rating": 4.9,
     "reviewsCount": 19,
     "pages": 496,
@@ -5834,7 +6426,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-06-25"
       }
-    ]
+    ],
+    "costPrice": 24.78,
+    "originalPrice": 52.5,
+    "discountPercent": 20,
+    "soldCount": 59
   },
   {
     "id": "book-150",
@@ -5871,7 +6467,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-06-04"
       }
-    ]
+    ],
+    "costPrice": 58.56,
+    "originalPrice": 96,
+    "discountPercent": 0,
+    "soldCount": 59
   },
   {
     "id": "book-151",
@@ -5914,7 +6514,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-11-20"
       }
-    ]
+    ],
+    "costPrice": 40.23,
+    "originalPrice": 74.5,
+    "discountPercent": 0,
+    "soldCount": 64
   },
   {
     "id": "book-152",
@@ -5945,7 +6549,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-10-07"
       }
-    ]
+    ],
+    "costPrice": 18.55,
+    "originalPrice": 61,
+    "discountPercent": 43,
+    "soldCount": 21
   },
   {
     "id": "book-153",
@@ -5982,7 +6590,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-08-28"
       }
-    ]
+    ],
+    "costPrice": 22.36,
+    "originalPrice": 54.5,
+    "discountPercent": 35,
+    "soldCount": 56
   },
   {
     "id": "book-154",
@@ -6025,7 +6637,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-10-19"
       }
-    ]
+    ],
+    "costPrice": 24.32,
+    "originalPrice": 62,
+    "discountPercent": 39,
+    "soldCount": 53
   },
   {
     "id": "book-155",
@@ -6062,7 +6678,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-07-12"
       }
-    ]
+    ],
+    "costPrice": 38.74,
+    "originalPrice": 61.5,
+    "discountPercent": 0,
+    "soldCount": 47
   },
   {
     "id": "book-156",
@@ -6105,7 +6725,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-06-10"
       }
-    ]
+    ],
+    "costPrice": 19.17,
+    "originalPrice": 64.5,
+    "discountPercent": 45,
+    "soldCount": 43
   },
   {
     "id": "book-157",
@@ -6148,7 +6772,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-07-04"
       }
-    ]
+    ],
+    "costPrice": 26.5,
+    "originalPrice": 73,
+    "discountPercent": 32,
+    "soldCount": 54
   },
   {
     "id": "book-158",
@@ -6179,7 +6807,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-07-02"
       }
-    ]
+    ],
+    "costPrice": 51.98,
+    "originalPrice": 117.5,
+    "discountPercent": 20,
+    "soldCount": 60
   },
   {
     "id": "book-159",
@@ -6222,7 +6854,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-11-10"
       }
-    ]
+    ],
+    "costPrice": 36.6,
+    "originalPrice": 80,
+    "discountPercent": 25,
+    "soldCount": 60
   },
   {
     "id": "book-160",
@@ -6265,7 +6901,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-08-27"
       }
-    ]
+    ],
+    "costPrice": 52.78,
+    "originalPrice": 91,
+    "discountPercent": 0,
+    "soldCount": 41
   },
   {
     "id": "book-161",
@@ -6308,7 +6948,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-06-14"
       }
-    ]
+    ],
+    "costPrice": 41.4,
+    "originalPrice": 86,
+    "discountPercent": 20,
+    "soldCount": 66
   },
   {
     "id": "book-162",
@@ -6351,7 +6995,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-06-03"
       }
-    ]
+    ],
+    "costPrice": 33.28,
+    "originalPrice": 64,
+    "discountPercent": 0,
+    "soldCount": 12
   },
   {
     "id": "book-163",
@@ -6382,7 +7030,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-08-10"
       }
-    ]
+    ],
+    "costPrice": 25.5,
+    "originalPrice": 55.5,
+    "discountPercent": 23,
+    "soldCount": 26
   },
   {
     "id": "book-164",
@@ -6413,7 +7065,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-10-02"
       }
-    ]
+    ],
+    "costPrice": 48,
+    "originalPrice": 80,
+    "discountPercent": 0,
+    "soldCount": 45
   },
   {
     "id": "book-165",
@@ -6421,7 +7077,7 @@
     "author": "Hydyr Derýaýew",
     "category": "roman",
     "price": 58,
-    "oldPrice": null,
+    "oldPrice": 72.5,
     "rating": 5,
     "reviewsCount": 33,
     "pages": 578,
@@ -6456,7 +7112,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-11-20"
       }
-    ]
+    ],
+    "costPrice": 29.58,
+    "originalPrice": 72.5,
+    "discountPercent": 20,
+    "soldCount": 19
   },
   {
     "id": "book-166",
@@ -6499,7 +7159,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-07"
       }
-    ]
+    ],
+    "costPrice": 55.75,
+    "originalPrice": 94.5,
+    "discountPercent": 0,
+    "soldCount": 61
   },
   {
     "id": "book-167",
@@ -6542,7 +7206,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-08-13"
       }
-    ]
+    ],
+    "costPrice": 39.78,
+    "originalPrice": 103,
+    "discountPercent": 24,
+    "soldCount": 12
   },
   {
     "id": "book-168",
@@ -6579,7 +7247,11 @@
         "comment": "Kitaby okap durmuşyma täzeçe seredip başladym. Hökmany okaň!",
         "date": "2026-07-05"
       }
-    ]
+    ],
+    "costPrice": 19.88,
+    "originalPrice": 37.5,
+    "discountPercent": 0,
+    "soldCount": 32
   },
   {
     "id": "book-169",
@@ -6587,7 +7259,7 @@
     "author": "Gurbannazar Ezizow",
     "category": "sygyryet",
     "price": 31.5,
-    "oldPrice": null,
+    "oldPrice": 39.38,
     "rating": 4.8,
     "reviewsCount": 11,
     "pages": 488,
@@ -6610,7 +7282,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-07-23"
       }
-    ]
+    ],
+    "costPrice": 16.07,
+    "originalPrice": 39.38,
+    "discountPercent": 20,
+    "soldCount": 58
   },
   {
     "id": "book-170",
@@ -6647,7 +7323,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-08-12"
       }
-    ]
+    ],
+    "costPrice": 50.84,
+    "originalPrice": 82,
+    "discountPercent": 0,
+    "soldCount": 46
   },
   {
     "id": "book-171",
@@ -6690,7 +7370,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-09-18"
       }
-    ]
+    ],
+    "costPrice": 39.99,
+    "originalPrice": 91.5,
+    "discountPercent": 30,
+    "soldCount": 37
   },
   {
     "id": "book-172",
@@ -6733,7 +7417,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-10-02"
       }
-    ]
+    ],
+    "costPrice": 41.31,
+    "originalPrice": 76.5,
+    "discountPercent": 0,
+    "soldCount": 13
   },
   {
     "id": "book-173",
@@ -6770,7 +7458,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-09-06"
       }
-    ]
+    ],
+    "costPrice": 31.86,
+    "originalPrice": 78,
+    "discountPercent": 24,
+    "soldCount": 59
   },
   {
     "id": "book-174",
@@ -6807,7 +7499,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-11-19"
       }
-    ]
+    ],
+    "costPrice": 47.5,
+    "originalPrice": 118,
+    "discountPercent": 19,
+    "soldCount": 48
   },
   {
     "id": "book-175",
@@ -6844,7 +7540,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-10-16"
       }
-    ]
+    ],
+    "costPrice": 33.06,
+    "originalPrice": 73,
+    "discountPercent": 22,
+    "soldCount": 18
   },
   {
     "id": "book-176",
@@ -6881,7 +7581,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-08-23"
       }
-    ]
+    ],
+    "costPrice": 35.36,
+    "originalPrice": 68,
+    "discountPercent": 0,
+    "soldCount": 60
   },
   {
     "id": "book-177",
@@ -6924,7 +7628,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-06-01"
       }
-    ]
+    ],
+    "costPrice": 50.18,
+    "originalPrice": 108.5,
+    "discountPercent": 11,
+    "soldCount": 41
   },
   {
     "id": "book-178",
@@ -6961,7 +7669,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-11-04"
       }
-    ]
+    ],
+    "costPrice": 43.25,
+    "originalPrice": 86.5,
+    "discountPercent": 0,
+    "soldCount": 11
   },
   {
     "id": "book-179",
@@ -6998,7 +7710,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-11-12"
       }
-    ]
+    ],
+    "costPrice": 53.07,
+    "originalPrice": 106,
+    "discountPercent": 18,
+    "soldCount": 39
   },
   {
     "id": "book-180",
@@ -7035,7 +7751,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-11-07"
       }
-    ]
+    ],
+    "costPrice": 23.1,
+    "originalPrice": 38.5,
+    "discountPercent": 0,
+    "soldCount": 44
   },
   {
     "id": "book-181",
@@ -7078,7 +7798,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-15"
       }
-    ]
+    ],
+    "costPrice": 25.6,
+    "originalPrice": 55,
+    "discountPercent": 27,
+    "soldCount": 65
   },
   {
     "id": "book-182",
@@ -7109,7 +7833,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-11-14"
       }
-    ]
+    ],
+    "costPrice": 27.23,
+    "originalPrice": 78.5,
+    "discountPercent": 37,
+    "soldCount": 35
   },
   {
     "id": "book-183",
@@ -7146,7 +7874,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-10-08"
       }
-    ]
+    ],
+    "costPrice": 43.45,
+    "originalPrice": 106,
+    "discountPercent": 25,
+    "soldCount": 66
   },
   {
     "id": "book-184",
@@ -7177,7 +7909,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-11-03"
       }
-    ]
+    ],
+    "costPrice": 55.39,
+    "originalPrice": 95.5,
+    "discountPercent": 0,
+    "soldCount": 43
   },
   {
     "id": "book-185",
@@ -7214,7 +7950,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-07-01"
       }
-    ]
+    ],
+    "costPrice": 27.27,
+    "originalPrice": 67.5,
+    "discountPercent": 25,
+    "soldCount": 41
   },
   {
     "id": "book-186",
@@ -7245,7 +7985,11 @@
         "comment": "Dessanlaryň şasy. Ýaşlara watansöýüjilik terbiýesini berýär.",
         "date": "2026-11-22"
       }
-    ]
+    ],
+    "costPrice": 48.5,
+    "originalPrice": 110.5,
+    "discountPercent": 17,
+    "soldCount": 41
   },
   {
     "id": "book-187",
@@ -7276,7 +8020,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-10-16"
       }
-    ]
+    ],
+    "costPrice": 47.04,
+    "originalPrice": 84,
+    "discountPercent": 0,
+    "soldCount": 52
   },
   {
     "id": "book-188",
@@ -7313,7 +8061,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-09-06"
       }
-    ]
+    ],
+    "costPrice": 38.57,
+    "originalPrice": 92.5,
+    "discountPercent": 28,
+    "soldCount": 44
   },
   {
     "id": "book-189",
@@ -7321,7 +8073,7 @@
     "author": "Kaýum Taňrygulyýew",
     "category": "cagalar",
     "price": 75,
-    "oldPrice": null,
+    "oldPrice": 93.75,
     "rating": 4.8,
     "reviewsCount": 22,
     "pages": 464,
@@ -7356,7 +8108,11 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-06-02"
       }
-    ]
+    ],
+    "costPrice": 42.75,
+    "originalPrice": 93.75,
+    "discountPercent": 20,
+    "soldCount": 59
   },
   {
     "id": "book-190",
@@ -7399,7 +8155,11 @@
         "comment": "Çagalarym uly höwes bilen okaýarlar, suratlary gaty owadan.",
         "date": "2026-08-05"
       }
-    ]
+    ],
+    "costPrice": 29.98,
+    "originalPrice": 83.5,
+    "discountPercent": 35,
+    "soldCount": 67
   },
   {
     "id": "book-191",
@@ -7430,7 +8190,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-08-20"
       }
-    ]
+    ],
+    "costPrice": 40.43,
+    "originalPrice": 90.5,
+    "discountPercent": 19,
+    "soldCount": 50
   },
   {
     "id": "book-192",
@@ -7461,7 +8225,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-07-23"
       }
-    ]
+    ],
+    "costPrice": 27.5,
+    "originalPrice": 50,
+    "discountPercent": 0,
+    "soldCount": 63
   },
   {
     "id": "book-193",
@@ -7469,7 +8237,7 @@
     "author": "Halk Döredijiligi",
     "category": "cagalar",
     "price": 43.5,
-    "oldPrice": null,
+    "oldPrice": 54.38,
     "rating": 4.8,
     "reviewsCount": 29,
     "pages": 264,
@@ -7504,7 +8272,11 @@
         "comment": "Gaty gyzykly we täsirli kitap, bir demde okap çykdym.",
         "date": "2026-07-16"
       }
-    ]
+    ],
+    "costPrice": 22.62,
+    "originalPrice": 54.38,
+    "discountPercent": 20,
+    "soldCount": 57
   },
   {
     "id": "book-194",
@@ -7535,7 +8307,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-09-05"
       }
-    ]
+    ],
+    "costPrice": 22.28,
+    "originalPrice": 40.5,
+    "discountPercent": 0,
+    "soldCount": 10
   },
   {
     "id": "book-195",
@@ -7578,7 +8354,11 @@
         "comment": "Bahasy hem elýeterli, sahypalary ak kagyza arassa çap edilen.",
         "date": "2026-06-23"
       }
-    ]
+    ],
+    "costPrice": 47.58,
+    "originalPrice": 106,
+    "discountPercent": 26,
+    "soldCount": 11
   },
   {
     "id": "book-196",
@@ -7621,7 +8401,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-07-20"
       }
-    ]
+    ],
+    "costPrice": 17.25,
+    "originalPrice": 48.5,
+    "discountPercent": 29,
+    "soldCount": 18
   },
   {
     "id": "book-197",
@@ -7629,7 +8413,7 @@
     "author": "Halk Döredijiligi",
     "category": "cagalar",
     "price": 53.5,
-    "oldPrice": null,
+    "oldPrice": 66.88,
     "rating": 4.8,
     "reviewsCount": 23,
     "pages": 211,
@@ -7664,7 +8448,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-09-19"
       }
-    ]
+    ],
+    "costPrice": 31.56,
+    "originalPrice": 66.88,
+    "discountPercent": 20,
+    "soldCount": 59
   },
   {
     "id": "book-198",
@@ -7695,7 +8483,11 @@
         "comment": "Maliýe sowatlylygyny öwrenmek üçin iň gowy başlangyç.",
         "date": "2026-11-16"
       }
-    ]
+    ],
+    "costPrice": 35.77,
+    "originalPrice": 96.5,
+    "discountPercent": 30,
+    "soldCount": 60
   },
   {
     "id": "book-199",
@@ -7732,7 +8524,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-07-06"
       }
-    ]
+    ],
+    "costPrice": 50.23,
+    "originalPrice": 98.5,
+    "discountPercent": 0,
+    "soldCount": 38
   },
   {
     "id": "book-200",
@@ -7775,7 +8571,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-08-19"
       }
-    ]
+    ],
+    "costPrice": 27.72,
+    "originalPrice": 49.5,
+    "discountPercent": 0,
+    "soldCount": 11
   },
   {
     "id": "book-201",
@@ -7806,7 +8606,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-08-24"
       }
-    ]
+    ],
+    "costPrice": 21.06,
+    "originalPrice": 59.5,
+    "discountPercent": 32,
+    "soldCount": 10
   },
   {
     "id": "book-202",
@@ -7849,7 +8653,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-08-28"
       }
-    ]
+    ],
+    "costPrice": 34.25,
+    "originalPrice": 68.5,
+    "discountPercent": 0,
+    "soldCount": 59
   },
   {
     "id": "book-203",
@@ -7880,7 +8688,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-06-27"
       }
-    ]
+    ],
+    "costPrice": 49.47,
+    "originalPrice": 97,
+    "discountPercent": 0,
+    "soldCount": 61
   },
   {
     "id": "book-204",
@@ -7923,7 +8735,11 @@
         "comment": "Her bir türkmen maşgalasynda bolmaly eser. Çuňňur manyly.",
         "date": "2026-06-09"
       }
-    ]
+    ],
+    "costPrice": 37.34,
+    "originalPrice": 88.5,
+    "discountPercent": 26,
+    "soldCount": 9
   },
   {
     "id": "book-205",
@@ -7931,7 +8747,7 @@
     "author": "Türkmenistanyň Ylymlar Akademiýasy",
     "category": "ylmy",
     "price": 33.5,
-    "oldPrice": null,
+    "oldPrice": 41.88,
     "rating": 4.8,
     "reviewsCount": 20,
     "pages": 320,
@@ -7954,7 +8770,11 @@
         "comment": "Şahyryň her bir seti diňe ýürekden çykýar. Maslahat berýärin!",
         "date": "2026-11-08"
       }
-    ]
+    ],
+    "costPrice": 21.11,
+    "originalPrice": 41.88,
+    "discountPercent": 20,
+    "soldCount": 28
   },
   {
     "id": "book-206",
@@ -7997,7 +8817,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-10-18"
       }
-    ]
+    ],
+    "costPrice": 17.7,
+    "originalPrice": 30,
+    "discountPercent": 0,
+    "soldCount": 67
   },
   {
     "id": "book-207",
@@ -8034,7 +8858,11 @@
         "comment": "Wagty tygşytlamaga we netijeliligi artdyrmaga örän uly kömek etdi.",
         "date": "2026-10-13"
       }
-    ]
+    ],
+    "costPrice": 36.48,
+    "originalPrice": 64,
+    "discountPercent": 0,
+    "soldCount": 33
   },
   {
     "id": "book-208",
@@ -8065,7 +8893,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-10-11"
       }
-    ]
+    ],
+    "costPrice": 31.36,
+    "originalPrice": 76,
+    "discountPercent": 26,
+    "soldCount": 14
   },
   {
     "id": "book-209",
@@ -8096,7 +8928,11 @@
         "comment": "Terjimesi gaty labyzly we baý türkmen dilinde ýerine ýetirilen.",
         "date": "2026-07-23"
       }
-    ]
+    ],
+    "costPrice": 49.29,
+    "originalPrice": 98.5,
+    "discountPercent": 19,
+    "soldCount": 36
   },
   {
     "id": "book-210",
@@ -8139,7 +8975,11 @@
         "comment": "Türkmen dilinde programmirläp öwrenmek üçin iň düşnükli okuw gollanmasy!",
         "date": "2026-08-02"
       }
-    ]
+    ],
+    "costPrice": 53.44,
+    "originalPrice": 98.5,
+    "discountPercent": 15,
+    "soldCount": 21
   },
   {
     "id": "book-211",
@@ -8182,7 +9022,11 @@
         "comment": "Dutaryň güýji bilen gan dökülmeginiň öňüni alan Şükür bagşy hakyndaky ajaýyp kitap.",
         "date": "2026-08-14"
       }
-    ]
+    ],
+    "costPrice": 39.22,
+    "originalPrice": 74,
+    "discountPercent": 0,
+    "soldCount": 52
   },
   {
     "id": "book-212",
@@ -8213,7 +9057,11 @@
         "comment": "Taryhy we ahlak gymmaty örän ýokary kitap. Çap edilişi ajaýyp!",
         "date": "2026-08-13"
       }
-    ]
+    ],
+    "costPrice": 32.86,
+    "originalPrice": 62,
+    "discountPercent": 0,
+    "soldCount": 18
   },
   {
     "id": "book-213",
@@ -8250,7 +9098,11 @@
         "comment": "Çuň pelsepe we ynsan kalbynyň syrlary ussatlyk bilen açylypdyr.",
         "date": "2026-09-19"
       }
-    ]
+    ],
+    "costPrice": 58.28,
+    "originalPrice": 106,
+    "discountPercent": 11,
+    "soldCount": 18
   },
   {
     "id": "book-214",
@@ -8281,7 +9133,11 @@
         "comment": "Dünýägaraýşy giňeldýän, pikirlenmäge mejbur edýän gollanma.",
         "date": "2026-08-06"
       }
-    ]
+    ],
+    "costPrice": 19.21,
+    "originalPrice": 31.5,
+    "discountPercent": 0,
+    "soldCount": 47
   },
   {
     "id": "book-215",
@@ -8312,6 +9168,10 @@
         "comment": "Eltip bermek hyzmaty örän tiz işledi, sag boluň!",
         "date": "2026-09-20"
       }
-    ]
+    ],
+    "costPrice": 21.09,
+    "originalPrice": 53,
+    "discountPercent": 30,
+    "soldCount": 47
   }
 ]
