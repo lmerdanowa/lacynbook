@@ -1099,7 +1099,7 @@ function handleLogout() {
 }
 
 async function quickDemoLogin() {
-  document.getElementById('loginUsername').value = 'merdan';
+  document.getElementById('loginUsername').value = 'lachyn';
   document.getElementById('loginPassword').value = '123456';
   loginForm.requestSubmit();
 }

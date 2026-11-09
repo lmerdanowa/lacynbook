@@ -1,13 +1,13 @@
 [
   {
     "id": "usr-101",
-    "username": "merdan",
-    "fullName": "Merdan Allanazarow",
+    "username": "lachyn",
+    "fullName": "Laçyn Merdanowa",
     "password": "123456",
     "city": "Aşgabat",
-    "address": "Magtymguly şaýoly, 45",
-    "avatar": "📚",
-    "bonusPoints": 50,
+    "address": "Bitaraplyk şaýoly, 25",
+    "avatar": "👑",
+    "bonusPoints": 100,
     "createdAt": "2026-10-01T10:00:00.000Z"
   },
   {

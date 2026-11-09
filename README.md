@@ -85,7 +85,7 @@ Turkmen-Kitap-Dukany/
 
 ### 👤 Müşderi Hasaby (Storefront):
 - **Web-saýt:** [lachynbookshop.online](https://lachynbookshop.online) (`http://localhost:3000`)
-- **Login:** `merdan`
+- **Login:** `lachyn` (Laçyn Merdanowa)
 - **Açarsöz (Parol):** `123456`
 
 ### 🛡️ Administrator Hasaby (Admin Portal):
@@ -121,4 +121,4 @@ server {
 ---
 
 ## 📜 Awtor we Hukuklar
-&copy; 2026 **L.BookShop** ([lachynbookshop.online](https://lachynbookshop.online)). Ähli hukuklar goralan.
+&copy; 2026 **L.BookShop** ([lachynbookshop.online](https://lachynbookshop.online)) — **Laçyn Merdanowa**. Ähli hukuklar goralan.
