@@ -285,30 +285,34 @@ app.get('/api/stats', (req, res) => {
   });
 });
 
-// 11. AUTH ROUTES
+// 11. AUTH ROUTES (Pure Login + Password)
 // 11.1 Register
 app.post('/api/auth/register', (req, res) => {
-  const { fullName, email, phone, city, address, password } = req.body;
-  if (!fullName || !email || !password) {
-    return res.status(400).json({ success: false, message: 'Doly adyňyz, email we açarsöz hökmanydyr' });
+  const { username, password, fullName, city, address } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ success: false, message: 'Login we açarsöz hökmanydyr' });
+  }
+
+  const cleanUsername = username.trim().toLowerCase();
+  if (cleanUsername.length < 3) {
+    return res.status(400).json({ success: false, message: 'Login iň az 3 harpdan ybarat bolmaly' });
   }
 
   const users = readData(USERS_FILE);
-  const existing = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  const existing = users.find(u => u.username && u.username.toLowerCase() === cleanUsername);
   if (existing) {
-    return res.status(400).json({ success: false, message: 'Bu email bilen eýýäm hasap açylan' });
+    return res.status(400).json({ success: false, message: 'Bu login eýýäm eýelenen. Başga login saýlaň.' });
   }
 
   const newUser = {
     id: `usr-${Date.now()}`,
-    fullName,
-    email: email.toLowerCase(),
-    phone: phone || '',
+    username: cleanUsername,
+    fullName: fullName ? fullName.trim() : cleanUsername,
+    password: password.trim(),
     city: city || 'Aşgabat',
     address: address || '',
-    password, // For production we would hash with bcrypt
     avatar: '📚',
-    bonusPoints: 10.00, // Welcoming bonus 10 TMT
+    bonusPoints: 10.00, // 10 TMT sowgat bonus
     createdAt: new Date().toISOString()
   };
 
@@ -316,25 +320,26 @@ app.post('/api/auth/register', (req, res) => {
   writeData(USERS_FILE, users);
 
   const { password: _, ...userSafe } = newUser;
-  res.status(201).json({ success: true, message: 'Agza bolduňyz!', data: userSafe });
+  res.status(201).json({ success: true, message: 'Hasabyňyz döredildi!', data: userSafe });
 });
 
 // 11.2 Login
 app.post('/api/auth/login', (req, res) => {
-  const { emailOrPhone, password } = req.body;
-  if (!emailOrPhone || !password) {
-    return res.status(400).json({ success: false, message: 'Email/telefon we açarsöz hökmanydyr' });
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ success: false, message: 'Login we açarsöz giriziň' });
   }
 
   const users = readData(USERS_FILE);
-  const q = emailOrPhone.toLowerCase().trim();
+  const cleanUsername = username.trim().toLowerCase();
+  const cleanPassword = password.trim();
+
   const user = users.find(u => 
-    (u.email && u.email.toLowerCase() === q) || 
-    (u.phone && u.phone.replace(/\D/g, '') === q.replace(/\D/g, ''))
+    u.username && u.username.toLowerCase() === cleanUsername
   );
 
-  if (!user || user.password !== password) {
-    return res.status(401).json({ success: false, message: 'Email ýa-da açarsöz nädogry' });
+  if (!user || user.password !== cleanPassword) {
+    return res.status(401).json({ success: false, message: 'Login ýa-da açarsöz nädogry!' });
   }
 
   const { password: _, ...userSafe } = user;

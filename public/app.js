@@ -918,17 +918,17 @@ function renderProfileData() {
   const nameEl = document.getElementById('profileNameDisplay');
   if (nameEl) nameEl.textContent = state.user.fullName;
   
-  const emailEl = document.getElementById('profileEmailDisplay');
-  if (emailEl) emailEl.textContent = state.user.email;
+  const usernameEl = document.getElementById('profileUsernameDisplay');
+  if (usernameEl) usernameEl.textContent = `@${state.user.username || 'ulanyjy'}`;
   
   const bonusEl = document.getElementById('profileBonusDisplay');
   if (bonusEl) bonusEl.textContent = `${(state.user.bonusPoints || 0).toFixed(2)} ${t('currency')}`;
 
+  const uInput = document.getElementById('profileUsername');
+  if (uInput) uInput.value = state.user.username || '';
+
   const fnInput = document.getElementById('profileFullName');
   if (fnInput) fnInput.value = state.user.fullName || '';
-  
-  const phoneInput = document.getElementById('profilePhone');
-  if (phoneInput) phoneInput.value = state.user.phone || '';
   
   const cityInput = document.getElementById('profileCity');
   if (cityInput && state.user.city) cityInput.value = state.user.city;
@@ -939,14 +939,14 @@ function renderProfileData() {
 
 async function handleLogin(e) {
   e.preventDefault();
-  const emailOrPhone = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
 
   try {
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ emailOrPhone, password })
+      body: JSON.stringify({ username, password })
     });
     const json = await res.json();
     if (json.success) {
@@ -955,9 +955,9 @@ async function handleLogin(e) {
       updateAuthUI();
       authModal.classList.remove('active');
       loginForm.reset();
-      alert(`Hoş geldiňiz, ${state.user.fullName}!`);
+      alert(`Hoş geldiňiz, @${state.user.username}!`);
     } else {
-      alert(json.message || 'Giriş şowsuz boldy.');
+      alert(json.message || 'Login ýa-da açarsöz nädogry!');
     }
   } catch (err) {
     console.error(err);
@@ -967,17 +967,16 @@ async function handleLogin(e) {
 
 async function handleRegister(e) {
   e.preventDefault();
+  const username = document.getElementById('regUsername').value.trim();
   const fullName = document.getElementById('regFullName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const phone = document.getElementById('regPhone').value.trim();
   const city = document.getElementById('regCity').value;
-  const password = document.getElementById('regPassword').value;
+  const password = document.getElementById('regPassword').value.trim();
 
   try {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName, email, phone, city, password })
+      body: JSON.stringify({ username, fullName, city, password })
     });
     const json = await res.json();
     if (json.success) {
@@ -986,7 +985,7 @@ async function handleRegister(e) {
       updateAuthUI();
       authModal.classList.remove('active');
       registerForm.reset();
-      alert(`Agza bolduňyz! 10 TMT bonus bal sowgat berildi!`);
+      alert(`Hasap döredildi! Hoş geldiňiz, @${state.user.username}! 10 TMT bonus sowgat berildi!`);
     } else {
       alert(json.message || 'Hasap açmak şowsuz boldy.');
     }
@@ -1001,7 +1000,6 @@ async function handleProfileUpdate(e) {
   if (!state.user) return;
 
   const fullName = document.getElementById('profileFullName').value.trim();
-  const phone = document.getElementById('profilePhone').value.trim();
   const city = document.getElementById('profileCity').value;
   const address = document.getElementById('profileAddress').value.trim();
 
@@ -1009,7 +1007,7 @@ async function handleProfileUpdate(e) {
     const res = await fetch(`/api/auth/profile/${state.user.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName, phone, city, address })
+      body: JSON.stringify({ fullName, city, address })
     });
     const json = await res.json();
     if (json.success) {
@@ -1034,8 +1032,8 @@ function handleLogout() {
 }
 
 async function quickDemoLogin() {
-  document.getElementById('loginEmail').value = 'batyr@dukany.tm';
-  document.getElementById('loginPassword').value = 'password123';
+  document.getElementById('loginUsername').value = 'batyr';
+  document.getElementById('loginPassword').value = '123456';
   loginForm.requestSubmit();
 }
 
