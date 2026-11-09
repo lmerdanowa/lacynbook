@@ -173,7 +173,7 @@
     "costPrice": 44.66,
     "originalPrice": 77,
     "discountPercent": 0,
-    "soldCount": 145
+    "soldCount": 146
   },
   {
     "id": "book-5",
@@ -6444,7 +6444,7 @@
     "pages": 318,
     "year": 2026,
     "language": "Türkmençe",
-    "stock": 12,
+    "stock": 11,
     "badge": "ÝUNESKO",
     "gradient": "from-stone-700 to-stone-950",
     "description": "Artygyň Ýoly eseri — Berdi Kerbabaýew tarapyndan döredilen çuňňur many-mazmunly gymmatly kitap. Halkymyzyň geçmiş taryhyny, şanly geçmişini we gahrymançylykly pelsepesini çuňňur derňeýän düýpli eser. Kitap okyjylara belent ahlak gymmatlyklaryny, durmuş tejribesini we giň dünýägaraýşy peşgeş berýär.",
@@ -6471,7 +6471,7 @@
     "costPrice": 58.56,
     "originalPrice": 96,
     "discountPercent": 0,
-    "soldCount": 59
+    "soldCount": 60
   },
   {
     "id": "book-151",

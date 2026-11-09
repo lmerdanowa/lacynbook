@@ -48,3 +48,4 @@ books.forEach((b, index) => {
 
 fs.writeFileSync(booksPath, JSON.stringify(books, null, 2), 'utf8');
 console.log(`Enriched ${books.length} books with costPrice, stock, discounts, and soldCount.`);
+

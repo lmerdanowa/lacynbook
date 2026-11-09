@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.lachynbookshop.online"
+        }
+      ],
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/api/index.js"
+    }
+  ]
+}

@@ -36,22 +36,34 @@ const BOOKS_FILE = path.join(DATA_DIR, 'books.json');
 const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 
+// Memory cache for serverless environments (Vercel)
+const memoryCache = {};
+const isServerless = process.env.VERCEL === '1' || process.env.AWS_LAMBDA_FUNCTION_NAME;
+
 // Helper to read JSON
 function readData(filePath) {
+  if (isServerless && memoryCache[filePath]) {
+    return memoryCache[filePath];
+  }
   try {
     if (!fs.existsSync(filePath)) {
       return [];
     }
     const content = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(content || '[]');
+    const parsed = JSON.parse(content || '[]');
+    if (isServerless) memoryCache[filePath] = parsed;
+    return parsed;
   } catch (err) {
     console.error(`Error reading ${filePath}:`, err);
-    return [];
+    return memoryCache[filePath] || [];
   }
 }
 
 // Helper to write JSON
 function writeData(filePath, data) {
+  if (isServerless) {
+    memoryCache[filePath] = data;
+  }
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -59,8 +71,11 @@ function writeData(filePath, data) {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
     return true;
   } catch (err) {
-    console.error(`Error writing ${filePath}:`, err);
-    return false;
+    // In read-only serverless environment, memoryCache keeps data active
+    if (!isServerless) {
+      console.error(`Error writing ${filePath}:`, err);
+    }
+    return true;
   }
 }
 
@@ -689,7 +704,11 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`L.BookShop (lachynbookshop.online) serweri işläp dur: http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`L.BookShop (lachynbookshop.online) serweri işläp dur: http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
 
