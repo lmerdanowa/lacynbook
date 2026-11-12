@@ -439,19 +439,19 @@ function openBookModal(bookId) {
     : `<p style="color: var(--text-muted); font-size: 0.85rem;">Entek teswir ýazylmandyr. Ilkinji bolup siz ýazyň!</p>`;
 
   bookModalBody.innerHTML = `
-    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-      <div style="width: 180px; height: 260px; border-radius: 12px; background: linear-gradient(135deg, ${getGradient(book.category)}); color: white; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+    <div class="book-modal-layout">
+      <div class="book-modal-cover" style="background: linear-gradient(135deg, ${getGradient(book.category)});">
         <span style="font-size: 0.75rem; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; align-self: flex-start;">${book.badge || 'Klassika'}</span>
         <div>
           <h3 style="font-size: 1.1rem; font-weight: 800; line-height: 1.2;">${escapeHtml(book.title)}</h3>
           <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 4px;">${escapeHtml(book.author)}</p>
         </div>
       </div>
-      <div style="flex: 1; min-width: 260px;">
+      <div class="book-modal-info">
         <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.35rem;">${escapeHtml(book.title)}</h2>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem;">Awtory: <strong>${escapeHtml(book.author)}</strong></p>
         
-        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap;">
+        <div style="display: flex; gap: 0.85rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap;">
           <span>📖 ${book.pages} sahypa</span>
           <span>📅 ${book.year}-nji ýyl</span>
           <span>🌐 ${book.language}</span>
@@ -468,7 +468,7 @@ function openBookModal(bookId) {
           }
         </div>
 
-        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
           <span>${book.price.toFixed(2)} ${t('currency')}</span>
           ${(book.oldPrice || (book.originalPrice && book.originalPrice > book.price))
             ? `<span style="font-size: 0.95rem; text-decoration: line-through; color: var(--text-muted);">${(book.originalPrice || book.oldPrice).toFixed(2)} ${t('currency')}</span>`
@@ -482,7 +482,7 @@ function openBookModal(bookId) {
 
         <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; color: var(--text-main);">${escapeHtml(book.description)}</p>
 
-        <button class="btn-primary" style="width: 100%; justify-content: center; ${typeof book.stock === 'number' && book.stock <= 0 ? 'opacity: 0.5; cursor: not-allowed; background: #64748b;' : ''}" ${(typeof book.stock === 'number' && book.stock <= 0) ? 'disabled' : ''} onclick="addToCart('${book.id}'); bookModal.classList.remove('active');">
+        <button class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; ${typeof book.stock === 'number' && book.stock <= 0 ? 'opacity: 0.5; cursor: not-allowed; background: #64748b;' : ''}" ${(typeof book.stock === 'number' && book.stock <= 0) ? 'disabled' : ''} onclick="addToCart('${book.id}'); bookModal.classList.remove('active');">
           ${(typeof book.stock === 'number' && book.stock <= 0) ? '❌ Gutardy' : (inCart ? '✓ ' + t('inCart') : '+ ' + t('addToCart'))}
         </button>
       </div>
@@ -498,7 +498,7 @@ function openBookModal(bookId) {
 
       <div style="background: var(--bg-primary); padding: 1rem; border-radius: 12px; border: 1px solid var(--border);">
         <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">${t('leaveReview')}</h4>
-        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div class="review-form-row">
           <input type="text" id="reviewUser" placeholder="${t('yourName')}" class="form-control" style="flex: 2;" required />
           <select id="reviewRating" class="form-control" style="flex: 1;">
             <option value="5">⭐⭐⭐⭐⭐ (5)</option>
@@ -507,7 +507,7 @@ function openBookModal(bookId) {
           </select>
         </div>
         <textarea id="reviewComment" placeholder="${t('yourComment')}" class="form-control" rows="2" style="margin-bottom: 0.5rem;" required></textarea>
-        <button class="btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;" onclick="submitReview('${book.id}')">${t('submitReview')}</button>
+        <button class="btn-primary" style="padding: 0.55rem 1rem; font-size: 0.85rem; width: 100%; justify-content: center;" onclick="submitReview('${book.id}')">${t('submitReview')}</button>
       </div>
     </div>
   `;
