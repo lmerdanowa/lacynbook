@@ -1123,3 +1123,33 @@ window.renderFavorites = renderFavorites;
 window.renderMyOrders = renderMyOrders;
 window.trackSingleOrder = trackSingleOrder;
 
+// Mobile compact header on scroll down (hides logo & name cleanly)
+(function initMobileScrollHeader() {
+  const headerEl = document.querySelector('header');
+  const searchBoxEl = document.querySelector('.search-box');
+  const mobileSearchBtn = document.getElementById('mobileSearchToggleBtn');
+  if (!headerEl) return;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY || window.pageYOffset;
+    if (y > 70) {
+      headerEl.classList.add('scrolled-compact');
+    } else if (y < 20) {
+      headerEl.classList.remove('scrolled-compact');
+      if (searchBoxEl) searchBoxEl.classList.remove('force-open');
+    }
+  }, { passive: true });
+
+  if (mobileSearchBtn && searchBoxEl) {
+    mobileSearchBtn.addEventListener('click', () => {
+      searchBoxEl.classList.toggle('force-open');
+      if (searchBoxEl.classList.contains('force-open')) {
+        setTimeout(() => {
+          if (searchInput) searchInput.focus();
+        }, 50);
+      }
+    });
+  }
+})();
+
+

@@ -428,6 +428,10 @@
       width: 100%;
     }
 
+    .admin-mobile-logout-btn {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .admin-layout.active {
         flex-direction: column;
@@ -440,7 +444,24 @@
         z-index: 120;
       }
       .admin-brand {
-        padding: 0.85rem 1rem;
+        padding: 0.65rem 1rem;
+      }
+      .admin-mobile-logout-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-left: auto;
+        background: rgba(239, 68, 68, 0.18);
+        color: #f87171;
+        border: 1px solid rgba(239, 68, 68, 0.35);
+        padding: 0.38rem 0.7rem;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.78rem;
+        cursor: pointer;
+      }
+      .admin-sidebar.scrolled-compact .admin-brand {
+        display: none;
       }
       .admin-nav {
         flex-direction: row;
@@ -448,7 +469,7 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 0.5rem 0.75rem;
+        padding: 0.45rem 0.75rem;
         gap: 0.4rem;
       }
       .admin-nav::-webkit-scrollbar {
@@ -456,15 +477,15 @@
       }
       .admin-nav-item {
         flex-shrink: 0;
-        padding: 0.5rem 0.85rem;
-        font-size: 0.82rem;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.8rem;
       }
       .admin-sidebar-footer {
-        padding: 0.5rem 0.75rem !important;
+        display: none !important;
       }
       .admin-topbar {
         position: relative;
-        padding: 0.85rem 1rem;
+        padding: 0.75rem 1rem;
         flex-wrap: wrap;
         gap: 0.65rem;
       }
@@ -565,11 +586,12 @@
     <!-- Sidebar -->
     <aside class="admin-sidebar">
       <div class="admin-brand">
-        <img src="assets/logo-icon-3d.png" alt="L.BookShop" style="width: 44px; height: 44px; border-radius: 12px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4); border: 1.5px solid rgba(245, 158, 11, 0.3);">
+        <img src="assets/logo-icon-3d.png" alt="L.BookShop" style="width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4); border: 1.5px solid rgba(245, 158, 11, 0.3);">
         <div>
-          <div style="font-weight: 800; font-size: 1.1rem; line-height: 1.2;">L.BookShop</div>
-          <small style="color: #6ee7b7; font-size: 0.75rem;">Admin Suite</small>
+          <div style="font-weight: 800; font-size: 1.05rem; line-height: 1.2;">L.BookShop</div>
+          <small style="color: #6ee7b7; font-size: 0.72rem;">Admin Suite</small>
         </div>
+        <button id="adminMobileLogoutBtn" class="admin-mobile-logout-btn" title="Hasapdan çykmak">🚪 Çyk</button>
       </div>
 
       <ul class="admin-nav">
@@ -1140,11 +1162,32 @@
         adminLoginForm.requestSubmit();
       });
 
-      adminLogoutBtn.addEventListener('click', () => {
+      function handleAdminLogout() {
         sessionStorage.removeItem('tkd_admin_auth');
         adminToken = null;
         showAuth();
-      });
+      }
+      adminLogoutBtn.addEventListener('click', handleAdminLogout);
+      const adminMobileLogoutBtn = document.getElementById('adminMobileLogoutBtn');
+      if (adminMobileLogoutBtn) {
+        adminMobileLogoutBtn.addEventListener('click', handleAdminLogout);
+      }
+
+      // Mobile scroll behavior: hide logo & name when scrolling down
+      const adminSidebarEl = document.querySelector('.admin-sidebar');
+      const adminMainEl = document.querySelector('.admin-main');
+      function handleAdminScroll(scrollTop) {
+        if (!adminSidebarEl) return;
+        if (scrollTop > 50) {
+          adminSidebarEl.classList.add('scrolled-compact');
+        } else if (scrollTop < 15) {
+          adminSidebarEl.classList.remove('scrolled-compact');
+        }
+      }
+      window.addEventListener('scroll', () => handleAdminScroll(window.scrollY || window.pageYOffset), { passive: true });
+      if (adminMainEl) {
+        adminMainEl.addEventListener('scroll', () => handleAdminScroll(adminMainEl.scrollTop), { passive: true });
+      }
 
       document.getElementById('adminCreateBookForm').addEventListener('submit', async (e) => {
         e.preventDefault();
